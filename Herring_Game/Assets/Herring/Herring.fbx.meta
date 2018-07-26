@@ -1,0 +1,174 @@
+fileFormatVersion: 2
+guid: f77d76d72ffbd5a48b96991b1942d104
+timeCreated: 1472516814
+licenseType: Store
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Armature
+    100002: Back vertebra
+    100004: Center left fin back0
+    100006: Center left fin back1
+    100008: Center left fin center0
+    100010: Center left fin center1
+    100012: Center left fin forward0
+    100014: Center left fin forward1
+    100016: Center right fin back0
+    100018: Center right fin back1
+    100020: Center right fin center0
+    100022: Center right fin center1
+    100024: Center right fin forward0
+    100026: Center right fin forward1
+    100028: Center vertebra
+    100030: 'Forward left fin bottom0 '
+    100032: Forward left fin bottom1
+    100034: 'Forward left fin middle0 '
+    100036: Forward left fin middle1
+    100038: 'Forward left fin top0 '
+    100040: Forward left fin top1
+    100042: Forward right fin bottom0
+    100044: Forward right fin bottom1
+    100046: 'Forward right fin middle0 '
+    100048: Forward right fin middle1
+    100050: Forward right fin top0
+    100052: Forward right fin top1
+    100054: Forward vertebra
+    100056: Head
+    100058: //RootNode
+    100060: Herring
+    100062: Lower fin back0
+    100064: Lower fin back1
+    100066: Lower fin center0
+    100068: Lower fin center1
+    100070: Lower fin forward0
+    100072: Lower fin forward1
+    100074: Lower jaw
+    100076: Root
+    100078: Tail
+    100080: Tail fin bottom0
+    100082: Tail fin bottom1
+    100084: Tail fin middle0
+    100086: Tail fin middle1
+    100088: Tail fin top0
+    100090: Tail fin top1
+    100092: Upper fin back0
+    100094: Upper fin back1
+    100096: Upper fin center0
+    100098: Upper fin center1
+    100100: Upper fin forward0
+    100102: Upper fin forward1
+    100104: Upper jaw
+    400000: Armature
+    400002: Back vertebra
+    400004: Center left fin back0
+    400006: Center left fin back1
+    400008: Center left fin center0
+    400010: Center left fin center1
+    400012: Center left fin forward0
+    400014: Center left fin forward1
+    400016: Center right fin back0
+    400018: Center right fin back1
+    400020: Center right fin center0
+    400022: Center right fin center1
+    400024: Center right fin forward0
+    400026: Center right fin forward1
+    400028: Center vertebra
+    400030: 'Forward left fin bottom0 '
+    400032: Forward left fin bottom1
+    400034: 'Forward left fin middle0 '
+    400036: Forward left fin middle1
+    400038: 'Forward left fin top0 '
+    400040: Forward left fin top1
+    400042: Forward right fin bottom0
+    400044: Forward right fin bottom1
+    400046: 'Forward right fin middle0 '
+    400048: Forward right fin middle1
+    400050: Forward right fin top0
+    400052: Forward right fin top1
+    400054: Forward vertebra
+    400056: Head
+    400058: Herring
+    400060: //RootNode
+    400062: Lower fin back0
+    400064: Lower fin back1
+    400066: Lower fin center0
+    400068: Lower fin center1
+    400070: Lower fin forward0
+    400072: Lower fin forward1
+    400074: Lower jaw
+    400076: Root
+    400078: Tail
+    400080: Tail fin bottom0
+    400082: Tail fin bottom1
+    400084: Tail fin middle0
+    400086: Tail fin middle1
+    400088: Tail fin top0
+    400090: Tail fin top1
+    400092: Upper fin back0
+    400094: Upper fin back1
+    400096: Upper fin center0
+    400098: Upper fin center1
+    400100: Upper fin forward0
+    400102: Upper fin forward1
+    400104: Upper jaw
+    4300000: Herring
+    9500000: //RootNode
+    13700000: Herring
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
