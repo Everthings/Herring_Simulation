@@ -14,7 +14,7 @@ public class CameraScript : MonoBehaviour
 
     void Start()
     {
-        startPos = transform.position;
+        startPos = new Vector3(130, 230, 142);
     }
 
     // Update is called once per frame
@@ -38,7 +38,7 @@ public class CameraScript : MonoBehaviour
         if (Input.GetAxis("Mouse ScrollWheel") > 0f)
         {
 
-            if (transform.position.y > 40)
+            if (transform.position.y > 30)
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
