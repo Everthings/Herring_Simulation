@@ -5,8 +5,6 @@ using UnityEngine;
 public class CameraScript : MonoBehaviour
 {
 
-    public int maxZ;
-    public int minZ;
     public int ScrollSpeed;
     public int ZoomSpeed;
 
@@ -24,15 +22,30 @@ public class CameraScript : MonoBehaviour
         {
             transform.Translate(new Vector3(0, ScrollSpeed * Time.deltaTime, 0));
 
-            if (transform.position.z < minZ)
-                transform.position = new Vector3(transform.position.x, transform.position.y, minZ);
+            if (transform.position.z < 0)
+                transform.position = new Vector3(transform.position.x, transform.position.y, 0);
         }
         else if (Input.GetKey("down") || Input.GetKey("s"))
         {
             transform.Translate(new Vector3(0, -ScrollSpeed * Time.deltaTime, 0));
 
-            if (transform.position.z > maxZ)
-                transform.position = new Vector3(transform.position.x, transform.position.y, maxZ);
+            if (transform.position.z > 1900)
+                transform.position = new Vector3(transform.position.x, transform.position.y, 1900);
+        }
+
+        if (Input.GetKey("left") || Input.GetKey("a"))
+        {
+            transform.Translate(new Vector3(-ScrollSpeed * Time.deltaTime,  0, 0));
+
+            if (transform.position.x > 600)
+                transform.position = new Vector3(600, transform.position.y, transform.position.z);
+        }
+        else if (Input.GetKey("right") || Input.GetKey("d"))
+        {
+            transform.Translate(new Vector3(ScrollSpeed * Time.deltaTime, 0, 0));
+
+            if (transform.position.x < -300)
+                transform.position = new Vector3(-300, transform.position.y, transform.position.z);
         }
 
         if (Input.GetAxis("Mouse ScrollWheel") > 0f)
