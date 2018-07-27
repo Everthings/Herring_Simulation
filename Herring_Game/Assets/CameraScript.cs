@@ -2,17 +2,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraScript : MonoBehaviour {
+public class CameraScript : MonoBehaviour
+{
 
-    public GameObject target;
+    public int maxZ;
+    public int minZ;
+    public int speed;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        transform.position = target.transform.position + new Vector3(0, 3, 6);
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetAxis("Mouse ScrollWheel") > 0f) // forward (against z direction... weird, I know)
+        {
+            transform.Translate(new Vector3(0, speed * Time.deltaTime, 0));
+
+            if (transform.position.z < minZ)
+                transform.position = new Vector3(transform.position.x, transform.position.y, minZ);
+        }
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0f) // backward (with z direction)
+        {
+            transform.Translate(new Vector3(0, -speed * Time.deltaTime, 0));
+
+            if (transform.position.z > maxZ)
+                transform.position = new Vector3(transform.position.x, transform.position.y, maxZ);
+        }
     }
 }
