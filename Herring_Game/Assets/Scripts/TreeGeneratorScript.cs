@@ -26,7 +26,7 @@ public class TreeGeneratorScript : MonoBehaviour
     void Start()
     {
         populatePossibleLocations();
-        addTrees(100);
+        addTrees(5);
         drawTrees();
     }
 
@@ -39,9 +39,9 @@ public class TreeGeneratorScript : MonoBehaviour
     void populatePossibleLocations()
     {
 
-        for(int i = 0; i < 300; i+=5)
+        for(int i = (int)right_bound; i < left_bound; i+=5)
         {
-            for (int j = 0; j < 1900; j+=5)
+            for (int j = (int)lower_bound; j < upper_bound; j += 5)
             {
                 if (river.SampleHeight(new Vector3(i, 0, j)) >= 6.9f)
                 {
