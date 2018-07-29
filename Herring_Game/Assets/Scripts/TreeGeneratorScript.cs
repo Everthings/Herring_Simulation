@@ -59,7 +59,7 @@ public class TreeGeneratorScript : MonoBehaviour
             Vector3 pos = new Vector3(randPos.x, 7, randPos.y);
             positions.Add(pos);
 
-            Debug.Log(river.terrainData.GetHeight((int)randPos.x, (int)randPos.y));
+            possibleLocations.Remove(randPos);
         }
     }
 
