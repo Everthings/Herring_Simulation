@@ -9,6 +9,7 @@ public class TreeGeneratorScript : MonoBehaviour
     public Tree prefab;
 
     List<Vector3> positions = new List<Vector3>();
+    List<Vector2> possibleLocations = new List<Vector2>();
 
     public float upper_bound;
     public float lower_bound;
@@ -19,9 +20,12 @@ public class TreeGeneratorScript : MonoBehaviour
     public bool culvert_removed = false;
     public float survival_rate;
 
+    float[,] heightMap;
+
     // Use this for initialization
     void Start()
     {
+        populatePossibleLocations();
         addTrees(100);
         drawTrees();
     }
@@ -32,14 +36,30 @@ public class TreeGeneratorScript : MonoBehaviour
 
     }
 
+    void populatePossibleLocations()
+    {
+
+        for(int i = 0; i < 300; i+=5)
+        {
+            for (int j = 0; j < 1900; j+=5)
+            {
+                if (river.SampleHeight(new Vector3(i, 0, j)) >= 6.9f)
+                {
+                    possibleLocations.Add(new Vector2(i, j));
+                } 
+            }
+        }
+    }
+
     void addTrees(int num)
     {
-        TreeInstance[] temp = river.terrainData.treeInstances;
-
         for (int i = 0; i < num; i++)
         {
-            Vector3 pos = new Vector3(Random.Range(0, 300), 7, Random.Range(0, 1900));
+            Vector2 randPos = possibleLocations[(int)(Random.Range(0, 0.999f) * possibleLocations.Count)];
+            Vector3 pos = new Vector3(randPos.x, 7, randPos.y);
             positions.Add(pos);
+
+            possibleLocations.Remove(randPos);
         }
     }
 
