@@ -54,16 +54,28 @@ public class TreeGeneratorScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Space))
-        {
-            int length = positions.Count;
-            for (int i = length - 1; i >= 0; i--)
-            {
-                swapTreeType(i);
-            }
-                
+        //draws trees on mouse click in region
 
-            drawTrees();
+        // left-click
+        if (Input.GetMouseButton(0))
+        {
+
+            //Gets mouse position on plance
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            // Casts the ray and get the first game object hit
+            Physics.Raycast(ray, out hit);
+
+            if (hit.point.x > right_bound && hit.point.x < left_bound && hit.point.z < upper_bound && hit.point.z > lower_bound)
+            {
+                int length = positions.Count;
+                for (int i = length - 1; i >= 0; i--)
+                {
+                    swapTreeType(i);
+                }
+
+                drawTrees();
+            }
         }
     }
 
