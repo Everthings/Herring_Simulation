@@ -11,7 +11,6 @@ public class HerringMovementScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         agent.SetDestination(dest);
-        //GameObject.Find("Herring").GetComponent<SkinnedMeshRenderer>().enabled = false;
     }
 
     // Update is called once per frame
@@ -22,6 +21,13 @@ public class HerringMovementScript : MonoBehaviour {
         }
 
         if (!agent.pathPending)
+        {
             transform.Find("Herring").GetComponent<SkinnedMeshRenderer>().enabled = true;
+        }
+        else
+        {
+            GameObject.Find("Herring").GetComponent<SkinnedMeshRenderer>().enabled = false;
+        }
+
     }
 }

@@ -21,16 +21,20 @@ public class HerringGeneratorScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-        herrings = new ArrayList();
-
-		for(int i = 0; i < numHerring; i++)
-        {
-            GameObject temp = Instantiate(herring, new Vector3(Random.Range(minX, maxX), Random.Range(minY, maxY), Random.Range(minZ, maxZ)), new Quaternion());
-            herrings.Add(temp);
-        }
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	}
+
+    public void spawnHerring(int num)
+    {
+        herrings = new ArrayList();
+
+        for (int i = 0; i < numHerring; i++)
+        {
+            GameObject temp = Instantiate(herring, new Vector3(Random.Range(minX, maxX), Random.Range(minY, maxY), Random.Range(minZ, maxZ)), new Quaternion());
+            herrings.Add(temp);
+        }
+    }
 }
