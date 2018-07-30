@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class MainScript : MonoBehaviour
 {
 
-    bool buttonClicked = false; //don't update terrain if exterior button is clicked
+    bool enable = true; //don't update terrain if exterior button is clicked
     float time = Time.time;
 
     // Use this for initialization
@@ -15,15 +15,15 @@ public class MainScript : MonoBehaviour
 
     }
 
-    public void setButtonClicked(bool b)
+    public void setEnable(bool b)
     {
-        buttonClicked = b;
+        enable = b;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!buttonClicked)
+        if (enable)
         {
             if (Input.GetMouseButton(0) && Time.time - time > 0.1)
             {
@@ -37,8 +37,6 @@ public class MainScript : MonoBehaviour
                 time = Time.time;
             }
         }
-
-        buttonClicked = false;
     }
 
     void handleClick(RaycastHit hit)
@@ -54,12 +52,12 @@ public class MainScript : MonoBehaviour
                     for(int i = 0; i < sections.Count; i++)
                     {
 
-                        if (hit.point.x > sections[i].GetComponent<TreeGeneratorScript>().right_bound && hit.point.x < sections[i].GetComponent<TreeGeneratorScript>().left_bound && hit.point.z < sections[i].GetComponent<TreeGeneratorScript>().upper_bound && hit.point.z > sections[i].GetComponent<TreeGeneratorScript>().lower_bound)
+                        if (hit.point.x > sections[i].GetComponent<TreeShrubGeneratorScript>().right_bound && hit.point.x < sections[i].GetComponent<TreeShrubGeneratorScript>().left_bound && hit.point.z < sections[i].GetComponent<TreeShrubGeneratorScript>().upper_bound && hit.point.z > sections[i].GetComponent<TreeShrubGeneratorScript>().lower_bound)
                         {
-                            if (sections[i].GetComponent<TreeGeneratorScript>().areTrees())
-                                sections[i].GetComponent<TreeGeneratorScript>().incrementTreeAges();
+                            if (sections[i].GetComponent<TreeShrubGeneratorScript>().areTrees())
+                                sections[i].GetComponent<TreeShrubGeneratorScript>().incrementTreeAges();
                             else
-                                sections[i].GetComponent<TreeGeneratorScript>().addTrees(10);
+                                sections[i].GetComponent<TreeShrubGeneratorScript>().addTrees(10);
 
                             break;
                         }

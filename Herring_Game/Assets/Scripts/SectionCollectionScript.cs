@@ -11,16 +11,16 @@ public class SectionCollectionScript: MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        sectionPositions.Add(transform.Find("Section1").GetComponent<TreeGeneratorScript>().getTreePositions());
-        sectionPositions.Add(transform.Find("Section2").GetComponent<TreeGeneratorScript>().getTreePositions());
-        sectionPositions.Add(transform.Find("Section3").GetComponent<TreeGeneratorScript>().getTreePositions());
-        sectionPositions.Add(transform.Find("Section4").GetComponent<TreeGeneratorScript>().getTreePositions());
-        sectionPositions.Add(transform.Find("Section5").GetComponent<TreeGeneratorScript>().getTreePositions());
-        sectionPositions.Add(transform.Find("Section6").GetComponent<TreeGeneratorScript>().getTreePositions());
-        sectionPositions.Add(transform.Find("Section7").GetComponent<TreeGeneratorScript>().getTreePositions());
-        sectionPositions.Add(transform.Find("Section8").GetComponent<TreeGeneratorScript>().getTreePositions());
-        sectionPositions.Add(transform.Find("Section9").GetComponent<TreeGeneratorScript>().getTreePositions());
-        sectionPositions.Add(transform.Find("Section10").GetComponent<TreeGeneratorScript>().getTreePositions());
+        sectionPositions.Add(transform.Find("Section1").GetComponent<TreeShrubGeneratorScript>().getTreePositions());
+        sectionPositions.Add(transform.Find("Section2").GetComponent<TreeShrubGeneratorScript>().getTreePositions());
+        sectionPositions.Add(transform.Find("Section3").GetComponent<TreeShrubGeneratorScript>().getTreePositions());
+        sectionPositions.Add(transform.Find("Section4").GetComponent<TreeShrubGeneratorScript>().getTreePositions());
+        sectionPositions.Add(transform.Find("Section5").GetComponent<TreeShrubGeneratorScript>().getTreePositions());
+        sectionPositions.Add(transform.Find("Section6").GetComponent<TreeShrubGeneratorScript>().getTreePositions());
+        sectionPositions.Add(transform.Find("Section7").GetComponent<TreeShrubGeneratorScript>().getTreePositions());
+        sectionPositions.Add(transform.Find("Section8").GetComponent<TreeShrubGeneratorScript>().getTreePositions());
+        sectionPositions.Add(transform.Find("Section9").GetComponent<TreeShrubGeneratorScript>().getTreePositions());
+        sectionPositions.Add(transform.Find("Section10").GetComponent<TreeShrubGeneratorScript>().getTreePositions());
 
         sections.Add(transform.Find("Section1").gameObject);
         sections.Add(transform.Find("Section2").gameObject);
