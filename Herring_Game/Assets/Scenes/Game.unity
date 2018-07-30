@@ -164,6 +164,7 @@ MonoBehaviour:
   age8: {fileID: 19355254, guid: 478db20dff58b064a9eb232491fe44a0, type: 2}
   age9: {fileID: 19355254, guid: aa61285e6f2f1554391ee9e8a578b2fb, type: 2}
   age10: {fileID: 19355254, guid: 808ef85c241e38d45bd50157c224f222, type: 2}
+  shrub: {fileID: 128904, guid: 72b642be5c7fa6247845840734423d58, type: 2}
   upper_bound: 1000
   lower_bound: 820
   right_bound: 0
@@ -223,6 +224,7 @@ MonoBehaviour:
   age8: {fileID: 19355254, guid: 478db20dff58b064a9eb232491fe44a0, type: 2}
   age9: {fileID: 19355254, guid: aa61285e6f2f1554391ee9e8a578b2fb, type: 2}
   age10: {fileID: 19355254, guid: 808ef85c241e38d45bd50157c224f222, type: 2}
+  shrub: {fileID: 128904, guid: 72b642be5c7fa6247845840734423d58, type: 2}
   upper_bound: 1900
   lower_bound: 1720
   right_bound: 0
@@ -416,6 +418,7 @@ MonoBehaviour:
   age8: {fileID: 19355254, guid: 478db20dff58b064a9eb232491fe44a0, type: 2}
   age9: {fileID: 19355254, guid: aa61285e6f2f1554391ee9e8a578b2fb, type: 2}
   age10: {fileID: 19355254, guid: 808ef85c241e38d45bd50157c224f222, type: 2}
+  shrub: {fileID: 128904, guid: 72b642be5c7fa6247845840734423d58, type: 2}
   upper_bound: 640
   lower_bound: 460
   right_bound: 0
@@ -839,6 +842,7 @@ MonoBehaviour:
   age8: {fileID: 19355254, guid: 478db20dff58b064a9eb232491fe44a0, type: 2}
   age9: {fileID: 19355254, guid: aa61285e6f2f1554391ee9e8a578b2fb, type: 2}
   age10: {fileID: 19355254, guid: 808ef85c241e38d45bd50157c224f222, type: 2}
+  shrub: {fileID: 128904, guid: 72b642be5c7fa6247845840734423d58, type: 2}
   upper_bound: 1540
   lower_bound: 1360
   right_bound: 0
@@ -1316,6 +1320,7 @@ MonoBehaviour:
   age8: {fileID: 19355254, guid: 478db20dff58b064a9eb232491fe44a0, type: 2}
   age9: {fileID: 19355254, guid: aa61285e6f2f1554391ee9e8a578b2fb, type: 2}
   age10: {fileID: 19355254, guid: 808ef85c241e38d45bd50157c224f222, type: 2}
+  shrub: {fileID: 128904, guid: 72b642be5c7fa6247845840734423d58, type: 2}
   upper_bound: 280
   lower_bound: 100
   right_bound: 0
@@ -1762,6 +1767,7 @@ MonoBehaviour:
   age8: {fileID: 19355254, guid: 478db20dff58b064a9eb232491fe44a0, type: 2}
   age9: {fileID: 19355254, guid: aa61285e6f2f1554391ee9e8a578b2fb, type: 2}
   age10: {fileID: 19355254, guid: 808ef85c241e38d45bd50157c224f222, type: 2}
+  shrub: {fileID: 128904, guid: 72b642be5c7fa6247845840734423d58, type: 2}
   upper_bound: 820
   lower_bound: 640
   right_bound: 0
@@ -2375,6 +2381,7 @@ MonoBehaviour:
   age8: {fileID: 19355254, guid: 478db20dff58b064a9eb232491fe44a0, type: 2}
   age9: {fileID: 19355254, guid: aa61285e6f2f1554391ee9e8a578b2fb, type: 2}
   age10: {fileID: 19355254, guid: 808ef85c241e38d45bd50157c224f222, type: 2}
+  shrub: {fileID: 128904, guid: 72b642be5c7fa6247845840734423d58, type: 2}
   upper_bound: 1180
   lower_bound: 1000
   right_bound: 0
@@ -2979,6 +2986,7 @@ MonoBehaviour:
   age8: {fileID: 19355254, guid: 478db20dff58b064a9eb232491fe44a0, type: 2}
   age9: {fileID: 19355254, guid: aa61285e6f2f1554391ee9e8a578b2fb, type: 2}
   age10: {fileID: 19355254, guid: 808ef85c241e38d45bd50157c224f222, type: 2}
+  shrub: {fileID: 128904, guid: 72b642be5c7fa6247845840734423d58, type: 2}
   upper_bound: 1720
   lower_bound: 1540
   right_bound: 0
@@ -3779,6 +3787,7 @@ MonoBehaviour:
   age8: {fileID: 19355254, guid: 478db20dff58b064a9eb232491fe44a0, type: 2}
   age9: {fileID: 19355254, guid: aa61285e6f2f1554391ee9e8a578b2fb, type: 2}
   age10: {fileID: 19355254, guid: 808ef85c241e38d45bd50157c224f222, type: 2}
+  shrub: {fileID: 128904, guid: 72b642be5c7fa6247845840734423d58, type: 2}
   upper_bound: 460
   lower_bound: 280
   right_bound: 0
@@ -3992,6 +4001,7 @@ MonoBehaviour:
   age8: {fileID: 19355254, guid: 478db20dff58b064a9eb232491fe44a0, type: 2}
   age9: {fileID: 19355254, guid: aa61285e6f2f1554391ee9e8a578b2fb, type: 2}
   age10: {fileID: 19355254, guid: 808ef85c241e38d45bd50157c224f222, type: 2}
+  shrub: {fileID: 128904, guid: 72b642be5c7fa6247845840734423d58, type: 2}
   upper_bound: 1360
   lower_bound: 1180
   right_bound: 0

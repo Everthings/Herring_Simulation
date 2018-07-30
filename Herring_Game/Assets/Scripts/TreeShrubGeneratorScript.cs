@@ -17,9 +17,12 @@ public class TreeShrubGeneratorScript : MonoBehaviour
     public Tree age9;
     public Tree age10;
 
-    List<Vector3> positions = new List<Vector3>();
+    public GameObject shrub;
+
+    List<Vector3> treePositions = new List<Vector3>();
+    List<Vector3> shrubPositions = new List<Vector3>();
     List<Vector2> possibleLocations = new List<Vector2>();
-    List<TreeData> prefabs = new List<TreeData>();
+    List<TreeData> treePrefabs = new List<TreeData>();
 
     List<Tree> agesInOrder = new List<Tree>();
 
@@ -52,30 +55,12 @@ public class TreeShrubGeneratorScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //draws trees on mouse click in region
-
-        // left-click
-        /*
-        if (Input.GetMouseButton(0))
-        {
-
-            //Gets mouse position on plance
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            // Casts the ray and get the first game object hit
-            Physics.Raycast(ray, out hit);
-
-            if (hit.point.x > right_bound && hit.point.x < left_bound && hit.point.z < upper_bound && hit.point.z > lower_bound)
-            {
-                
-            }
-        }
-        */
+      
     }
 
     public void incrementTreeAges()
     {
-        int length = positions.Count;
+        int length = treePositions.Count;
         for (int i = length - 1; i >= 0; i--)
         {
             swapTreeType(i);
@@ -109,8 +94,8 @@ public class TreeShrubGeneratorScript : MonoBehaviour
         {
             Vector2 randPos = possibleLocations[(int)(Random.Range(0, 0.999f) * possibleLocations.Count)];
             Vector3 pos = new Vector3(randPos.x, 7, randPos.y);
-            positions.Add(pos);
-            prefabs.Add(new TreeData(0, null));
+            treePositions.Add(pos);
+            treePrefabs.Add(new TreeData(0, null));
 
             possibleLocations.Remove(randPos);
         }
@@ -118,18 +103,35 @@ public class TreeShrubGeneratorScript : MonoBehaviour
         drawTrees();
     }
 
+    public void addShrubs(int num)
+    {
+
+        // adds positions to the positions list; age of tree added to prefab array
+
+        for (int i = 0; i < num; i++)
+        {
+            Vector2 randPos = possibleLocations[(int)(Random.Range(0, 0.999f) * possibleLocations.Count)];
+            Vector3 pos = new Vector3(randPos.x, 7, randPos.y);
+            shrubPositions.Add(pos);
+
+            possibleLocations.Remove(randPos);
+        }
+
+        drawShrubs();
+    }
+
     void addTree(Vector2 newPos, int newAge)
     {
         // adds a new tree in the positions of the old one but with age incremented
 
         Vector3 pos = new Vector3(newPos.x, 7, newPos.y);
-        positions.Add(pos);
-        prefabs.Add(new TreeData(newAge, null));
+        treePositions.Add(pos);
+        treePrefabs.Add(new TreeData(newAge, null));
     }
 
     public bool areTrees()
     {
-        if (positions.Count > 0)
+        if (treePositions.Count > 0)
             return true;
 
         return false;
@@ -139,33 +141,41 @@ public class TreeShrubGeneratorScript : MonoBehaviour
     {
         // swaps old tree with new tree when changing ages
 
-        addTree(new Vector2(positions[index].x, positions[index].z), (prefabs[index].getAge()+1)%10);
+        addTree(new Vector2(treePositions[index].x, treePositions[index].z), (treePrefabs[index].getAge()+1)%10);
         destroyTree(index);
 
-        positions.Remove(positions[index]);
-        prefabs.Remove(prefabs[index]);
+        treePositions.Remove(treePositions[index]);
+        treePrefabs.Remove(treePrefabs[index]);
     }
 
     void drawTrees(){
         // creates trees in game world and sets them to the prefab array
 
-        for (int i = 0; i < positions.Count; i++)
-            prefabs[i].setTreePrefab(Instantiate(agesInOrder[prefabs[i].getAge()], positions[i], Quaternion.identity));
+        for (int i = 0; i < treePositions.Count; i++)
+            treePrefabs[i].setTreePrefab(Instantiate(agesInOrder[treePrefabs[i].getAge()], treePositions[i], Quaternion.identity));
+    }
+
+    void drawShrubs()
+    {
+        // creates trees in game world and sets them to the prefab array
+
+        for (int i = 0; i < shrubPositions.Count; i++)
+           Instantiate(shrub, shrubPositions[i], Quaternion.identity);
     }
 
     void destroyTree(int index)
     {
         // destroys trees
 
-        if (prefabs[index].getPrefab() != null)
+        if (treePrefabs[index].getPrefab() != null)
         {
-            Destroy(prefabs[index].getPrefab().gameObject);
+            Destroy(treePrefabs[index].getPrefab().gameObject);
         }
     }
 
     public List<Vector3> getTreePositions()
     {
-        return positions;
+        return treePositions;
     }
 }
 
