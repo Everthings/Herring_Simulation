@@ -34,19 +34,4 @@ public class HerringMovementScript : MonoBehaviour {
     {
         agent.SetDestination(dest);
     }
-
-    public bool isPending()
-    {
-        return agent.pathPending;
-    }
-
-    public void enableHerring()
-    {
-        agent.speed = 20;
-    }
-
-    public void disableHerring()
-    {
-        agent.speed = 0;
-    }
 }

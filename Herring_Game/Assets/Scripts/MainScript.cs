@@ -1,56 +1,81 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MainScript : MonoBehaviour
 {
 
-    public Terrain River;
-    public Terrain River_bends_1;
-    public Terrain River_bends_2;
-    public Terrain River_bends_3;
-    public Terrain River_bends_4;
-    /* public Terrain River_bends_5;
-     public Terrain River_bends_6;
-     public Terrain River_bends_7;
-     public Terrain River_bends_8;
-     public Terrain River_bends_9;
-     public Terrain River_bends_10;*/ //not added yet
-
-    Terrain[] terrains;
-
-    int current = 0;
+    bool buttonClicked = false; //don't update terrain if exterior button is clicked
+    float time = Time.time;
 
     // Use this for initialization
     void Start()
     {
-        River.gameObject.SetActive(true);
-        River_bends_1.gameObject.SetActive(false);
-        River_bends_2.gameObject.SetActive(false);
-        River_bends_3.gameObject.SetActive(false);
-        River_bends_4.gameObject.SetActive(false);
-        //feel free to recode this with an arrayList, I'm too lazy to do that
-        terrains = new Terrain[]{ River, River_bends_1, River_bends_2,River_bends_3,River_bends_4};
+
+    }
+
+    public void setButtonClicked(bool b)
+    {
+        buttonClicked = b;
     }
 
     // Update is called once per frame
     void Update()
     {
-        // left-click to toggle river bends
-        if (Input.GetMouseButton(0))
+        if (!buttonClicked)
         {
-            NextTerrain(terrains);
+            if (Input.GetMouseButton(0) && Time.time - time > 0.1)
+            {
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+                // Casts the ray and get the first game object hit
+                Physics.Raycast(ray, out hit);
+
+                handleClick(hit);
+
+                time = Time.time;
+            }
         }
 
+        buttonClicked = false;
     }
-    //watch out for my confusing single letter variables
-    void NextTerrain(Terrain[] t)
+
+    void handleClick(RaycastHit hit)
     {
+        int value = GameObject.Find("Restoration_Options").GetComponent<Dropdown>().value;
 
-        t[current].gameObject.SetActive(false);
-        current = (current + 1) % t.Length;
-        t[current].gameObject.SetActive(true);
+        switch (value)
+        {
+            case 0: //Trees
+                {
+                    List<GameObject> sections = GameObject.Find("Sections").GetComponent<SectionCollectionScript>().getSections();
 
-        GameObject.Find("Coonamessett").GetComponent<HerringGeneratorScript>().rebakeNavMesh();
+                    for(int i = 0; i < sections.Count; i++)
+                    {
+
+                        if (hit.point.x > sections[i].GetComponent<TreeGeneratorScript>().right_bound && hit.point.x < sections[i].GetComponent<TreeGeneratorScript>().left_bound && hit.point.z < sections[i].GetComponent<TreeGeneratorScript>().upper_bound && hit.point.z > sections[i].GetComponent<TreeGeneratorScript>().lower_bound)
+                        {
+                            if (sections[i].GetComponent<TreeGeneratorScript>().areTrees())
+                                sections[i].GetComponent<TreeGeneratorScript>().incrementTreeAges();
+                            else
+                                sections[i].GetComponent<TreeGeneratorScript>().addTrees(10);
+
+                            break;
+                        }
+                    }
+
+                    break;
+                }
+            case 1: //Shrubs
+                {
+                    break;
+                }
+            case 2: //River
+                {
+                    GameObject.Find("Coonamessett").GetComponent<RiverBendGeneratorScript>().NextTerrain();
+                    break;
+                }
+        }
     }
 }

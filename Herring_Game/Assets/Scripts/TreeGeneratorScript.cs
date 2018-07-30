@@ -47,8 +47,6 @@ public class TreeGeneratorScript : MonoBehaviour
         agesInOrder.Add(age10);
 
         populatePossibleLocations();
-        addTrees(5);
-        drawTrees();
     }
 
     // Update is called once per frame
@@ -57,6 +55,7 @@ public class TreeGeneratorScript : MonoBehaviour
         //draws trees on mouse click in region
 
         // left-click
+        /*
         if (Input.GetMouseButton(0))
         {
 
@@ -68,15 +67,21 @@ public class TreeGeneratorScript : MonoBehaviour
 
             if (hit.point.x > right_bound && hit.point.x < left_bound && hit.point.z < upper_bound && hit.point.z > lower_bound)
             {
-                int length = positions.Count;
-                for (int i = length - 1; i >= 0; i--)
-                {
-                    swapTreeType(i);
-                }
-
-                drawTrees();
+                
             }
         }
+        */
+    }
+
+    public void incrementTreeAges()
+    {
+        int length = positions.Count;
+        for (int i = length - 1; i >= 0; i--)
+        {
+            swapTreeType(i);
+        }
+
+        drawTrees();
     }
 
     void populatePossibleLocations()
@@ -95,7 +100,7 @@ public class TreeGeneratorScript : MonoBehaviour
         }
     }
 
-    void addTrees(int num)
+    public void addTrees(int num)
     {
 
         // adds positions to the positions list; age of tree added to prefab array
@@ -109,6 +114,8 @@ public class TreeGeneratorScript : MonoBehaviour
 
             possibleLocations.Remove(randPos);
         }
+
+        drawTrees();
     }
 
     void addTree(Vector2 newPos, int newAge)
@@ -118,6 +125,14 @@ public class TreeGeneratorScript : MonoBehaviour
         Vector3 pos = new Vector3(newPos.x, 7, newPos.y);
         positions.Add(pos);
         prefabs.Add(new TreeData(newAge, null));
+    }
+
+    public bool areTrees()
+    {
+        if (positions.Count > 0)
+            return true;
+
+        return false;
     }
 
     void swapTreeType(int index)
