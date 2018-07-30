@@ -69,6 +69,8 @@ public class TreeGeneratorScript : MonoBehaviour
 
     void populatePossibleLocations()
     {
+        // set array of all positions on land (increments by 5 cuz 2 trees 1 apart is too much overlap)
+
         for(int i = (int)right_bound; i < left_bound; i+=5)
         {
             for (int j = (int)lower_bound; j < upper_bound; j += 5)
@@ -83,6 +85,9 @@ public class TreeGeneratorScript : MonoBehaviour
 
     void addTrees(int num)
     {
+
+        // adds positions to the positions list; age of tree added to prefab array
+
         for (int i = 0; i < num; i++)
         {
             Vector2 randPos = possibleLocations[(int)(Random.Range(0, 0.999f) * possibleLocations.Count)];
@@ -96,6 +101,8 @@ public class TreeGeneratorScript : MonoBehaviour
 
     void addTree(Vector2 newPos, int newAge)
     {
+        // adds a new tree in the positions of the old one but with age incremented
+
         Vector3 pos = new Vector3(newPos.x, 7, newPos.y);
         positions.Add(pos);
         prefabs.Add(new TreeData(newAge, null));
@@ -103,6 +110,8 @@ public class TreeGeneratorScript : MonoBehaviour
 
     void swapTreeType(int index)
     {
+        // swaps old tree with new tree when changing ages
+
         addTree(new Vector2(positions[index].x, positions[index].z), (prefabs[index].getAge()+1)%10);
         destroyTree(index);
 
@@ -111,15 +120,19 @@ public class TreeGeneratorScript : MonoBehaviour
     }
 
     void drawTrees(){
+        // creates trees in game world and sets them to the prefab array
+
         for (int i = 0; i < positions.Count; i++)
             prefabs[i].setTreePrefab(Instantiate(agesInOrder[prefabs[i].getAge()], positions[i], Quaternion.identity));
     }
 
     void destroyTree(int index)
     {
+        // destroys trees
+
         if (prefabs[index].getPrefab() != null)
         {
-            Destroy(prefabs[index].getPrefab());
+            Destroy(prefabs[index].getPrefab().gameObject);
         }
     }
 
