@@ -77,11 +77,28 @@ public class MainScript : MonoBehaviour
                             sections[i].GetComponent<TreeShrubGeneratorScript>().addShrubs(5);
                         }
                     }
-                            break;
+                    break;
                 }
             case 2: //River
                 {
                     GameObject.Find("Coonamessett").GetComponent<RiverBendGeneratorScript>().NextTerrain();
+                    break;
+                }
+            case 3: //Culverts
+                {
+                    List<GameObject> sections = GameObject.Find("Sections").GetComponent<SectionCollectionScript>().getSections();
+
+                    for (int i = 0; i < sections.Count; i++)
+                    {
+
+                        if (hit.point.x > sections[i].GetComponent<TreeShrubGeneratorScript>().right_bound && hit.point.x < sections[i].GetComponent<TreeShrubGeneratorScript>().left_bound && hit.point.z < sections[i].GetComponent<TreeShrubGeneratorScript>().upper_bound && hit.point.z > sections[i].GetComponent<TreeShrubGeneratorScript>().lower_bound)
+                        {
+                            sections[i].GetComponent<CulvertRemovalScript>().removeCulvert();
+
+                            break;
+                        }
+                    }
+
                     break;
                 }
         }
