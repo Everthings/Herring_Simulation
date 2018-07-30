@@ -51,5 +51,6 @@ public class MainScript : MonoBehaviour
         current = (current + 1) % t.Length;
         t[current].gameObject.SetActive(true);
 
+        GameObject.Find("Coonamessett").GetComponent<HerringGeneratorScript>().rebakeNavMesh();
     }
 }

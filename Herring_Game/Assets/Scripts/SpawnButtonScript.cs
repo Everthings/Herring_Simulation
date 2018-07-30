@@ -16,8 +16,6 @@ public class SpawnButtonScript : MonoBehaviour {
 
     public void clicked()
     {
-        //TODO: make num actually control herring num
-
-        GameObject.Find("Coonamessett").GetComponent<HerringGeneratorScript>().spawnHerring(0);
+        GameObject.Find("Coonamessett").GetComponent<HerringGeneratorScript>().spawnHerring(300);
     }
 }
