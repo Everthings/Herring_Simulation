@@ -31,7 +31,8 @@ Shader "AQUAS Lite" {
         _FoamContrast ("Foam Contrast", Range(0, 0.5)) = 0.25
         _FoamColor ("Foam Color", Color) = (0.3602941,0.3655925,0.3655925,1)
         _FoamSpeed ("Foam Speed", Float ) = 120
-        [MaterialToggle] _UnderwaterMode ("Underwater Mode", Float ) = 0
+        _FoamSpeed ("Foam Speed", Float ) = 120
+        [MaterialToggle] _UnderwaterMode ("Underwater Mode", Float ) = 1000
         [MaterialToggle] _EnableCustomFog ("Enable Custom Fog", Float ) = 1.393589
         _FogColor ("Fog Color", Color) = (1,1,1,1)
         _FogDistance ("Fog Distance", Float ) = 1000

@@ -21,10 +21,14 @@ public class HerringGeneratorScript : MonoBehaviour {
 
     bool running = false;
 
+    public Material m;
+
 	// Use this for initialization
 	void Start () {
-
-	}
+        m.SetFloat("_UnderwaterMode", 0f);
+        m.SetFloat("_DepthTransparency", 10f);
+        GameObject.Find("WaterPlane").GetComponent<MeshRenderer>().sharedMaterial = m;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -40,21 +44,32 @@ public class HerringGeneratorScript : MonoBehaviour {
                 }
             }
 
-            if (herrings.Count <= (float)numHerring * 2f / 3f)
+            //Debug.Log(herrings.Count + " vs " + numHerring);
+
+            if (herrings.Count <= (float)numHerring * 1f / 3f)
             {
-                GameObject.Find("Sections").GetComponent<MainScript>().incrementYear();
                 running = false;
+                GameObject.Find("Sections").GetComponent<MainScript>().incrementYear();
+                
 
                 for (int i = herrings.Count - 1; i >= 0; i--)
                 {
                     Destroy(herrings[i]);
                 }
+
+                m.SetFloat("_UnderwaterMode", 0f);
+                m.SetFloat("_DepthTransparency", 10f);
+                GameObject.Find("WaterPlane").GetComponent<MeshRenderer>().sharedMaterial = m;
             }
         }
 	}
 
     public void spawnHerring(int num)
     {
+
+        m.SetFloat("_UnderwaterMode", 1f);
+        m.SetFloat("_DepthTransparency", 50f);
+        GameObject.Find("WaterPlane").GetComponent<MeshRenderer>().sharedMaterial = m;
 
         rebakeNavMesh();
 
