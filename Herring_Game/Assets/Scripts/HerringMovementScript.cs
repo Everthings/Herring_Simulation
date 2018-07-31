@@ -15,11 +15,6 @@ public class HerringMovementScript : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if(transform.position.y > 4)
-        {
-            transform.position = new Vector3(transform.position.x, 4, transform.position.z);
-        }
-
         if (!agent.pathPending)
         {
             transform.Find("Herring").GetComponent<SkinnedMeshRenderer>().enabled = true;
@@ -33,5 +28,10 @@ public class HerringMovementScript : MonoBehaviour {
     public void generatePath()
     {
         agent.SetDestination(dest);
+    }
+
+    public Vector3 getDest()
+    {
+        return dest;
     }
 }
