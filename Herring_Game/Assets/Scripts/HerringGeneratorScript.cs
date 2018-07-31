@@ -50,7 +50,7 @@ public class HerringGeneratorScript : MonoBehaviour {
             {
                 running = false;
                 GameObject.Find("Sections").GetComponent<MainScript>().incrementYear();
-                
+                //----------------------------------------------------------
 
                 for (int i = herrings.Count - 1; i >= 0; i--)
                 {
@@ -60,6 +60,8 @@ public class HerringGeneratorScript : MonoBehaviour {
                 m.SetFloat("_UnderwaterMode", 0f);
                 m.SetFloat("_DepthTransparency", 10f);
                 GameObject.Find("WaterPlane").GetComponent<MeshRenderer>().sharedMaterial = m;
+
+                GameObject.Find("Sections").GetComponent<MainScript>().updateHerringCount();
             }
         }
 	}
