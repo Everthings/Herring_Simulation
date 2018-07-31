@@ -5202,7 +5202,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b533c36c0db59f74697139e989aa6566, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnCount: 10
+  spawnCount: 100
 --- !u!1 &1417130263
 GameObject:
   m_ObjectHideFlags: 0
