@@ -7,12 +7,12 @@ public class RestorationOptionsScript : MonoBehaviour, IPointerEnterHandler, IPo
 {
     public void OnPointerEnter(PointerEventData eventData)
     {
-        GameObject.Find("Coonamessett").GetComponent<MainScript>().setEnable(false);
+        GameObject.Find("Coonamessett").GetComponent<RestorationScript>().setEnable(false);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        GameObject.Find("Coonamessett").GetComponent<MainScript>().setEnable(true);
+        GameObject.Find("Coonamessett").GetComponent<RestorationScript>().setEnable(true);
     }
 
     // Use this for initialization
