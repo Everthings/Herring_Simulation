@@ -727,7 +727,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &111455889
 Transform:
   m_ObjectHideFlags: 0
@@ -4473,7 +4473,7 @@ MonoBehaviour:
   maxZ: 43
   minZ: 10
   maxY: 3.5
-  minY: 1.5
+  minY: 2
 --- !u!114 &1326574417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4737,7 +4737,7 @@ NavMeshAgent:
   m_Radius: 2
   m_Speed: 20
   m_Acceleration: 8
-  avoidancePriority: 99
+  avoidancePriority: 50
   m_AngularSpeed: 300
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
@@ -5618,7 +5618,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!154 &1528581906
 TerrainCollider:
   m_ObjectHideFlags: 0

@@ -32,7 +32,7 @@ public class HerringGeneratorScript : MonoBehaviour {
     public void spawnHerring(int num)
     {
 
-        GameObject.Find("Coonamessett").GetComponent<HerringGeneratorScript>().rebakeNavMesh();
+        rebakeNavMesh();
 
         numHerring = num;
 
