@@ -8,7 +8,7 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: AQUAS_Lite_Water
   m_Shader: {fileID: 4800000, guid: 034b6b386a1dd1d4f88122d19deb4c3d, type: 3}
-  m_ShaderKeywords: _ENABLEREFLECTIONS_ON
+  m_ShaderKeywords: _ENABLEREFLECTIONS_ON _UNDERWATERMODE_ON
   m_LightmapFlags: 5
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -103,7 +103,7 @@ Material:
     - _Specular: 1
     - _SrcBlend: 1
     - _UVSec: 0
-    - _UnderwaterMode: 0
+    - _UnderwaterMode: 1
     - _UnderwaterTranspDist: 13.56
     - _UnderwaterTranspFalloff: 0.78
     - _WaveSpeed: -100

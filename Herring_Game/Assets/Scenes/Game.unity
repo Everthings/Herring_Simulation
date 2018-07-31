@@ -1100,15 +1100,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 497888, guid: c228411ebad62ae45956633c3dcd8052, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.0011368
       objectReference: {fileID: 0}
     - target: {fileID: 497888, guid: c228411ebad62ae45956633c3dcd8052, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.047154
       objectReference: {fileID: 0}
     - target: {fileID: 497888, guid: c228411ebad62ae45956633c3dcd8052, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.03622
       objectReference: {fileID: 0}
     - target: {fileID: 497888, guid: c228411ebad62ae45956633c3dcd8052, type: 2}
       propertyPath: m_LocalRotation.x
@@ -1177,6 +1177,18 @@ Prefab:
     - target: {fileID: 13796496, guid: c228411ebad62ae45956633c3dcd8052, type: 2}
       propertyPath: m_Quality
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 497888, guid: c228411ebad62ae45956633c3dcd8052, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0.75586
+      objectReference: {fileID: 0}
+    - target: {fileID: 497888, guid: c228411ebad62ae45956633c3dcd8052, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0.75586
+      objectReference: {fileID: 0}
+    - target: {fileID: 497888, guid: c228411ebad62ae45956633c3dcd8052, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 0.75586
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c228411ebad62ae45956633c3dcd8052, type: 2}
@@ -4726,7 +4738,7 @@ NavMeshAgent:
   m_Speed: 20
   m_Acceleration: 8
   avoidancePriority: 99
-  m_AngularSpeed: 120
+  m_AngularSpeed: 300
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
