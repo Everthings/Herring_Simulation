@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MainScript : MonoBehaviour {
 
+
     int years = 0;
     public int numChanges;
-    int herringAlive;
+    public int herringAlive;
 
     // GAME DESIGN
     /*
@@ -19,16 +21,38 @@ public class MainScript : MonoBehaviour {
      */
 	// Use this for initialization
 	void Start () {
+        
+        herringAlive = 30000;
         disableRestorationOptions();
         disableNextYear();
 
         GameObject.Find("Time_Text").GetComponent<Text>().text = "Years Elapsed: " + years;
         GameObject.Find("Changes_Text").GetComponent<Text>().text = "Changes Remaining: " + numChanges;
+        GameObject.Find("Herring_Text").GetComponent<Text>().text = "Herring Alive: " + herringAlive;
+
     }
 	
 	// Update is called once per frame
 	void Update () {
-		
+        //temporary herring increase for testing
+
+        if (Input.GetKey(KeyCode.E)){
+            herringAlive += 100;
+        }
+        if (Input.GetKey(KeyCode.Q))
+        {
+            herringAlive -= 100;
+        }
+
+        GameObject.Find("Herring_Text").GetComponent<Text>().text = "Herring Alive: " + herringAlive;
+
+        if (herringAlive >= 300000){
+            SceneManager.LoadScene("End_ScreenW");
+        }
+        if (herringAlive <= 0)
+        {
+            SceneManager.LoadScene("End_ScreenL");
+        }
 	}
 
     public void incrementYear()
