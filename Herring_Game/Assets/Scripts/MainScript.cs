@@ -37,7 +37,14 @@ public class MainScript : MonoBehaviour {
         years++;
         GameObject.Find("Time_Text").GetComponent<Text>().text = "Years Elapsed: " + years;
 
-        if(years % 3 == 0)
+        List<GameObject> sections = GameObject.Find("Sections").GetComponent<SectionCollectionScript>().getSections();
+
+        for (int i = 0; i < sections.Count; i++)
+        {
+            sections[i].GetComponent<TreeShrubGeneratorScript>().incrementTreeAges();
+        }
+
+        if (years % 3 == 0)
         {
             enableSpawn();
             disableNextYear();
@@ -54,7 +61,7 @@ public class MainScript : MonoBehaviour {
     public void decrementNumChanges()
     {
         numChanges--;
-        GameObject.Find("Changes_Text").GetComponent<Text>().text = "Chnages Remaining: " + numChanges;
+        GameObject.Find("Changes_Text").GetComponent<Text>().text = "Changes Remaining: " + numChanges;
     }
 
     public int getChangesLeft()
