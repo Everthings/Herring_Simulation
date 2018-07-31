@@ -70,7 +70,7 @@ Material:
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _Density: 0.6
-    - _DepthTransparency: 10
+    - _DepthTransparency: 50
     - _DetailNormalMapScale: 1
     - _Distortion: 0.34
     - _DstBlend: 0
@@ -103,7 +103,7 @@ Material:
     - _Specular: 1
     - _SrcBlend: 1
     - _UVSec: 0
-    - _UnderwaterMode: 0
+    - _UnderwaterMode: 1
     - _UnderwaterTranspDist: 13.56
     - _UnderwaterTranspFalloff: 0.78
     - _WaveSpeed: -100
@@ -114,5 +114,5 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FoamColor: {r: 0.3602941, g: 0.3655925, b: 0.3655925, a: 1}
     - _FogColor: {r: 1, g: 1, b: 1, a: 1}
-    - _MainColor: {r: 0.58823526, g: 0.9488844, b: 1, a: 1}
+    - _MainColor: {r: 0.3726415, g: 0.78686255, b: 1, a: 255}
     - _SpecularColor: {r: 0.78676474, g: 0.78676474, b: 0.78676474, a: 1}

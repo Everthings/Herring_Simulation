@@ -89,7 +89,7 @@ public class TreeShrubGeneratorScript : MonoBehaviour
 
     public void incrementTreeAges()
     {
-        if(treePrefabs[0].getAge() != 9)
+        if(treePrefabs.Count != 0 && treePrefabs[0].getAge() != 9)
         {
             int length = treePositions.Count;
             for (int i = length - 1; i >= 0; i--)
