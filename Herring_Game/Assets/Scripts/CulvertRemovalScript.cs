@@ -14,8 +14,16 @@ public class CulvertRemovalScript : MonoBehaviour {
 		
 	}
 
-    public void removeCulvert()
+    public bool removeCulvert()
     {
-        transform.Find("Culvert").transform.position = new Vector3(10, -100, 10);
+        if(transform.Find("Culvert").transform.position.y != -100)
+        {
+            transform.Find("Culvert").transform.position = new Vector3(10, -100, 10);
+
+            return true;
+        }
+
+        return false;
+        
     }
 }
