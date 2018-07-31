@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SpawnButtonScript : MonoBehaviour {
 
+    public int spawnCount;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -16,6 +18,7 @@ public class SpawnButtonScript : MonoBehaviour {
 
     public void clicked()
     {
-        GameObject.Find("Coonamessett").GetComponent<HerringGeneratorScript>().spawnHerring(300);
+        GameObject.Find("Coonamessett").GetComponent<HerringGeneratorScript>().spawnHerring(spawnCount);
+        GameObject.Find("Sections").GetComponent<MainScript>().disableRestorationOptions();
     }
 }

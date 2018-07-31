@@ -20,6 +20,7 @@ public class MainScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         disableRestorationOptions();
+        disableNextYear();
 
         GameObject.Find("Time_Text").GetComponent<Text>().text = "Years Elapsed: " + years;
         GameObject.Find("Changes_Text").GetComponent<Text>().text = "Changes Remaining: " + numChanges;
@@ -39,10 +40,12 @@ public class MainScript : MonoBehaviour {
         if(years % 3 == 0)
         {
             enableSpawn();
+            disableNextYear();
         }
         else
         {
             disableSpawn();
+            enableNextYear();
         }
 
         enableRestorationOptions();
@@ -59,31 +62,45 @@ public class MainScript : MonoBehaviour {
         return numChanges;
     }
 
-    private void disableRestorationOptions()
+    public void disableRestorationOptions()
     {
         GameObject.Find("Restoration_Options").GetComponent<Dropdown>().enabled = false;
         GameObject.Find("Restoration_Options").GetComponent<Image>().enabled = false;
         GameObject.Find("Restoration_Label").GetComponent<Text>().enabled = false;
     }
 
-    private void disableSpawn()
+    public void disableSpawn()
     {
         GameObject.Find("Spawn").GetComponent<Button>().enabled = false;
         GameObject.Find("Spawn").GetComponent<Image>().enabled = false;
         GameObject.Find("Spawn_Text").GetComponent<Text>().enabled = false;
     }
 
-    private void enableRestorationOptions()
+    public void disableNextYear()
+    {
+        GameObject.Find("Next_Year").GetComponent<Button>().enabled = false;
+        GameObject.Find("Next_Year").GetComponent<Image>().enabled = false;
+        GameObject.Find("Next_Text").GetComponent<Text>().enabled = false;
+    }
+
+    public void enableRestorationOptions()
     {
         GameObject.Find("Restoration_Options").GetComponent<Dropdown>().enabled = true;
         GameObject.Find("Restoration_Options").GetComponent<Image>().enabled = true;
         GameObject.Find("Restoration_Label").GetComponent<Text>().enabled = true;
     }
 
-    private void enableSpawn()
+    public void enableSpawn()
     {
         GameObject.Find("Spawn").GetComponent<Button>().enabled = true;
         GameObject.Find("Spawn").GetComponent<Image>().enabled = true;
         GameObject.Find("Spawn_Text").GetComponent<Text>().enabled = true;
+    }
+
+    public void enableNextYear()
+    {
+        GameObject.Find("Next_Year").GetComponent<Button>().enabled = true;
+        GameObject.Find("Next_Year").GetComponent<Image>().enabled = true;
+        GameObject.Find("Next_Text").GetComponent<Text>().enabled = true;
     }
 }

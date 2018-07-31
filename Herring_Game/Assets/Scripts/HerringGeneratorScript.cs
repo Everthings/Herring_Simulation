@@ -19,6 +19,8 @@ public class HerringGeneratorScript : MonoBehaviour {
 
     List<GameObject> herrings;
 
+    bool running = false;
+
 	// Use this for initialization
 	void Start () {
 
@@ -26,7 +28,29 @@ public class HerringGeneratorScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (running)
+        {
+            for (int i = herrings.Count - 1; i >= 0; i--)
+            {
+                if (Vector3.Distance(herrings[i].transform.position, herrings[i].GetComponent<HerringMovementScript>().getDest()) < 5)
+                {
+                    GameObject temp = herrings[i];
+                    herrings.Remove(temp);
+                    Destroy(temp);
+                }
+            }
 
+            if (herrings.Count <= (float)numHerring * 2f / 3f)
+            {
+                GameObject.Find("Sections").GetComponent<MainScript>().incrementYear();
+                running = false;
+
+                for (int i = herrings.Count - 1; i >= 0; i--)
+                {
+                    Destroy(herrings[i]);
+                }
+            }
+        }
 	}
 
     public void spawnHerring(int num)
@@ -44,6 +68,8 @@ public class HerringGeneratorScript : MonoBehaviour {
             temp.transform.GetComponent<HerringMovementScript>().generatePath();
             herrings.Add(temp);
         }
+
+        running = true;
     }
 
     public void rebakeNavMesh()
