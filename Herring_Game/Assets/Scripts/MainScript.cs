@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class MainScript : MonoBehaviour {
 
-    public  GameObject NHText;
     int years = 0;
     public int numChanges;
     public int herringAlive;
@@ -25,48 +24,21 @@ public class MainScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+        GameObject.Find("Canvas").transform.Find("New_Herring").GetComponent<Text>().enabled = false;
+
         NewHerring = 0;
-        NHText.gameObject.SetActive(false);
 
         herringAlive = 30000;
-        //disableRestorationOptions();
-        //disableNextYear();
+        disableRestorationOptions();
+        disableNextYear();
 
         GameObject.Find("Time_Text").GetComponent<Text>().text = "Years Elapsed: " + years;
         GameObject.Find("Changes_Text").GetComponent<Text>().text = "Changes Remaining: " + numChanges;
         GameObject.Find("Herring_Text").GetComponent<Text>().text = "Herring Alive: " + herringAlive;
-
-        /* debug/test curve method
-        for (int i = 0; i < 100; i++){
-            Debug.Log(Curved_Random(50, 10));
-        }
-        */
-
     }
 
 	// Update is called once per frame
 	void Update () {
-        //temporary herring increase for testing
-
-        if (Input.GetKey(KeyCode.E)){
-            herringAlive += 100;
-        }
-        if (Input.GetKey(KeyCode.Q))
-        {
-            herringAlive -= 100;
-        }
-        /*
-        if (Input.GetKey(KeyCode.R))
-        {
-
-            StartCoroutine(timer(3));
-            // yield return new WaitForSecondsRealtime(3);
-
-        }
-        */
-        GameObject.Find("Herring_Text").GetComponent<Text>().text = "Herring Alive: " + herringAlive;
-        GameObject.Find("Canvas").transform.Find("New_Herring").GetComponent<Text>().text = NewHerring + " Herring were added to the population through spawning";
-
         if (herringAlive >= 300000){
             SceneManager.LoadScene("End_ScreenW");
         }
@@ -78,11 +50,15 @@ public class MainScript : MonoBehaviour {
 
     IEnumerator displayNH(float t)
     {
-        NHText.gameObject.SetActive(true);
-        GameObject.Find("Canvas").transform.Find("New_Herring").gameObject.SetActive(true);
+        GameObject.Find("Canvas").transform.Find("New_Herring").GetComponent<Text>().enabled = true;
+        GameObject.Find("Canvas").transform.Find("New_Herring").GetComponent<Text>().text = NewHerring + " herring were added to the population through spawning.";
         yield return new WaitForSeconds(t);
-        NHText.gameObject.SetActive(false);
-        GameObject.Find("Canvas").transform.Find("New_Herring").gameObject.SetActive(false);
+        GameObject.Find("Canvas").transform.Find("New_Herring").GetComponent<Text>().enabled = false;
+    }
+
+    public void setHerringCount(int num)
+    {
+        herringAlive = num;
     }
 
     public void updateHerringCount()
@@ -93,6 +69,7 @@ public class MainScript : MonoBehaviour {
        // yield return new WaitForSecondsRealtime(3);
 
         herringAlive += NewHerring;
+        GameObject.Find("Herring_Text").GetComponent<Text>().text = "Herring Alive: " + herringAlive;
     }
 
     public int Curved_Random(int mean, int scale){ //integer
@@ -127,8 +104,7 @@ public class MainScript : MonoBehaviour {
 
     }
 
-
-    public float Curved_Random(float mean,float scale) //float
+    public float Curved_Random(float mean, float scale) //float
     {
 
         int num = Random.Range(0, 100);
