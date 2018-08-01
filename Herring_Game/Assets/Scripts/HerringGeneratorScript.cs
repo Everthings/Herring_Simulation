@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class HerringGeneratorScript : MonoBehaviour {
 
@@ -58,7 +59,7 @@ public class HerringGeneratorScript : MonoBehaviour {
 
             //Debug.Log(herrings.Count + " vs " + numHerring);
 
-            if (herrings.Count <= (float)numHerring * 1f / 3f)
+            if (herrings.Count <= (float)numHerring * 1f / 10f)
             {
                 running = false;
                 GameObject.Find("Sections").GetComponent<MainScript>().incrementYear();
@@ -73,16 +74,17 @@ public class HerringGeneratorScript : MonoBehaviour {
                 m.SetFloat("_DepthTransparency", 10f);
                 GameObject.Find("WaterPlane").GetComponent<MeshRenderer>().sharedMaterial = m;
 
+                GameObject.Find("Sections").GetComponent<MainScript>().setHerringCount(GameObject.Find("Sections").GetComponent<MainScript>().herringMultiplier * numHerring);
                 GameObject.Find("Sections").GetComponent<MainScript>().updateHerringCount();
             }
 
 
-            //check for herring death
+            //check for herring death in culverts
             List<GameObject> sections = GameObject.Find("Sections").GetComponent<SectionCollectionScript>().getSections();
 
             for (int i = 0; i < herrings.Count; i++)
             {
-                for (int j = 0; j < culvertPositions.Count; j++)
+                for (int j = 0; j < 10; j++)
                 {
                     if (Mathf.Abs(herrings[i].transform.position.z - culvertPositions[j].z) < 3 && !herrings[i].GetComponent<HerringMovementScript>().getCulvertsPassed()[j])
                     {
@@ -90,7 +92,7 @@ public class HerringGeneratorScript : MonoBehaviour {
                         {
                             GameObject temp = herrings[i];
                             killHerring(temp);
-                            GameObject.Find("Coonamessett").GetComponent<HerringGeneratorScript>().decrementNumHerring();
+                            
                         }
                         else
                         {
@@ -98,6 +100,35 @@ public class HerringGeneratorScript : MonoBehaviour {
                         }
 
                         break;
+                    }
+                }
+            }
+
+            //check for herring death in river proper
+            for (int i = 0; i < herrings.Count; i++)
+            {
+
+                int[] Zs = herrings[i].GetComponent<HerringMovementScript>().getCheckPositions();
+                bool[] hasPassed = herrings[i].GetComponent<HerringMovementScript>().getSectionsPassed();
+
+                if (Zs != null)
+                { 
+                    for (int j = 0; j < 10; j++)
+                    {
+                        if (Mathf.Abs(herrings[i].transform.position.z - Zs[j]) < 3 && !hasPassed[j])
+                        {
+                            if (Random.value > sections[j].GetComponent<KillScript>().getSurvivalRate())
+                            {
+                                GameObject temp = herrings[i];
+                                killHerring(temp);
+                            }
+                            else
+                            {
+                                hasPassed[j] = true;
+                            }
+
+                            break;
+                        }
                     }
                 }
             }
@@ -117,11 +148,8 @@ public class HerringGeneratorScript : MonoBehaviour {
         deathMarkers.Add(Instantiate(deathMarker, new Vector3(obj.transform.position.x + Random.Range(-5, 5), 10, obj.transform.position.z + Random.Range(-5, 5)), new Quaternion()));
         herrings.Remove(obj);
         Destroy(obj);
-    }
-
-    public void decrementNumHerring()
-    {
         numHerring--;
+        GameObject.Find("Herring_Text").GetComponent<Text>().text = "Herring Alive: " + GameObject.Find("Sections").GetComponent<MainScript>().herringMultiplier * numHerring;
     }
 
     public void spawnHerring(int num)

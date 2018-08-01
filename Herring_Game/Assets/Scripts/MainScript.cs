@@ -10,7 +10,9 @@ public class MainScript : MonoBehaviour {
     int years = 0;
     public int numChanges;
     public int herringAlive;
-    public int NewHerring;
+    int NewHerring;
+
+    public int herringMultiplier;
 
     // GAME DESIGN
     /*
@@ -20,12 +22,10 @@ public class MainScript : MonoBehaviour {
      * Year 3: Herring run + changes
      * Etc...
      */
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 
         NewHerring = 0;
-
-        herringAlive = 30000;
         disableRestorationOptions();
         disableNextYear();
 
@@ -37,18 +37,6 @@ public class MainScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        //temporary herring increase for testing
-
-        if (Input.GetKey(KeyCode.E)){
-            herringAlive += 100;
-        }
-        if (Input.GetKey(KeyCode.Q))
-        {
-            herringAlive -= 100;
-        }
-
-        GameObject.Find("Herring_Text").GetComponent<Text>().text = "Herring Alive: " + herringAlive;
-
         if (herringAlive >= 300000){
             SceneManager.LoadScene("End_ScreenW");
         }
@@ -57,6 +45,11 @@ public class MainScript : MonoBehaviour {
             SceneManager.LoadScene("End_ScreenL");
         }
 	}
+
+    public void setHerringCount(int num)
+    {
+        herringAlive = num;
+    }
 
     public void updateHerringCount()
     {

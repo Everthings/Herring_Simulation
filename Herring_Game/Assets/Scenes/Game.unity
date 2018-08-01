@@ -122,6 +122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1582628}
   - component: {fileID: 1582629}
+  - component: {fileID: 1582630}
   m_Layer: 0
   m_Name: Section5
   m_TagString: Untagged
@@ -180,10 +181,19 @@ MonoBehaviour:
   lower_bound: 820
   right_bound: 0
   left_bound: 300
-  bush_level: 0
-  tree_level: 0
   culvert_removed: 0
-  survival_rate: 0
+--- !u!114 &1582630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1582627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa55c11a59a817340bba8e103d7f699c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  survival_rate: 0.95
 --- !u!1 &4879174
 GameObject:
   m_ObjectHideFlags: 0
@@ -193,6 +203,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4879175}
   - component: {fileID: 4879176}
+  - component: {fileID: 4879177}
   m_Layer: 0
   m_Name: Section10
   m_TagString: Untagged
@@ -251,10 +262,19 @@ MonoBehaviour:
   lower_bound: 1720
   right_bound: 0
   left_bound: 300
-  bush_level: 0
-  tree_level: 0
   culvert_removed: 0
-  survival_rate: 0
+--- !u!114 &4879177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 4879174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa55c11a59a817340bba8e103d7f699c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  survival_rate: 0.95
 --- !u!1 &19028847
 GameObject:
   m_ObjectHideFlags: 0
@@ -483,6 +503,7 @@ GameObject:
   m_Component:
   - component: {fileID: 77920573}
   - component: {fileID: 77920574}
+  - component: {fileID: 77920575}
   m_Layer: 0
   m_Name: Section3
   m_TagString: Untagged
@@ -541,10 +562,19 @@ MonoBehaviour:
   lower_bound: 460
   right_bound: 0
   left_bound: 300
-  bush_level: 0
-  tree_level: 0
   culvert_removed: 0
-  survival_rate: 0
+--- !u!114 &77920575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 77920572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa55c11a59a817340bba8e103d7f699c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  survival_rate: 0.95
 --- !u!1001 &85690009
 Prefab:
   m_ObjectHideFlags: 0
@@ -895,8 +925,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numChanges: 20
-  herringAlive: 0
-  NewHerring: 0
+  herringAlive: 30000
+  herringMultiplier: 100
 --- !u!4 &174993068 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 445710, guid: a30fd9cfcc5c0b143aa308e06fdc1407,
@@ -996,6 +1026,7 @@ GameObject:
   m_Component:
   - component: {fileID: 226777368}
   - component: {fileID: 226777369}
+  - component: {fileID: 226777370}
   m_Layer: 0
   m_Name: Section8
   m_TagString: Untagged
@@ -1054,10 +1085,19 @@ MonoBehaviour:
   lower_bound: 1360
   right_bound: 0
   left_bound: 300
-  bush_level: 0
-  tree_level: 0
   culvert_removed: 0
-  survival_rate: 0
+--- !u!114 &226777370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 226777367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa55c11a59a817340bba8e103d7f699c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  survival_rate: 0.95
 --- !u!1001 &247990998
 Prefab:
   m_ObjectHideFlags: 0
@@ -2225,6 +2265,7 @@ GameObject:
   m_Component:
   - component: {fileID: 564739759}
   - component: {fileID: 564739760}
+  - component: {fileID: 564739761}
   m_Layer: 0
   m_Name: Section1
   m_TagString: Untagged
@@ -2283,10 +2324,19 @@ MonoBehaviour:
   lower_bound: 100
   right_bound: 0
   left_bound: 300
-  bush_level: 0
-  tree_level: 0
   culvert_removed: 0
-  survival_rate: 0
+--- !u!114 &564739761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 564739758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa55c11a59a817340bba8e103d7f699c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  survival_rate: 0.95
 --- !u!1 &587158205
 GameObject:
   m_ObjectHideFlags: 0
@@ -2757,7 +2807,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 272.8, y: 113.5}
+  m_AnchoredPosition: {x: 285, y: 103}
   m_SizeDelta: {x: 218.3, y: 37}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &793029757
@@ -2809,6 +2859,7 @@ GameObject:
   m_Component:
   - component: {fileID: 796625879}
   - component: {fileID: 796625880}
+  - component: {fileID: 796625881}
   m_Layer: 0
   m_Name: Section4
   m_TagString: Untagged
@@ -2867,10 +2918,19 @@ MonoBehaviour:
   lower_bound: 640
   right_bound: 0
   left_bound: 300
-  bush_level: 0
-  tree_level: 0
   culvert_removed: 0
-  survival_rate: 0
+--- !u!114 &796625881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 796625878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa55c11a59a817340bba8e103d7f699c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  survival_rate: 0.95
 --- !u!1 &807211506
 GameObject:
   m_ObjectHideFlags: 0
@@ -3234,12 +3294,12 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 861213671}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
+  m_DynamicOccludee: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
+  m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 7b3377896c0a19a428b93364c2ff4eff, type: 2}
@@ -3840,6 +3900,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1038822735}
   - component: {fileID: 1038822736}
+  - component: {fileID: 1038822737}
   m_Layer: 0
   m_Name: Section6
   m_TagString: Untagged
@@ -3898,10 +3959,19 @@ MonoBehaviour:
   lower_bound: 1000
   right_bound: 0
   left_bound: 300
-  bush_level: 0
-  tree_level: 0
   culvert_removed: 0
-  survival_rate: 0
+--- !u!114 &1038822737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1038822734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa55c11a59a817340bba8e103d7f699c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  survival_rate: 0.95
 --- !u!1 &1073259846
 GameObject:
   m_ObjectHideFlags: 0
@@ -4863,6 +4933,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1331581459}
   - component: {fileID: 1331581460}
+  - component: {fileID: 1331581461}
   m_Layer: 0
   m_Name: Section9
   m_TagString: Untagged
@@ -4921,10 +4992,19 @@ MonoBehaviour:
   lower_bound: 1540
   right_bound: 0
   left_bound: 300
-  bush_level: 0
-  tree_level: 0
   culvert_removed: 0
-  survival_rate: 0
+--- !u!114 &1331581461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1331581458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa55c11a59a817340bba8e103d7f699c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  survival_rate: 0.95
 --- !u!1 &1332855482
 GameObject:
   m_ObjectHideFlags: 0
@@ -6244,6 +6324,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1614882236}
   - component: {fileID: 1614882237}
+  - component: {fileID: 1614882238}
   m_Layer: 0
   m_Name: Section2
   m_TagString: Untagged
@@ -6302,10 +6383,19 @@ MonoBehaviour:
   lower_bound: 280
   right_bound: 0
   left_bound: 300
-  bush_level: 0
-  tree_level: 0
   culvert_removed: 0
-  survival_rate: 0
+--- !u!114 &1614882238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1614882235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa55c11a59a817340bba8e103d7f699c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  survival_rate: 0.95
 --- !u!1001 &1632880321
 Prefab:
   m_ObjectHideFlags: 0
@@ -6746,6 +6836,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1852355463}
   - component: {fileID: 1852355464}
+  - component: {fileID: 1852355465}
   m_Layer: 0
   m_Name: Section7
   m_TagString: Untagged
@@ -6804,10 +6895,19 @@ MonoBehaviour:
   lower_bound: 1180
   right_bound: 0
   left_bound: 300
-  bush_level: 0
-  tree_level: 0
   culvert_removed: 0
-  survival_rate: 0
+--- !u!114 &1852355465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1852355462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa55c11a59a817340bba8e103d7f699c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  survival_rate: 0.95
 --- !u!1 &1891578122
 GameObject:
   m_ObjectHideFlags: 0
