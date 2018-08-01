@@ -77,7 +77,7 @@ public class RestorationScript : MonoBehaviour
 
                         if (hit.point.x > sections[i].GetComponent<TreeShrubGeneratorScript>().right_bound && hit.point.x < sections[i].GetComponent<TreeShrubGeneratorScript>().left_bound && hit.point.z < sections[i].GetComponent<TreeShrubGeneratorScript>().upper_bound && hit.point.z > sections[i].GetComponent<TreeShrubGeneratorScript>().lower_bound)
                         {
-                            sections[i].GetComponent<TreeShrubGeneratorScript>().addShrubs(500);
+                            sections[i].GetComponent<TreeShrubGeneratorScript>().addShrubs(600);
                             updateChanges();
                             break;
                         }
