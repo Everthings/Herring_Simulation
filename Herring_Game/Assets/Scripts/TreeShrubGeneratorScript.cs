@@ -41,10 +41,7 @@ public class TreeShrubGeneratorScript : MonoBehaviour
     public float lower_bound;
     public float right_bound;
     public float left_bound;
-    public float bush_level;
-    public float tree_level;
     public bool culvert_removed = false;
-    public float survival_rate;
 
     // Use this for initialization
     void Start()
