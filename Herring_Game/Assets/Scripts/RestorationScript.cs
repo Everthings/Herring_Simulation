@@ -97,10 +97,14 @@ public class RestorationScript : MonoBehaviour
                     for (int i = 0; i < sections.Count; i++)
                     {
 
-                        if (hit.point.x > sections[i].GetComponent<TreeShrubGeneratorScript>().right_bound && hit.point.x < sections[i].GetComponent<TreeShrubGeneratorScript>().left_bound && hit.point.z < sections[i].GetComponent<TreeShrubGeneratorScript>().upper_bound && hit.point.z > sections[i].GetComponent<TreeShrubGeneratorScript>().lower_bound)
+                        Vector3 Culvert = sections[i].transform.Find("Culvert").transform.Find("Tube_Line").transform.position;
+                        Culvert.y = 0;
+
+                        if (Vector3.Distance(Culvert, hit.point) < 20)
                         {
-                            if(sections[i].GetComponent<CulvertRemovalScript>().removeCulvert())
-                                updateChanges();
+                            sections[i].transform.Find("Culvert").transform.position = new Vector3(10, -100, 10);
+                            sections[i].GetComponent<TreeShrubGeneratorScript>().setCulvertStatus(true);
+                            updateChanges();
                             break;
                         }
                     }

@@ -8,9 +8,11 @@ public class HerringMovementScript : MonoBehaviour {
     public NavMeshAgent agent;
     public Vector3 dest;
 
+    bool[] culvertsPassed;
+
 	// Use this for initialization
 	void Start () {
-       
+        culvertsPassed = new bool[10];
     }
 
     // Update is called once per frame
@@ -33,5 +35,10 @@ public class HerringMovementScript : MonoBehaviour {
     public Vector3 getDest()
     {
         return dest;
+    }
+
+    public bool[] getCulvertsPassed()
+    {
+        return culvertsPassed;
     }
 }
