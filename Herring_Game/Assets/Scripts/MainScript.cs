@@ -26,7 +26,7 @@ public class MainScript : MonoBehaviour {
         NewHerring = 0;
 
         herringAlive = 30000;
-        //disableRestorationOptions();
+        disableRestorationOptions();
         disableNextYear();
 
         GameObject.Find("Time_Text").GetComponent<Text>().text = "Years Elapsed: " + years;
