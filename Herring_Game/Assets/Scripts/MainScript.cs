@@ -34,6 +34,12 @@ public class MainScript : MonoBehaviour {
         GameObject.Find("Changes_Text").GetComponent<Text>().text = "Changes Remaining: " + numChanges;
         GameObject.Find("Herring_Text").GetComponent<Text>().text = "Herring Alive: " + herringAlive;
 
+        /* debug/test curve method
+        for (int i = 0; i < 100; i++){
+            Debug.Log(Curved_Random(50, 10));
+        }
+        */
+
     }
 	
 	// Update is called once per frame
@@ -86,6 +92,78 @@ public class MainScript : MonoBehaviour {
 
         herringAlive += NewHerring;
     }
+
+    public int Curved_Random(int mean, int scale){ //integer
+       
+        int num = Random.Range(0, 100);
+        int rand = 0;
+
+        if (num <= 68){
+            rand = mean + (int)(Random.Range(-1 * scale, scale));
+        }
+        else if (num > 68 && num <= 95){
+            int x = (int)(Random.Range(-1 * scale, scale));
+            if (x < 0){
+                rand = -1 * scale + mean + x;
+            }
+            else if (x >= 0){
+                rand = mean + scale + x;
+            }
+        }
+        else if (num > 95 && num <= 100){
+            int x = (int)(Random.Range(-1 * scale, scale));
+            if (x < 0)
+            {
+                rand = -2 * scale + mean + x;
+            }
+            else if (x >= 0)
+            {
+                rand = 2*scale + mean + x;
+            }
+        }
+        return rand;
+            
+    }
+
+
+    public float Curved_Random(float mean,float scale) //float
+    {
+        
+        int num = Random.Range(0, 100);
+        float rand = 0f;
+
+        if (num <= 68)
+        {
+            rand = mean + Random.Range(-1 * scale, scale);
+        }
+        else if (num > 68 && num <= 95)
+        {
+            float x = Random.Range(-1 * scale, scale);
+            if (x < 0)
+            {
+                rand = -1 * scale + mean + x;
+            }
+            else if (x >= 0)
+            {
+                rand = mean + scale + x;
+            }
+        }
+        else if (num > 95 && num <= 100)
+        {
+            float x = Random.Range(-1 * scale, scale);
+            if (x < 0)
+            {
+                rand = -2 * scale + mean + x;
+            }
+            else if (x >= 0)
+            {
+                rand = 2 * scale + mean + x;
+            }
+        }
+        return rand;
+
+    }
+
 
     public void incrementYear()
     {
