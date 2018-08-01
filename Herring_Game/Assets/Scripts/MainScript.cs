@@ -40,6 +40,8 @@ public class MainScript : MonoBehaviour {
         }
         */
 
+        StartCoroutine(displayNH(10f));
+
     }
 	
 	// Update is called once per frame
@@ -85,7 +87,7 @@ public class MainScript : MonoBehaviour {
 
     public void updateHerringCount()
     {
-        NewHerring = (int)(herringAlive * 0.3);
+        NewHerring = Curved_Random((int)(herringAlive * 0.3), 45);
 
         StartCoroutine(displayNH(8));
        // yield return new WaitForSecondsRealtime(3);
