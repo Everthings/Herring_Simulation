@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class MainScript : MonoBehaviour {
 
-
+    public  GameObject NHText;
     int years = 0;
     public int numChanges;
     public int herringAlive;
@@ -22,12 +22,13 @@ public class MainScript : MonoBehaviour {
      */
 	// Use this for initialization
 	void Start () {
-
+        
         NewHerring = 0;
+        NHText.gameObject.SetActive(false);
 
         herringAlive = 30000;
-        disableRestorationOptions();
-        disableNextYear();
+        //disableRestorationOptions();
+        //disableNextYear();
 
         GameObject.Find("Time_Text").GetComponent<Text>().text = "Years Elapsed: " + years;
         GameObject.Find("Changes_Text").GetComponent<Text>().text = "Changes Remaining: " + numChanges;
@@ -46,8 +47,17 @@ public class MainScript : MonoBehaviour {
         {
             herringAlive -= 100;
         }
+        /*
+        if (Input.GetKey(KeyCode.R))
+        {
+            
+            StartCoroutine(timer(3));
+            // yield return new WaitForSecondsRealtime(3);
 
+        }
+        */
         GameObject.Find("Herring_Text").GetComponent<Text>().text = "Herring Alive: " + herringAlive;
+        GameObject.Find("Canvas").transform.Find("New_Herring").GetComponent<Text>().text = NewHerring + " Herring were added to the population through spawning";
 
         if (herringAlive >= 300000){
             SceneManager.LoadScene("End_ScreenW");
@@ -58,9 +68,22 @@ public class MainScript : MonoBehaviour {
         }
 	}
 
+    IEnumerator displayNH(float t)
+    {
+        NHText.gameObject.SetActive(true);
+        GameObject.Find("Canvas").transform.Find("New_Herring").gameObject.SetActive(true);
+        yield return new WaitForSeconds(t);
+        NHText.gameObject.SetActive(false);
+        GameObject.Find("Canvas").transform.Find("New_Herring").gameObject.SetActive(false);
+    }
+
     public void updateHerringCount()
     {
         NewHerring = (int)(herringAlive * 0.3);
+
+        StartCoroutine(displayNH(8));
+       // yield return new WaitForSecondsRealtime(3);
+
         herringAlive += NewHerring;
     }
 
