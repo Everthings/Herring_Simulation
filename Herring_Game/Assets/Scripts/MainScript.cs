@@ -30,7 +30,7 @@ public class MainScript : MonoBehaviour {
 
         herringAlive = 30000;
         //disableRestorationOptions();
-        disableNextYear();
+        //disableNextYear();
 
         GameObject.Find("Time_Text").GetComponent<Text>().text = "Years Elapsed: " + years;
         GameObject.Find("Changes_Text").GetComponent<Text>().text = "Changes Remaining: " + numChanges;
@@ -159,7 +159,7 @@ public class MainScript : MonoBehaviour {
         if (years % 3 == 0)
         {
             enableSpawn();
-            disableNextYear();
+            //disableNextYear();
         }
         else
         {
