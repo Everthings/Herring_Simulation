@@ -86,7 +86,7 @@ public class HerringGeneratorScript : MonoBehaviour {
             {
                 for (int j = 0; j < 10; j++)
                 {
-                    if (Mathf.Abs(herrings[i].transform.position.z - culvertPositions[j].z) < 3 && !herrings[i].GetComponent<HerringMovementScript>().getCulvertsPassed()[j])
+                    if (Mathf.Abs(herrings[i].transform.position.z - culvertPositions[j].z) < 3 && !herrings[i].GetComponent<HerringMovementScript>().getCulvertsPassed()[j] && !sections[j].GetComponent<TreeShrubGeneratorScript>().culvert_removed)
                     {
                         if (Random.value > sections[j].transform.Find("Culvert").GetComponent<KillScript>().getSurvivalRate())
                         {
@@ -117,7 +117,7 @@ public class HerringGeneratorScript : MonoBehaviour {
                     {
                         if (Mathf.Abs(herrings[i].transform.position.z - Zs[j]) < 3 && !hasPassed[j])
                         {
-                            if (Random.value > sections[j].GetComponent<KillScript>().getSurvivalRate())
+                            if (Random.value > sections[j].GetComponent<TreeShrubGeneratorScript>().getSurvivalRate())
                             {
                                 GameObject temp = herrings[i];
                                 killHerring(temp);
