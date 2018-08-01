@@ -10,6 +10,7 @@ public class MainScript : MonoBehaviour {
     int years = 0;
     public int numChanges;
     public int herringAlive;
+    public int NewHerring;
 
     // GAME DESIGN
     /*
@@ -21,7 +22,9 @@ public class MainScript : MonoBehaviour {
      */
 	// Use this for initialization
 	void Start () {
-        
+
+        NewHerring = 0;
+
         herringAlive = 30000;
         //disableRestorationOptions();
         disableNextYear();
@@ -54,6 +57,12 @@ public class MainScript : MonoBehaviour {
             SceneManager.LoadScene("End_ScreenL");
         }
 	}
+
+    public void updateHerringCount()
+    {
+        NewHerring = (int)(herringAlive * 0.3);
+        herringAlive += NewHerring;
+    }
 
     public void incrementYear()
     {
