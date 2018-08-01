@@ -23,11 +23,20 @@ public class HerringGeneratorScript : MonoBehaviour {
 
     public Material m;
 
-	// Use this for initialization
-	void Start () {
+    List<Vector3> culvertPositions = new List<Vector3>();
+
+    // Use this for initialization
+    void Start () {
         m.SetFloat("_UnderwaterMode", 0f);
         m.SetFloat("_DepthTransparency", 10f);
         GameObject.Find("WaterPlane").GetComponent<MeshRenderer>().sharedMaterial = m;
+
+        List<GameObject> sections = GameObject.Find("Sections").GetComponent<SectionCollectionScript>().getSections();
+
+        for (int i = 0; i < sections.Count; i++)
+        {
+            culvertPositions.Add(sections[i].transform.Find("Culvert").transform.Find("Tube_Line").transform.position);
+        }
     }
 	
 	// Update is called once per frame
@@ -61,8 +70,41 @@ public class HerringGeneratorScript : MonoBehaviour {
                 m.SetFloat("_DepthTransparency", 10f);
                 GameObject.Find("WaterPlane").GetComponent<MeshRenderer>().sharedMaterial = m;
             }
+
+
+            //check for herring death
+            List<GameObject> sections = GameObject.Find("Sections").GetComponent<SectionCollectionScript>().getSections();
+
+            for(int i = 0; i < herrings.Count; i++)
+            {
+                for (int j = 0; j < culvertPositions.Count; j++)
+                {
+                    if (Mathf.Abs(herrings[i].transform.position.z - culvertPositions[j].z) < 10 && !herrings[i].GetComponent<HerringMovementScript>().getCulvertsPassed()[j])
+                    {
+                        if(Random.value > sections[j].transform.Find("Culvert").GetComponent<KillScript>().getSurvivalRate())
+                        {
+                            GameObject temp = herrings[i];
+                            herrings.Remove(temp);
+                            Destroy(temp);
+
+                            GameObject.Find("Coonamessett").GetComponent<HerringGeneratorScript>().decrementNumHerring();
+                        }
+                        else
+                        {
+                            herrings[i].GetComponent<HerringMovementScript>().getCulvertsPassed()[j] = true;
+                        }
+
+                        break;
+                    }
+                }
+            }
         }
 	}
+
+    public void decrementNumHerring()
+    {
+        numHerring--;
+    }
 
     public void spawnHerring(int num)
     {
@@ -76,6 +118,7 @@ public class HerringGeneratorScript : MonoBehaviour {
         numHerring = num;
 
         herrings = new List<GameObject>();
+
 
         for (int i = 0; i < numHerring; i++)
         {

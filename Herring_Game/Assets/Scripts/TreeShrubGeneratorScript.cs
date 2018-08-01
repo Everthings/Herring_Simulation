@@ -69,6 +69,11 @@ public class TreeShrubGeneratorScript : MonoBehaviour
       
     }
 
+    public void setCulvertStatus(bool b)
+    {
+        culvert_removed = b;
+    }
+
     void populatePossibleLocations()
     {
         // set array of all positions on land (increments by 5 cuz 2 trees 1 apart is too much overlap)
