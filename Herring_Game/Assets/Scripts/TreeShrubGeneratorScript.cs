@@ -75,9 +75,9 @@ public class TreeShrubGeneratorScript : MonoBehaviour
     {
         // set array of all positions on land (increments by 5 cuz 2 trees 1 apart is too much overlap)
 
-        for(int i = (int)right_bound; i < left_bound; i+=5)
+        for(float i = right_bound; i < left_bound; i += Random.Range(3, 5))
         {
-            for (int j = (int)lower_bound; j < upper_bound; j += 5)
+            for (float j = lower_bound; j < upper_bound; j += Random.Range(3, 5))
             {
                 if (river.SampleHeight(new Vector3(i, 0, j)) >= 6.9f && river1.SampleHeight(new Vector3(i, 0, j)) >= 6.9f
                     && river2.SampleHeight(new Vector3(i, 0, j)) >= 6.9f && river3.SampleHeight(new Vector3(i, 0, j)) >= 6.9f
