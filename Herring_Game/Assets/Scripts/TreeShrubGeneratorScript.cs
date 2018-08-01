@@ -71,6 +71,11 @@ public class TreeShrubGeneratorScript : MonoBehaviour
         culvert_removed = b;
     }
 
+    public float getSurvivalRate()
+    {
+        return GetComponent<KillScript>().getSurvivalRate();
+    }
+
     void populatePossibleLocations()
     {
         // set array of all positions on land (increments by 5 cuz 2 trees 1 apart is too much overlap)
