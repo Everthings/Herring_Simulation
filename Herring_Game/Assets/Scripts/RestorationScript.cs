@@ -30,7 +30,7 @@ public class RestorationScript : MonoBehaviour
     {
         if (enable && GameObject.Find("Restoration_Options").GetComponent<Dropdown>().enabled && GameObject.Find("Sections").GetComponent<MainScript>().getChangesLeft() > 0)
         {
-            if (Input.GetMouseButton(0) && Time.time - time > 0.1)
+            if (Input.GetMouseButton(0) && Time.time - time > 0.1 )
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
@@ -57,10 +57,9 @@ public class RestorationScript : MonoBehaviour
                     for (int i = 0; i < sections.Count; i++)
                     {
 
-                        if (hit.point.x > sections[i].GetComponent<TreeShrubGeneratorScript>().right_bound && hit.point.x < sections[i].GetComponent<TreeShrubGeneratorScript>().left_bound && hit.point.z < sections[i].GetComponent<TreeShrubGeneratorScript>().upper_bound && hit.point.z > sections[i].GetComponent<TreeShrubGeneratorScript>().lower_bound)
+                        if (!sections[i].GetComponent<TreeShrubGeneratorScript>().areTrees() && hit.point.x > sections[i].GetComponent<TreeShrubGeneratorScript>().right_bound && hit.point.x < sections[i].GetComponent<TreeShrubGeneratorScript>().left_bound && hit.point.z < sections[i].GetComponent<TreeShrubGeneratorScript>().upper_bound && hit.point.z > sections[i].GetComponent<TreeShrubGeneratorScript>().lower_bound)
                         {
-
-                            sections[i].GetComponent<TreeShrubGeneratorScript>().addTrees(10);
+                            sections[i].GetComponent<TreeShrubGeneratorScript>().addTrees(400);
                             updateChanges();
 
                             break;
@@ -78,7 +77,7 @@ public class RestorationScript : MonoBehaviour
 
                         if (hit.point.x > sections[i].GetComponent<TreeShrubGeneratorScript>().right_bound && hit.point.x < sections[i].GetComponent<TreeShrubGeneratorScript>().left_bound && hit.point.z < sections[i].GetComponent<TreeShrubGeneratorScript>().upper_bound && hit.point.z > sections[i].GetComponent<TreeShrubGeneratorScript>().lower_bound)
                         {
-                            sections[i].GetComponent<TreeShrubGeneratorScript>().addShrubs(5);
+                            sections[i].GetComponent<TreeShrubGeneratorScript>().addShrubs(500);
                             updateChanges();
                             break;
                         }

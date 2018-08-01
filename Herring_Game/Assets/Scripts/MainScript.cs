@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class MainScript : MonoBehaviour {
 
-
+    public  GameObject NHText;
     int years = 0;
     public int numChanges;
     public int herringAlive;
@@ -22,21 +22,51 @@ public class MainScript : MonoBehaviour {
      * Year 3: Herring run + changes
      * Etc...
      */
-    // Use this for initialization
-    void Start () {
+	// Use this for initialization
+	void Start () {
 
         NewHerring = 0;
-        disableRestorationOptions();
-        disableNextYear();
+        NHText.gameObject.SetActive(false);
+
+        herringAlive = 30000;
+        //disableRestorationOptions();
+        //disableNextYear();
 
         GameObject.Find("Time_Text").GetComponent<Text>().text = "Years Elapsed: " + years;
         GameObject.Find("Changes_Text").GetComponent<Text>().text = "Changes Remaining: " + numChanges;
         GameObject.Find("Herring_Text").GetComponent<Text>().text = "Herring Alive: " + herringAlive;
 
+        /* debug/test curve method
+        for (int i = 0; i < 100; i++){
+            Debug.Log(Curved_Random(50, 10));
+        }
+        */
+
     }
-	
+
 	// Update is called once per frame
 	void Update () {
+        //temporary herring increase for testing
+
+        if (Input.GetKey(KeyCode.E)){
+            herringAlive += 100;
+        }
+        if (Input.GetKey(KeyCode.Q))
+        {
+            herringAlive -= 100;
+        }
+        /*
+        if (Input.GetKey(KeyCode.R))
+        {
+
+            StartCoroutine(timer(3));
+            // yield return new WaitForSecondsRealtime(3);
+
+        }
+        */
+        GameObject.Find("Herring_Text").GetComponent<Text>().text = "Herring Alive: " + herringAlive;
+        GameObject.Find("Canvas").transform.Find("New_Herring").GetComponent<Text>().text = NewHerring + " Herring were added to the population through spawning";
+
         if (herringAlive >= 300000){
             SceneManager.LoadScene("End_ScreenW");
         }
@@ -46,16 +76,96 @@ public class MainScript : MonoBehaviour {
         }
 	}
 
-    public void setHerringCount(int num)
+    IEnumerator displayNH(float t)
     {
-        herringAlive = num;
+        NHText.gameObject.SetActive(true);
+        GameObject.Find("Canvas").transform.Find("New_Herring").gameObject.SetActive(true);
+        yield return new WaitForSeconds(t);
+        NHText.gameObject.SetActive(false);
+        GameObject.Find("Canvas").transform.Find("New_Herring").gameObject.SetActive(false);
     }
 
     public void updateHerringCount()
     {
         NewHerring = (int)(herringAlive * 0.3);
+
+        StartCoroutine(displayNH(8));
+       // yield return new WaitForSecondsRealtime(3);
+
         herringAlive += NewHerring;
     }
+
+    public int Curved_Random(int mean, int scale){ //integer
+
+        int num = Random.Range(0, 100);
+        int rand = 0;
+
+        if (num <= 68){
+            rand = mean + (int)(Random.Range(-1 * scale, scale));
+        }
+        else if (num > 68 && num <= 95){
+            int x = (int)(Random.Range(-1 * scale, scale));
+            if (x < 0){
+                rand = -1 * scale + mean + x;
+            }
+            else if (x >= 0){
+                rand = mean + scale + x;
+            }
+        }
+        else if (num > 95 && num <= 100){
+            int x = (int)(Random.Range(-1 * scale, scale));
+            if (x < 0)
+            {
+                rand = -2 * scale + mean + x;
+            }
+            else if (x >= 0)
+            {
+                rand = 2*scale + mean + x;
+            }
+        }
+        return rand;
+
+    }
+
+
+    public float Curved_Random(float mean,float scale) //float
+    {
+
+        int num = Random.Range(0, 100);
+        float rand = 0f;
+
+        if (num <= 68)
+        {
+            rand = mean + Random.Range(-1 * scale, scale);
+        }
+        else if (num > 68 && num <= 95)
+        {
+            float x = Random.Range(-1 * scale, scale);
+            if (x < 0)
+            {
+                rand = -1 * scale + mean + x;
+            }
+            else if (x >= 0)
+            {
+                rand = mean + scale + x;
+            }
+        }
+        else if (num > 95 && num <= 100)
+        {
+            float x = Random.Range(-1 * scale, scale);
+            if (x < 0)
+            {
+                rand = -2 * scale + mean + x;
+            }
+            else if (x >= 0)
+            {
+                rand = 2 * scale + mean + x;
+            }
+        }
+        return rand;
+
+    }
+
 
     public void incrementYear()
     {
