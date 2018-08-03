@@ -29,8 +29,8 @@ public class MainScript : MonoBehaviour {
         NewHerring = 0;
 
         herringAlive = 30000;
-        //disableRestorationOptions();
-        //disableNextYear();
+        disableRestorationOptions();
+        disableNextYear();
 
         GameObject.Find("Time_Text").GetComponent<Text>().text = "Years Elapsed: " + years;
         GameObject.Find("Changes_Text").GetComponent<Text>().text = "Changes Remaining: " + numChanges;
@@ -143,8 +143,11 @@ public class MainScript : MonoBehaviour {
     }
 
 
-    public void incrementYear()
+    public IEnumerator incrementYear()
     {
+        GameObject.Find("Fade").GetComponent<FadeScript>().fadeOut();
+
+        yield return new WaitForSeconds(0.25f);
 
         years++;
         GameObject.Find("Time_Text").GetComponent<Text>().text = "Years Elapsed: " + years;
@@ -156,18 +159,12 @@ public class MainScript : MonoBehaviour {
             sections[i].GetComponent<TreeShrubGeneratorScript>().incrementTreeAges();
         }
 
-        if (years % 3 == 0)
-        {
-            enableSpawn();
-            //disableNextYear();
-        }
-        else
-        {
-            disableSpawn();
-            enableNextYear();
-        }
-
+        enableSpawn();
+        disableNextYear();
         enableRestorationOptions();
+
+        GameObject.Find("Fade").GetComponent<FadeScript>().fadeIn();
+
     }
 
     public void decrementNumChanges()

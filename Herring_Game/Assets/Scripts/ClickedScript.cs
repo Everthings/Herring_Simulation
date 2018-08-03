@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class ClickedScript: MonoBehaviour {
 
@@ -17,8 +16,8 @@ public class ClickedScript: MonoBehaviour {
         
 	}
 
-    public void Clicked()
+    void Clicked()
     {
-        SceneManager.LoadScene(next);
+        GameObject.Find("Fade").GetComponent<FadeScript>().fadeOutScene(next);
     }
 }

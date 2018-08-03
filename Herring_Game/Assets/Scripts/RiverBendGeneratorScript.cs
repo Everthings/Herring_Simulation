@@ -21,9 +21,14 @@ public class RiverBendGeneratorScript : MonoBehaviour
 
     int current = 0;
 
+    List<GameObject> sections;
+
     // Use this for initialization
     void Start()
     {
+
+        sections = GameObject.Find("Sections").GetComponent<SectionCollectionScript>().getSections();
+
         River.gameObject.SetActive(true);
         River_bends_1.gameObject.SetActive(false);
         River_bends_2.gameObject.SetActive(false);
@@ -44,5 +49,8 @@ public class RiverBendGeneratorScript : MonoBehaviour
         terrains[current].gameObject.SetActive(false);
         current = (current + 1) % terrains.Length;
         terrains[current].gameObject.SetActive(true);
+
+        if (current > 0)
+            sections[current - 1].GetComponent<TreeShrubGeneratorScript>().river_winding = true;
     }
 }
