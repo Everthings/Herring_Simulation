@@ -18,6 +18,9 @@ public class RestorationScript : MonoBehaviour
     void Start()
     {
         GameObject.Find("Canvas").transform.Find("TreeInfo").gameObject.SetActive(false);
+        GameObject.Find("Canvas").transform.Find("ShrubInfo").gameObject.SetActive(false);
+        GameObject.Find("Canvas").transform.Find("BendsInfo").gameObject.SetActive(false);
+        GameObject.Find("Canvas").transform.Find("CulvertInfo").gameObject.SetActive(false);
     }
 
     public void setEnable(bool b)
@@ -103,6 +106,11 @@ public class RestorationScript : MonoBehaviour
                 {
                     GameObject.Find("Coonamessett").GetComponent<RiverBendGeneratorScript>().NextTerrain();
                     updateChanges();
+                    if (ShownBendsInfo == false)
+                    {
+                        GameObject.Find("Canvas").transform.Find("BendsInfo").gameObject.SetActive(true);
+                        ShownBendsInfo = true;
+                    }
                     break;
                 }
             case 3: //Culverts
@@ -120,6 +128,11 @@ public class RestorationScript : MonoBehaviour
                             sections[i].transform.Find("Culvert").transform.position = new Vector3(10, -100, 10);
                             sections[i].GetComponent<TreeShrubGeneratorScript>().setCulvertStatus(true);
                             updateChanges();
+                            if (ShownCulvertInfo == false)
+                            {
+                                GameObject.Find("Canvas").transform.Find("CulvertInfo").gameObject.SetActive(true);
+                                ShownCulvertInfo = true;
+                            }
                             break;
                         }
                     }
