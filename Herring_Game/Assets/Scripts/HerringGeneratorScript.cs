@@ -156,7 +156,7 @@ public class HerringGeneratorScript : MonoBehaviour {
     {
 
         m.SetFloat("_UnderwaterMode", 1f);
-        m.SetFloat("_DepthTransparency", 50f);
+        m.SetFloat("_DepthTransparency", 200f);
         GameObject.Find("WaterPlane").GetComponent<MeshRenderer>().sharedMaterial = m;
 
         rebakeNavMesh();
