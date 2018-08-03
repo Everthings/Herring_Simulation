@@ -80,9 +80,19 @@ public class TreeShrubGeneratorScript : MonoBehaviour
     {
         // set array of all positions on land (increments by 5 cuz 2 trees 1 apart is too much overlap)
 
-        for(float i = right_bound+60; i < left_bound-60; i += Random.Range(2, 5))
+        for (float i = right_bound; i < left_bound; i += Random.Range(0.6f, 1.5f))
         {
-            for (float j = lower_bound; j < upper_bound; j += Random.Range(2, 5))
+            for (float j = lower_bound; j < upper_bound; j += Random.Range(0.4f, 1.3f))
+            {
+                if (river.SampleHeight(new Vector3(i, 0, j)) >= 6f && river.SampleHeight(new Vector3(i, 0, j)) <= 6.9)
+                {
+                    possibleLocations.Add(new Vector2(i, j));
+                }
+            }
+        }
+        for(float i = right_bound+60; i < left_bound-60; i += Random.Range(2, 4))
+        {
+            for (float j = lower_bound; j < upper_bound; j += Random.Range(2, 4))
             {
                 if (river.SampleHeight(new Vector3(i, 0, j)) >= 6.9f && river1.SampleHeight(new Vector3(i, 0, j)) >= 6.9f
                     && river2.SampleHeight(new Vector3(i, 0, j)) >= 6.9f && river3.SampleHeight(new Vector3(i, 0, j)) >= 6.9f
@@ -94,7 +104,7 @@ public class TreeShrubGeneratorScript : MonoBehaviour
         }
         for (float i = 240; i < 280; i += Random.Range(5, 10))
         {
-            for (float j = lower_bound; j < upper_bound; j += Random.Range(3, 5))
+            for (float j = lower_bound; j < upper_bound; j += Random.Range(5, 10))
             {
                 if (river.SampleHeight(new Vector3(i, 0, j)) >= 6.9f && river1.SampleHeight(new Vector3(i, 0, j)) >= 6.9f
                     && river2.SampleHeight(new Vector3(i, 0, j)) >= 6.9f && river3.SampleHeight(new Vector3(i, 0, j)) >= 6.9f
@@ -106,7 +116,7 @@ public class TreeShrubGeneratorScript : MonoBehaviour
         }
         for (float i = 20; i < 60; i += Random.Range(5, 10))
         {
-            for (float j = lower_bound; j < upper_bound; j += Random.Range(3, 5))
+            for (float j = lower_bound; j < upper_bound; j += Random.Range(5, 10))
             {
                 if (river.SampleHeight(new Vector3(i, 0, j)) >= 6.9f && river1.SampleHeight(new Vector3(i, 0, j)) >= 6.9f
                     && river2.SampleHeight(new Vector3(i, 0, j)) >= 6.9f && river3.SampleHeight(new Vector3(i, 0, j)) >= 6.9f
@@ -116,9 +126,9 @@ public class TreeShrubGeneratorScript : MonoBehaviour
                 }
             }
         }
-        for (float i = left_bound; i < 20; i += Random.Range(8, 20))
+        for (float i = right_bound; i < 20; i += Random.Range(8, 20))
         {
-            for (float j = lower_bound; j < upper_bound; j += Random.Range(3, 5))
+            for (float j = lower_bound; j < upper_bound; j += Random.Range(8, 20))
             {
                 if (river.SampleHeight(new Vector3(i, 0, j)) >= 6.9f && river1.SampleHeight(new Vector3(i, 0, j)) >= 6.9f
                     && river2.SampleHeight(new Vector3(i, 0, j)) >= 6.9f && river3.SampleHeight(new Vector3(i, 0, j)) >= 6.9f
@@ -128,9 +138,9 @@ public class TreeShrubGeneratorScript : MonoBehaviour
                 }
             }
         }
-        for (float i = 280; i < right_bound; i += Random.Range(8, 20))
+        for (float i = 280; i < left_bound; i += Random.Range(8, 20))
         {
-            for (float j = lower_bound; j < upper_bound; j += Random.Range(3, 5))
+            for (float j = lower_bound; j < upper_bound; j += Random.Range(8, 20))
             {
                 if (river.SampleHeight(new Vector3(i, 0, j)) >= 6.9f && river1.SampleHeight(new Vector3(i, 0, j)) >= 6.9f
                     && river2.SampleHeight(new Vector3(i, 0, j)) >= 6.9f && river3.SampleHeight(new Vector3(i, 0, j)) >= 6.9f
