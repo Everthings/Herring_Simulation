@@ -29,7 +29,7 @@ public class MainScript : MonoBehaviour {
         NewHerring = 0;
 
         herringAlive = 30000;
-        //disableRestorationOptions();
+        disableRestorationOptions();
         disableNextYear();
 
         GameObject.Find("Time_Text").GetComponent<Text>().text = "Years Elapsed: " + years;
@@ -159,17 +159,8 @@ public class MainScript : MonoBehaviour {
             sections[i].GetComponent<TreeShrubGeneratorScript>().incrementTreeAges();
         }
 
-        if (years % 3 == 0)
-        {
-            enableSpawn();
-            //disableNextYear();
-        }
-        else
-        {
-            disableSpawn();
-            enableNextYear();
-        }
-
+        enableSpawn();
+        disableNextYear();
         enableRestorationOptions();
 
         GameObject.Find("Fade").GetComponent<FadeScript>().fadeIn();

@@ -62,7 +62,7 @@ public class HerringGeneratorScript : MonoBehaviour {
             if (herrings.Count <= (float)numHerring * 1f / 10f)
             {
                 running = false;
-                GameObject.Find("Sections").GetComponent<MainScript>().incrementYear();
+                StartCoroutine(GameObject.Find("Sections").GetComponent<MainScript>().incrementYear());
                 //----------------------------------------------------------
 
                 for (int i = herrings.Count - 1; i >= 0; i--)
