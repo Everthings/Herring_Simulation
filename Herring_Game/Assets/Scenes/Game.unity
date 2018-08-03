@@ -1356,7 +1356,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 261696373}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ce92ff1bb79342019644d74444b896a, type: 3}
   m_Name: 
@@ -2096,16 +2096,16 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400034, guid: 9bd8d6a1e72e30d4d8b926827cc80eff, type: 2}
       propertyPath: m_RootOrder
-      value: 21
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 11400032, guid: 9bd8d6a1e72e30d4d8b926827cc80eff, type: 2}
       propertyPath: _flock
-      value:
-      objectReference: {fileID: 1121986957}
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 11400032, guid: 9bd8d6a1e72e30d4d8b926827cc80eff, type: 2}
       propertyPath: _featherPS
-      value:
-      objectReference: {fileID: 1556390044}
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 11400032, guid: 9bd8d6a1e72e30d4d8b926827cc80eff, type: 2}
       propertyPath: _landOnStart
       value: 0
@@ -2120,7 +2120,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400032, guid: 9bd8d6a1e72e30d4d8b926827cc80eff, type: 2}
       propertyPath: _thisT
-      value:
+      value: 
       objectReference: {fileID: 875316835}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9bd8d6a1e72e30d4d8b926827cc80eff, type: 2}
@@ -3796,7 +3796,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ScrollSpeed: 250
   ZoomSpeed: 10
-  maxZoom: 0
+  maxZoom: 1000
 --- !u!114 &815370271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4192,7 +4192,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 848773798}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ce92ff1bb79342019644d74444b896a, type: 3}
   m_Name: 
@@ -5373,7 +5373,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1080991303}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ce92ff1bb79342019644d74444b896a, type: 3}
   m_Name: 
@@ -7909,11 +7909,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1556390044 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400000, guid: 49dc16adfe4fdef48921b6c464e1002a,
-    type: 2}
-  m_PrefabInternal: {fileID: 1146493316}
 --- !u!1 &1578985564
 GameObject:
   m_ObjectHideFlags: 0
@@ -8256,7 +8251,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 610fc9bcac4dd3a4f953da64558c8a64, type: 2}
       propertyPath: m_RootOrder
-      value: 22
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 610fc9bcac4dd3a4f953da64558c8a64, type: 2}
       propertyPath: _spawnSphere
@@ -8272,8 +8267,8 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 610fc9bcac4dd3a4f953da64558c8a64, type: 2}
       propertyPath: _thisT
-      value:
-      objectReference: {fileID: 1121986958}
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 610fc9bcac4dd3a4f953da64558c8a64, type: 2}
       propertyPath: _spawnSphereDepth
       value: 30
@@ -8718,7 +8713,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1708881820}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ce92ff1bb79342019644d74444b896a, type: 3}
   m_Name: 
