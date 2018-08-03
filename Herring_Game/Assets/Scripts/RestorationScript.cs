@@ -64,6 +64,8 @@ public class RestorationScript : MonoBehaviour
 
                     for (int i = 0; i < sections.Count; i++)
                     {
+                        if (i == 4)
+                            continue;
 
                         if (!sections[i].GetComponent<TreeShrubGeneratorScript>().areTrees() && hit.point.x > sections[i].GetComponent<TreeShrubGeneratorScript>().right_bound && hit.point.x < sections[i].GetComponent<TreeShrubGeneratorScript>().left_bound && hit.point.z < sections[i].GetComponent<TreeShrubGeneratorScript>().upper_bound && hit.point.z > sections[i].GetComponent<TreeShrubGeneratorScript>().lower_bound)
                         {
@@ -87,7 +89,9 @@ public class RestorationScript : MonoBehaviour
 
                     for (int i = 0; i < sections.Count; i++)
                     {
-                        
+                        if (i == 4)
+                            continue;
+
                         if (!sections[i].GetComponent<TreeShrubGeneratorScript>().areShrubs() && hit.point.x > sections[i].GetComponent<TreeShrubGeneratorScript>().right_bound && hit.point.x < sections[i].GetComponent<TreeShrubGeneratorScript>().left_bound && hit.point.z < sections[i].GetComponent<TreeShrubGeneratorScript>().upper_bound && hit.point.z > sections[i].GetComponent<TreeShrubGeneratorScript>().lower_bound)
                         {
                             sections[i].GetComponent<TreeShrubGeneratorScript>().addShrubs(500);
@@ -119,6 +123,8 @@ public class RestorationScript : MonoBehaviour
 
                     for (int i = 0; i < sections.Count; i++)
                     {
+                        if (i == 4)
+                            continue;
 
                         Vector3 Culvert = sections[i].transform.Find("Culvert").transform.Find("Tube_Line").transform.position;
                         Culvert.y = 0;
