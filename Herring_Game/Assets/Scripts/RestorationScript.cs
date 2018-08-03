@@ -6,13 +6,18 @@ using UnityEngine.UI;
 public class RestorationScript : MonoBehaviour
 {
 
+    public bool ShownTreeInfo = false;
+    public bool ShownShrubInfo = false;
+    public bool ShownBendsInfo = false;
+    public bool ShownCulvertInfo = false;
+
     bool enable = true; //don't update terrain if exterior button is clicked
     float time = Time.time;
 
     // Use this for initialization
     void Start()
     {
-
+        GameObject.Find("Canvas").transform.Find("TreeInfo").gameObject.SetActive(false);
     }
 
     public void setEnable(bool b)
@@ -61,6 +66,11 @@ public class RestorationScript : MonoBehaviour
                         {
                             sections[i].GetComponent<TreeShrubGeneratorScript>().addTrees(400);
                             updateChanges();
+                            //Debug.Log(ShownTreeInfo);
+                            if (ShownTreeInfo == false){
+                                GameObject.Find("Canvas").transform.Find("TreeInfo").gameObject.SetActive(true);
+                                ShownTreeInfo = true;
+                            }
 
                             break;
                         }
@@ -77,8 +87,13 @@ public class RestorationScript : MonoBehaviour
                         
                         if (!sections[i].GetComponent<TreeShrubGeneratorScript>().areShrubs() && hit.point.x > sections[i].GetComponent<TreeShrubGeneratorScript>().right_bound && hit.point.x < sections[i].GetComponent<TreeShrubGeneratorScript>().left_bound && hit.point.z < sections[i].GetComponent<TreeShrubGeneratorScript>().upper_bound && hit.point.z > sections[i].GetComponent<TreeShrubGeneratorScript>().lower_bound)
                         {
-                            sections[i].GetComponent<TreeShrubGeneratorScript>().addShrubs(700);
+                            sections[i].GetComponent<TreeShrubGeneratorScript>().addShrubs(500);
                             updateChanges();
+                            if (ShownShrubInfo == false)
+                            {
+                                GameObject.Find("Canvas").transform.Find("ShrubInfo").gameObject.SetActive(true);
+                                ShownShrubInfo = true;
+                            }
                             break;
                         }
                     }
