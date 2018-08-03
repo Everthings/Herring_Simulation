@@ -16,6 +16,6 @@ public class NextYearScript : MonoBehaviour {
 
     public void clicked()
     {
-        GameObject.Find("Sections").GetComponent<MainScript>().incrementYear();
+        StartCoroutine(GameObject.Find("Sections").GetComponent<MainScript>().incrementYear());
     }
 }

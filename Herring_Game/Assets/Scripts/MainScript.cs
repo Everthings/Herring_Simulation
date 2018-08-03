@@ -143,8 +143,11 @@ public class MainScript : MonoBehaviour {
     }
 
 
-    public void incrementYear()
+    public IEnumerator incrementYear()
     {
+        GameObject.Find("Fade").GetComponent<FadeScript>().fadeOut();
+
+        yield return new WaitForSeconds(0.25f);
 
         years++;
         GameObject.Find("Time_Text").GetComponent<Text>().text = "Years Elapsed: " + years;
@@ -168,6 +171,9 @@ public class MainScript : MonoBehaviour {
         }
 
         enableRestorationOptions();
+
+        GameObject.Find("Fade").GetComponent<FadeScript>().fadeIn();
+
     }
 
     public void decrementNumChanges()
