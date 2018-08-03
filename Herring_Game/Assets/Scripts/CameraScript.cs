@@ -10,6 +10,8 @@ public class CameraScript : MonoBehaviour
 
     Vector3 startPos;
 
+    public int maxZoom;
+
     void Start()
     {
         startPos = new Vector3(130, 230, 142);
@@ -71,6 +73,10 @@ public class CameraScript : MonoBehaviour
             {
                 Vector3 dir = new Vector3(transform.position.x - startPos.x, transform.position.y - startPos.y, 0).normalized;
                 transform.Translate(new Vector3(dir.x, 0, dir.y) * ZoomSpeed);
+            }
+            else if(transform.position.y < maxZoom)
+            {
+                transform.Translate(new Vector3(0, 0, -1) * ZoomSpeed);
             }
         }
     }
