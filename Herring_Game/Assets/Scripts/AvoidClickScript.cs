@@ -17,8 +17,8 @@ public class AvoidClickScript : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
     // Use this for initialization
     void Start () {
-		
-	}
+        GameObject.Find("Coonamessett").GetComponent<RestorationScript>().setEnable(true);
+    }
 	
 	// Update is called once per frames
 	void Update () {
