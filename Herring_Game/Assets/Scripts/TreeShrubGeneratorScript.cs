@@ -42,6 +42,7 @@ public class TreeShrubGeneratorScript : MonoBehaviour
     public float right_bound;
     public float left_bound;
     public bool culvert_removed = false;
+    public bool river_winding = false;
 
     // Use this for initialization
     void Start()
@@ -73,7 +74,27 @@ public class TreeShrubGeneratorScript : MonoBehaviour
 
     public float getSurvivalRate()
     {
-        return GetComponent<KillScript>().getSurvivalRate();
+        float rate = GetComponent<KillScript>().getSurvivalRate();
+
+        if (areTrees())
+            rate += treeSurvivalBenefitByAge(treePrefabs[0].getAge());
+
+        if (areShrubs())
+            rate += 1.0f;
+
+        if (river_winding)
+            rate += 1.5f;
+
+        return rate;
+    }
+
+    public float treeSurvivalBenefitByAge(int age)
+    {
+        float baseAge = 0.5f;
+
+        baseAge += age * 0.1f;
+
+        return baseAge;
     }
 
     void populatePossibleLocations()
@@ -213,6 +234,14 @@ public class TreeShrubGeneratorScript : MonoBehaviour
     public bool areTrees()
     {
         if (treePositions.Count > 0)
+            return true;
+
+        return false;
+    }
+
+    public bool areShrubs()
+    {
+        if (shrubPositions.Count > 0)
             return true;
 
         return false;
