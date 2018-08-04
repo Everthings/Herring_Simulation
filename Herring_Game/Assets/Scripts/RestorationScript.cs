@@ -6,10 +6,10 @@ using UnityEngine.UI;
 public class RestorationScript : MonoBehaviour
 {
 
-    public bool ShownTreeInfo = false;
-    public bool ShownShrubInfo = false;
-    public bool ShownBendsInfo = false;
-    public bool ShownCulvertInfo = false;
+    bool ShownTreeInfo = false;
+    bool ShownShrubInfo = false;
+    bool ShownBendsInfo = false;
+    bool ShownCulvertInfo = false;
 
     bool enable = true; //don't update terrain if exterior button is clicked
     float time = Time.time;
@@ -71,7 +71,9 @@ public class RestorationScript : MonoBehaviour
                         {
                             sections[i].GetComponent<TreeShrubGeneratorScript>().addTrees(400);
                             updateChanges();
+                            StartCoroutine(GameObject.Find("Click_Plane").GetComponent<SectionShade>().Clicked(0.2f, sections[i]));
                             //Debug.Log(ShownTreeInfo);
+
                             if (ShownTreeInfo == false){
                                 GameObject.Find("Canvas").transform.Find("TreeInfo").gameObject.SetActive(true);
                                 ShownTreeInfo = true;
@@ -95,6 +97,7 @@ public class RestorationScript : MonoBehaviour
                         if (!sections[i].GetComponent<TreeShrubGeneratorScript>().areShrubs() && hit.point.x > sections[i].GetComponent<TreeShrubGeneratorScript>().right_bound && hit.point.x < sections[i].GetComponent<TreeShrubGeneratorScript>().left_bound && hit.point.z < sections[i].GetComponent<TreeShrubGeneratorScript>().upper_bound && hit.point.z > sections[i].GetComponent<TreeShrubGeneratorScript>().lower_bound)
                         {
                             sections[i].GetComponent<TreeShrubGeneratorScript>().addShrubs(500);
+                            StartCoroutine(GameObject.Find("Click_Plane").GetComponent<SectionShade>().Clicked(0.2f, sections[i]));
                             updateChanges();
                             if (ShownShrubInfo == false)
                             {
@@ -110,6 +113,7 @@ public class RestorationScript : MonoBehaviour
                 {
                     GameObject.Find("Coonamessett").GetComponent<RiverBendGeneratorScript>().NextTerrain();
                     updateChanges();
+                    //StartCoroutine(GameObject.Find("Click_Plane").GetComponent<SectionShade>().Clicked(0.2f, sections[i]));
                     if (ShownBendsInfo == false)
                     {
                         GameObject.Find("Canvas").transform.Find("BendsInfo").gameObject.SetActive(true);
@@ -123,6 +127,7 @@ public class RestorationScript : MonoBehaviour
 
                     for (int i = 0; i < sections.Count; i++)
                     {
+                        StartCoroutine(GameObject.Find("Click_Plane").GetComponent<SectionShade>().Clicked(0.2f, sections[i]));
                         if (i == 4)
                             continue;
 
