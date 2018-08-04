@@ -69,7 +69,7 @@ public class RestorationScript : MonoBehaviour
 
                         if (!sections[i].GetComponent<TreeShrubGeneratorScript>().areTrees() && hit.point.x > sections[i].GetComponent<TreeShrubGeneratorScript>().right_bound && hit.point.x < sections[i].GetComponent<TreeShrubGeneratorScript>().left_bound && hit.point.z < sections[i].GetComponent<TreeShrubGeneratorScript>().upper_bound && hit.point.z > sections[i].GetComponent<TreeShrubGeneratorScript>().lower_bound)
                         {
-                            sections[i].GetComponent<TreeShrubGeneratorScript>().addTrees(400);
+                            sections[i].GetComponent<TreeShrubGeneratorScript>().addTrees(400, 0);
                             updateChanges();
                             StartCoroutine(GameObject.Find("Click_Plane").GetComponent<SectionShade>().Clicked(0.2f, sections[i]));
                             //Debug.Log(ShownTreeInfo);
