@@ -34,7 +34,6 @@ public class TreeShrubGeneratorScript : MonoBehaviour
     public float lower_bound;
     public float right_bound;
     public float left_bound;
-    public bool culvert_removed = false;
     public bool river_winding = false;
 
     // Use this for initialization
@@ -60,11 +59,6 @@ public class TreeShrubGeneratorScript : MonoBehaviour
     void Update()
     {
       
-    }
-
-    public void setCulvertStatus(bool b)
-    {
-        culvert_removed = b;
     }
 
     public float getSurvivalRate()
