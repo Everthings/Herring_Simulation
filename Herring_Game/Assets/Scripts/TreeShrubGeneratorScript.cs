@@ -102,7 +102,7 @@ public class TreeShrubGeneratorScript : MonoBehaviour
             }
 
             tAge = treePrefabs[0].getAge();
-            numTrees = treePrefabs.Count;
+            numTrees = treePositions.Count;
         }
 
         if (areShrubs())
@@ -112,7 +112,7 @@ public class TreeShrubGeneratorScript : MonoBehaviour
                 Destroy(shrubPrefabs[i].gameObject);
             }
 
-            numShrubs = shrubPrefabs.Count;
+            numShrubs = shrubPositions.Count;
         }
 
         treePositions = new List<Vector3>();
@@ -125,9 +125,6 @@ public class TreeShrubGeneratorScript : MonoBehaviour
 
         addTrees(numTrees, tAge);
         addShrubs(numShrubs);
-
-        drawTrees();
-        drawShrubs();
     }
 
     void populatePossibleLocations()
