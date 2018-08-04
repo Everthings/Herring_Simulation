@@ -134,11 +134,12 @@ public class RestorationScript : MonoBehaviour
                         Vector3 Culvert = sections[i].transform.Find("Culvert").transform.Find("Tube_Line").transform.position;
                         Culvert.y = 0;
 
-                        if (Vector3.Distance(Culvert, hit.point) < 20)
+                        if (Vector3.Distance(Culvert, hit.point) < 20 && !sections[i].GetComponent<TreeShrubGeneratorScript>().culvert_removed)
                         {
                             sections[i].transform.Find("Culvert").transform.position = new Vector3(10, -100, 10);
                             sections[i].GetComponent<TreeShrubGeneratorScript>().setCulvertStatus(true);
                             updateChanges();
+
                             if (ShownCulvertInfo == false)
                             {
                                 GameObject.Find("Canvas").transform.Find("CulvertInfo").gameObject.SetActive(true);
