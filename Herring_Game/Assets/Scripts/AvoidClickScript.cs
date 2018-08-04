@@ -8,11 +8,13 @@ public class AvoidClickScript : MonoBehaviour, IPointerEnterHandler, IPointerExi
     public void OnPointerEnter(PointerEventData eventData)
     {
         GameObject.Find("Coonamessett").GetComponent<RestorationScript>().setEnable(false);
+        Debug.Log("Entered");
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         GameObject.Find("Coonamessett").GetComponent<RestorationScript>().setEnable(true);
+        Debug.Log("Exited");
     }
 
     // Use this for initialization
