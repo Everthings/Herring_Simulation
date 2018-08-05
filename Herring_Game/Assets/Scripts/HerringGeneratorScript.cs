@@ -25,8 +25,6 @@ public class HerringGeneratorScript : MonoBehaviour {
 
     public Material m;
 
-    List<Vector3> culvertPositions = new List<Vector3>();
-
     List<GameObject> deathMarkers = new List<GameObject>();
 
     // Use this for initialization
@@ -35,12 +33,7 @@ public class HerringGeneratorScript : MonoBehaviour {
         m.SetFloat("_DepthTransparency", 10f);
         GameObject.Find("WaterPlane").GetComponent<MeshRenderer>().sharedMaterial = m;
 
-        List<GameObject> sections = GameObject.Find("Sections").GetComponent<SectionCollectionScript>().getSections();
-
-        for (int i = 0; i < sections.Count; i++)
-        {
-            culvertPositions.Add(sections[i].transform.Find("Culvert").transform.Find("Tube_Line").transform.position);
-        }
+        
     }
 	
 	// Update is called once per frame
@@ -81,18 +74,19 @@ public class HerringGeneratorScript : MonoBehaviour {
 
             //check for herring death in culverts
             List<GameObject> sections = GameObject.Find("Sections").GetComponent<SectionCollectionScript>().getSections();
+            List<GameObject> culverts = GameObject.Find("Culverts").GetComponent<CulvertCollectionScript>().getCulverts();
 
             for (int i = 0; i < herrings.Count; i++)
             {
-                for (int j = 0; j < 10; j++)
+                for (int j = 0; j < culverts.Count; j++)
                 {
-                    if (Mathf.Abs(herrings[i].transform.position.z - culvertPositions[j].z) < 3 && !herrings[i].GetComponent<HerringMovementScript>().getCulvertsPassed()[j] && !sections[j].GetComponent<TreeShrubGeneratorScript>().culvert_removed)
+                    if (Mathf.Abs(herrings[i].transform.position.z - culverts[j].transform.Find("Tube_Line").transform.position.z) < 3 && !herrings[i].GetComponent<HerringMovementScript>().getCulvertsPassed()[j] && !culverts[j].transform.Find("Button").GetComponent<CulvertRemovalScript>().isRemoved())
                     {
-                        if (Random.value > sections[j].transform.Find("Culvert").GetComponent<KillScript>().getSurvivalRate())
+                        
+                        if (Random.value > culverts[j].GetComponent<KillScript>().getSurvivalRate())
                         {
                             GameObject temp = herrings[i];
                             killHerring(temp);
-                            
                         }
                         else
                         {
