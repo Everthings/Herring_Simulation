@@ -72,6 +72,11 @@ public class MainScript : MonoBehaviour {
         GameObject.Find("Herring_Text").GetComponent<Text>().text = "Herring Alive: " + herringAlive;
     }
 
+    public void decreaseHerring(int sub){
+        herringAlive -= (int)Curved_Random(sub, 16f);
+        GameObject.Find("Herring_Text").GetComponent<Text>().text = "Herring Alive: " + herringAlive;
+    }
+
     public int Curved_Random(int mean, int scale){ //integer
 
         int num = Random.Range(0, 100);

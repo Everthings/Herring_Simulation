@@ -149,7 +149,7 @@ public class HerringGeneratorScript : MonoBehaviour {
         herrings.Remove(obj);
         Destroy(obj);
         numHerring--;
-        GameObject.Find("Herring_Text").GetComponent<Text>().text = "Herring Alive: " + GameObject.Find("Sections").GetComponent<MainScript>().herringMultiplier * numHerring;
+        GameObject.Find("Sections").GetComponent<MainScript>().decreaseHerring(GameObject.Find("Sections").GetComponent<MainScript>().herringMultiplier);
     }
 
     public void spawnHerring(int num)
