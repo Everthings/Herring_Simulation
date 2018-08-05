@@ -48,7 +48,7 @@ public class RestorationScript : MonoBehaviour
                     {
                         if (!transform.parent.GetComponent<TreeShrubGeneratorScript>().areTrees())
                         {
-                            transform.parent.GetComponent<TreeShrubGeneratorScript>().addTrees(400, 0);
+                            transform.parent.GetComponent<TreeShrubGeneratorScript>().addTrees(300, 0);
                             updateChanges();
                             StartCoroutine(GameObject.Find("Click_Plane").GetComponent<SectionShade>().Clicked(0.2f, transform.parent.gameObject));
                             //Debug.Log(ShownTreeInfo);
@@ -66,7 +66,7 @@ public class RestorationScript : MonoBehaviour
                     {
                         if (!transform.parent.GetComponent<TreeShrubGeneratorScript>().areShrubs())
                         {
-                            transform.parent.GetComponent<TreeShrubGeneratorScript>().addShrubs(500);
+                            transform.parent.GetComponent<TreeShrubGeneratorScript>().addShrubs(400);
                             StartCoroutine(GameObject.Find("Click_Plane").GetComponent<SectionShade>().Clicked(0.2f, transform.parent.gameObject));
                             updateChanges();
                             if (ShownShrubInfo == false)
