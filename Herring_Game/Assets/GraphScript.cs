@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GraphScript : MonoBehaviour {
 
@@ -20,6 +21,10 @@ public class GraphScript : MonoBehaviour {
 
     float graphWidth;
     float graphHeight;
+
+    List<GraphPoint> dataPoints;
+
+    public Button b;
 
     void OnGUI()
     {
@@ -81,13 +86,78 @@ public class GraphScript : MonoBehaviour {
         graphOutline[1] = new Vector2(windowRect.x + (windowRect.width / 9), windowRect.y + (windowRect.height * 9 / 11));
         graphOutline[2] = new Vector2(windowRect.x + (windowRect.width * 8 / 9), windowRect.y + (windowRect.height * 9 / 11));
 
-        GetComponent<LineCreator>().drawNewLines(graphOutline);
+        GetComponent<LineCreator>().drawNewLines(graphOutline, "graph outline", Color.white, Color.white);
 
-        GetComponent<LineCreator>().drawNewLines(dataToPixels(testData()));
+        initGraphData();
+
+        GetComponent<LineCreator>().drawNewLines(graphDataToPixels(getGraphPositionData()), "data", Color.red, Color.green);
+    }
+
+    public void redrawGraph()
+    {
+        GetComponent<LineCreator>().removeLine("data");
+        GetComponent<LineCreator>().drawNewLines(graphDataToPixels(getGraphPositionData()), "data", Color.red, Color.green);
+    }
+
+    void initGraphData()
+    {
+        dataPoints = new List<GraphPoint>();
+
+        Vector2[] data = dataToPixels(testData());
+
+        for(int i = 0; i < data.Length; i++)
+        {
+            Button newB = Instantiate(b, new Vector3(data[i].x, Screen.height - data[i].y, 0), Quaternion.identity);
+            newB.transform.SetParent(transform);
+            dataPoints.Add(new GraphPoint(newB));
+        }
+    }
+
+    public Vector2 pixelsToDataPoint(Vector2 pos)
+    {
+        // returns the value of a graph point base on it's position
+        pos.y = Screen.height - pos.y;
+        float newX = (pos.x - graphStartX) / graphWidth * (float)(maxX - minX);
+        float newY = (pos.y - graphStartY) / graphHeight * (float)(maxY - minY);
+
+        return new Vector2(cutDecimals(newX, 2), -cutDecimals(newY, 2));
+    }
+
+    public float cutDecimals(float value, int numDecimals)
+    {
+        return ((int)(value * Mathf.Pow(10, numDecimals))) / Mathf.Pow(10, numDecimals);
+    }
+
+    Vector2[] getGraphPositionData()
+    {
+        Vector2[] data = new Vector2[dataPoints.Count];
+
+        for (int i = 0; i < data.Length; i++)
+        {
+            data[i] = dataPoints[i].getButton().GetComponent<RectTransform>().position;
+        }
+
+        return data;
+    }
+
+    Vector2[] graphDataToPixels(Vector2[] data)
+    {
+        // graph button points to pixels (buttons are cenetred weird)
+
+        Vector2[] fixedData = data;
+
+        for (int i = 0; i < fixedData.Length; i++)
+        {
+            fixedData[i].y = Screen.height - fixedData[i].y;
+        }
+
+        return fixedData;
     }
 
     Vector2[] dataToPixels(Vector2[] data)
     {
+        // lines data to pixels (lines are centered weird as well)
+
         Vector2[] fixedData = data;
 
         for(int i = 0; i < fixedData.Length; i++)
@@ -101,13 +171,18 @@ public class GraphScript : MonoBehaviour {
 
     Vector2[] testData()
     {
-        Vector2[] test = new Vector2[5];
+        Vector2[] test = new Vector2[10];
 
         test[0] = new Vector2(0.1f, 0.1f);
         test[1] = new Vector2(0.2f, 0.2f);
         test[2] = new Vector2(0.3f, 0.3f);
         test[3] = new Vector2(0.4f, 0.4f);
         test[4] = new Vector2(0.5f, 0.5f);
+        test[5] = new Vector2(0.6f, 0.6f);
+        test[6] = new Vector2(0.7f, 0.7f);
+        test[7] = new Vector2(0.8f, 0.8f);
+        test[8] = new Vector2(0.9f, 0.9f);
+        test[9] = new Vector2(1f, 1f);
 
         return test;
     }
@@ -116,4 +191,19 @@ public class GraphScript : MonoBehaviour {
 	void Update () {
 		
 	}
+}
+
+class GraphPoint
+{
+    Button b;
+
+    public GraphPoint(Button b)
+    {
+        this.b = b;
+    }
+    
+    public Button getButton()
+    {
+        return b;
+    }
 }
