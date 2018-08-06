@@ -25,7 +25,7 @@ public class CulvertRemovalScript : MonoBehaviour {
     public void removeCulvert()
     {
         //StartCoroutine(GameObject.Find("Click_Plane").GetComponent<SectionShade>().Clicked(0.2f, transform.parent.gameObject));
-
+        //Debug.Log("briv");
         int value = GameObject.Find("Restoration_Options").GetComponent<Dropdown>().value;
         if (value == 3)
         {
