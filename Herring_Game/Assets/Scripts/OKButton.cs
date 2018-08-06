@@ -17,7 +17,7 @@ public class OKButton : MonoBehaviour {
 	}
 
     public void clicked(){
-        GameObject.Find("Canvas").transform.Find(name).gameObject.SetActive(false);
+        GameObject.Find("GameUI").transform.Find(name).gameObject.SetActive(false);
     }
 
 }

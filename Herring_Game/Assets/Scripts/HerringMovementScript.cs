@@ -9,23 +9,15 @@ public class HerringMovementScript : MonoBehaviour {
     public Vector3 dest;
 
     bool[] culvertsPassed;
-    bool[] sectionsTreePassed;
-    int[] checkTreePositions;
-    bool[] sectionsShrubPassed;
-    int[] checkShrubPositions;
-    bool[] sectionsRiverPassed;
-    int[] checkRiverPositions;
+    bool[] sectionsPassed;
+    int[] checkPositions;
 
     // Use this for initialization
     void Start () {
         culvertsPassed = new bool[10];
-        sectionsTreePassed = new bool[10];
-        checkTreePositions = new int[10];
-        sectionsShrubPassed = new bool[10];
-        checkShrubPositions = new int[10];
-        sectionsRiverPassed = new bool[10];
-        checkRiverPositions = new int[10];
-
+        sectionsPassed = new bool[10];
+        checkPositions = new int[10];
+        
         initPositions();
     }
 
@@ -47,42 +39,20 @@ public class HerringMovementScript : MonoBehaviour {
 
         for(int i = 0; i < 10; i++)
         {
-            checkTreePositions[i] = (int)Random.Range(sections[i].GetComponent<TreeShrubGeneratorScript>().lower_bound, sections[i].GetComponent<TreeShrubGeneratorScript>().upper_bound);
-            checkShrubPositions[i] = (int)Random.Range(sections[i].GetComponent<TreeShrubGeneratorScript>().lower_bound, sections[i].GetComponent<TreeShrubGeneratorScript>().upper_bound);
-            checkRiverPositions[i] = (int)Random.Range(sections[i].GetComponent<TreeShrubGeneratorScript>().lower_bound, sections[i].GetComponent<TreeShrubGeneratorScript>().upper_bound);
+            checkPositions[i] = (int)Random.Range(sections[i].GetComponent<TreeShrubGeneratorScript>().lower_bound, sections[i].GetComponent<TreeShrubGeneratorScript>().upper_bound);
         }
     }
 
-    public int[] getCheckTreePositions()
+    public int[] getCheckPositions()
     {
-        return checkTreePositions;
+        return checkPositions;
     }
 
-    public bool[] getSectionsTreePassed()
+    public bool[] getSectionsPassed()
     {
-        return sectionsTreePassed;
+        return sectionsPassed;
     }
-
-    public int[] getCheckShrubPositions()
-    {
-        return checkShrubPositions;
-    }
-
-    public bool[] getSectionsShrubPassed()
-    {
-        return sectionsShrubPassed;
-    }
-
-    public int[] getCheckRiverPositions()
-    {
-        return checkRiverPositions;
-    }
-
-    public bool[] getSectionsRiverPassed()
-    {
-        return sectionsRiverPassed;
-    }
-
+    
     public void generatePath()
     {
         agent.SetDestination(dest);

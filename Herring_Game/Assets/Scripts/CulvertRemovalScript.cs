@@ -34,7 +34,7 @@ public class CulvertRemovalScript : MonoBehaviour {
 
             if (ShownCulvertInfo == false)
             {
-                GameObject.Find("Canvas").transform.Find("CulvertInfo").gameObject.SetActive(true);
+                GameObject.Find("GameUI").transform.Find("CulvertInfo").gameObject.SetActive(true);
                 ShownCulvertInfo = true;
             }
         }
