@@ -56,7 +56,7 @@ public class LineDrawer : MonoBehaviour
             if (Physics.Raycast(ray, out hit))
             {
                 line.positionCount++;
-                line.SetPosition(line.positionCount - 1, hit.point);
+                line.SetPosition(line.positionCount - 1, new Vector3(hit.point.x, hit.point.y, -0.1f));
             }
         }
     }

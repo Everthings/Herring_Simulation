@@ -97,13 +97,15 @@ public class GraphScript : MonoBehaviour {
     {
         GetComponent<LineCreator>().removeLine("data");
         GetComponent<LineCreator>().drawNewLines(graphDataToPixels(getGraphPositionData()), "data", Color.red, Color.green);
+
+        setData(dataPoints.ToArray());
     }
 
     void initGraphData()
     {
         dataPoints = new List<GraphPoint>();
 
-        Vector2[] data = dataToPixels(testData());
+        Vector2[] data = dataToPixels(getData());
 
         for(int i = 0; i < data.Length; i++)
         {
@@ -169,26 +171,39 @@ public class GraphScript : MonoBehaviour {
         return fixedData;
     }
 
-    Vector2[] testData()
+    Vector2[] getData()
     {
         Vector2[] test = new Vector2[10];
+        float[] rates = DataClass.RestoredSurvivalTrees;
 
-        test[0] = new Vector2(0.1f, 0.1f);
-        test[1] = new Vector2(0.2f, 0.2f);
-        test[2] = new Vector2(0.3f, 0.3f);
-        test[3] = new Vector2(0.4f, 0.4f);
-        test[4] = new Vector2(0.5f, 0.5f);
-        test[5] = new Vector2(0.6f, 0.6f);
-        test[6] = new Vector2(0.7f, 0.7f);
-        test[7] = new Vector2(0.8f, 0.8f);
-        test[8] = new Vector2(0.9f, 0.9f);
-        test[9] = new Vector2(1f, 1f);
+        test[0] = new Vector2(1f, rates[0]);
+        test[1] = new Vector2(2f, rates[1]);
+        test[2] = new Vector2(3f, rates[2]);
+        test[3] = new Vector2(4f, rates[3]);
+        test[4] = new Vector2(5f, rates[4]);
+        test[5] = new Vector2(6f, rates[5]);
+        test[6] = new Vector2(7f, rates[6]);
+        test[7] = new Vector2(8f, rates[7]);
+        test[8] = new Vector2(9f, rates[8]);
+        test[9] = new Vector2(10f, rates[9]);
 
         return test;
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    void setData(GraphPoint[] data)
+    {
+        float[] rates = new float[10];
+
+        for(int i = 0; i < rates.Length; i++)
+        {
+            rates[i] = pixelsToDataPoint(data[i].getButton().GetComponent<RectTransform>().position).y;
+        }
+
+        DataClass.RestoredSurvivalTrees = rates;
+    }
+
+    // Update is called once per frame
+    void Update () {
 		
 	}
 }

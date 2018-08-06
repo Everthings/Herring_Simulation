@@ -26,4 +26,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Controls.unity
     guid: 9297f803ccc1745f0a9c47dfed8161ad
+  - enabled: 1
+    path: Assets/Scenes/Settings.unity
+    guid: d7c0324a344f80440b13f2cb787d31cf
+  - enabled: 1
+    path: Assets/Scenes/TreeRatesGraph.unity
+    guid: 0191bfacf3ae9494496cf70852db7093
   m_configObjects: {}
