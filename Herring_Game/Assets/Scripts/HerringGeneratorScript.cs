@@ -7,7 +7,10 @@ using UnityEngine.UI;
 public class HerringGeneratorScript : MonoBehaviour {
 
     public GameObject herring;
-    public GameObject deathMarker;
+    public GameObject deathMarkerTree;
+    public GameObject deathMarkerShrub;
+    public GameObject deathMarkerCulvert;
+    public GameObject deathMarkerRiver;
     public NavMeshSurface surface;
 
     public int maxX;
@@ -84,7 +87,7 @@ public class HerringGeneratorScript : MonoBehaviour {
                         if (Random.value > culverts[j].GetComponent<KillScript>().getSurvivalRate())
                         {
                             GameObject temp = herrings[i];
-                            killHerring(temp);
+                            killHerring(temp, Kill.culvert);
                         }
                         else
                         {
@@ -96,11 +99,11 @@ public class HerringGeneratorScript : MonoBehaviour {
                 }
             }
 
-            //check for herring death in river proper
+            //check for herring tree death in river proper
             for (int i = 0; i < herrings.Count; i++)
             {
-                int[] Zs = herrings[i].GetComponent<HerringMovementScript>().getCheckPositions();
-                bool[] hasPassed = herrings[i].GetComponent<HerringMovementScript>().getSectionsPassed();
+                int[] Zs = herrings[i].GetComponent<HerringMovementScript>().getCheckTreePositions();
+                bool[] hasPassed = herrings[i].GetComponent<HerringMovementScript>().getSectionsTreePassed();
 
                 if (Zs != null)
                 { 
@@ -111,7 +114,63 @@ public class HerringGeneratorScript : MonoBehaviour {
                             if (Random.value > sections[j].GetComponent<TreeShrubGeneratorScript>().getTreeSurvivalRate())
                             {
                                 GameObject temp = herrings[i];
-                                killHerring(temp);
+                                killHerring(temp, Kill.tree);
+                            }
+                            else
+                            {
+                                hasPassed[j] = true;
+                            }
+
+                            break;
+                        }
+                    }
+                }
+            }
+
+            //check for herring shrub death in river proper
+            for (int i = 0; i < herrings.Count; i++)
+            {
+                int[] Zs = herrings[i].GetComponent<HerringMovementScript>().getCheckShrubPositions();
+                bool[] hasPassed = herrings[i].GetComponent<HerringMovementScript>().getSectionsShrubPassed();
+
+                if (Zs != null)
+                {
+                    for (int j = 0; j < 10; j++)
+                    {
+                        if (Mathf.Abs(herrings[i].transform.position.z - Zs[j]) < 3 && !hasPassed[j])
+                        {
+                            if (Random.value > sections[j].GetComponent<TreeShrubGeneratorScript>().getShrubSurvivalRate())
+                            {
+                                GameObject temp = herrings[i];
+                                killHerring(temp, Kill.shrub);
+                            }
+                            else
+                            {
+                                hasPassed[j] = true;
+                            }
+
+                            break;
+                        }
+                    }
+                }
+            }
+
+            //check for herring river death in river proper
+            for (int i = 0; i < herrings.Count; i++)
+            {
+                int[] Zs = herrings[i].GetComponent<HerringMovementScript>().getCheckRiverPositions();
+                bool[] hasPassed = herrings[i].GetComponent<HerringMovementScript>().getSectionsRiverPassed();
+
+                if (Zs != null)
+                {
+                    for (int j = 0; j < 10; j++)
+                    {
+                        if (Mathf.Abs(herrings[i].transform.position.z - Zs[j]) < 3 && !hasPassed[j])
+                        {
+                            if (Random.value > sections[j].GetComponent<TreeShrubGeneratorScript>().getRiverSurvivalRate())
+                            {
+                                GameObject temp = herrings[i];
+                                killHerring(temp, Kill.river);
                             }
                             else
                             {
@@ -134,9 +193,28 @@ public class HerringGeneratorScript : MonoBehaviour {
         }
     }
 
-    void killHerring(GameObject obj)
+    void killHerring(GameObject obj, Kill type)
     {
-        deathMarkers.Add(Instantiate(deathMarker, new Vector3(obj.transform.position.x + Random.Range(-5, 5), 10, obj.transform.position.z + Random.Range(-5, 5)), new Quaternion()));
+
+        GameObject marker = null;
+        switch (type)
+        {
+            case Kill.tree:
+                marker = deathMarkerTree;
+                break;
+            case Kill.shrub:
+                marker = deathMarkerShrub;
+                break;
+            case Kill.culvert:
+                marker = deathMarkerCulvert;
+                break;
+            case Kill.river:
+                marker = deathMarkerRiver;
+                break;
+
+        }
+        
+        deathMarkers.Add(Instantiate(marker, new Vector3(obj.transform.position.x + Random.Range(-5, 5), 10, obj.transform.position.z + Random.Range(-5, 5)), new Quaternion()));
         herrings.Remove(obj);
         Destroy(obj);
         numHerring--;
@@ -173,4 +251,9 @@ public class HerringGeneratorScript : MonoBehaviour {
     {
         surface.BuildNavMesh();
     }
+}
+
+enum Kill
+{
+    tree, shrub, river, culvert
 }

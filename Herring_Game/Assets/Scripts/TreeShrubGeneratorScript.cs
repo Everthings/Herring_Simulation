@@ -73,6 +73,30 @@ public class TreeShrubGeneratorScript : MonoBehaviour
         return rate;
     }
 
+    public float getShrubSurvivalRate()
+    {
+        float rate;
+
+        if (areShrubs())
+            rate = DataClass.RestoredSurvivalShrubs;
+        else
+            rate = DataClass.UnrestoredSurvivalShrubs;
+
+        return rate;
+    }
+
+    public float getRiverSurvivalRate()
+    {
+        float rate;
+
+        if (river_winding)
+            rate = DataClass.RestoredSurvivalRiver;
+        else
+            rate = DataClass.UnrestoredSurvivalRiver;
+
+        return rate;
+    }
+
     public float treeSurvivalBenefitByAge(int age)
     {
         float baseAge = 0.5f;
