@@ -16,7 +16,7 @@ public class ClickedScript: MonoBehaviour {
         
 	}
 
-    void Clicked()
+    public void Clicked()
     {
         GameObject.Find("Fade").GetComponent<FadeScript>().fadeOutScene(next);
     }
