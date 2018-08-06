@@ -10,20 +10,13 @@ public class RestorationScript : MonoBehaviour
     static bool ShownShrubInfo = false;
     static bool ShownBendsInfo = false;
 
-    static bool enable = true; //don't update terrain if exterior button is clicked
-
     // Use this for initialization
     void Start()
     {
-        GameObject.Find("Canvas").transform.Find("TreeInfo").gameObject.SetActive(false);
-        GameObject.Find("Canvas").transform.Find("ShrubInfo").gameObject.SetActive(false);
-        GameObject.Find("Canvas").transform.Find("BendsInfo").gameObject.SetActive(false);
-    }
-
-    public void setEnable(bool b)
-    {
-        enable = b;
-    }
+        GameObject.Find("GameUI").transform.Find("TreeInfo").gameObject.SetActive(false);
+        GameObject.Find("GameUI").transform.Find("ShrubInfo").gameObject.SetActive(false);
+        GameObject.Find("GameUI").transform.Find("BendsInfo").gameObject.SetActive(false);
+    } 
 
     void updateChanges()
     {
@@ -38,7 +31,7 @@ public class RestorationScript : MonoBehaviour
 
     public void handleClick()
     {
-        if (enable && GameObject.Find("Restoration_Options").GetComponent<Dropdown>().enabled && GameObject.Find("Sections").GetComponent<MainScript>().getChangesLeft() > 0)
+        if (GameObject.Find("GameUI") != null && GameObject.Find("Restoration_Options").GetComponent<Dropdown>().enabled && GameObject.Find("Sections").GetComponent<MainScript>().getChangesLeft() > 0)
         {
             int value = GameObject.Find("Restoration_Options").GetComponent<Dropdown>().value;
 
@@ -55,7 +48,7 @@ public class RestorationScript : MonoBehaviour
 
                             if (ShownTreeInfo == false)
                             {
-                                GameObject.Find("Canvas").transform.Find("TreeInfo").gameObject.SetActive(true);
+                                GameObject.Find("GameUI").transform.Find("TreeInfo").gameObject.SetActive(true);
                                 ShownTreeInfo = true;
                             }
                         }
@@ -71,7 +64,7 @@ public class RestorationScript : MonoBehaviour
                             updateChanges();
                             if (ShownShrubInfo == false)
                             {
-                                GameObject.Find("Canvas").transform.Find("ShrubInfo").gameObject.SetActive(true);
+                                GameObject.Find("GameUI").transform.Find("ShrubInfo").gameObject.SetActive(true);
                                 ShownShrubInfo = true;
                             }
                         }
@@ -84,7 +77,7 @@ public class RestorationScript : MonoBehaviour
                         //StartCoroutine(GameObject.Find("Click_Plane").GetComponent<SectionShade>().Clicked(0.2f, sections[i]));
                         if (ShownBendsInfo == false)
                         {
-                            GameObject.Find("Canvas").transform.Find("BendsInfo").gameObject.SetActive(true);
+                            GameObject.Find("GameUI").transform.Find("BendsInfo").gameObject.SetActive(true);
                             ShownBendsInfo = true;
                         }
                         break;

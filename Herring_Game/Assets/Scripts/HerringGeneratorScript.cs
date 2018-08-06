@@ -88,6 +88,8 @@ public class HerringGeneratorScript : MonoBehaviour {
                         {
                             GameObject temp = herrings[i];
                             killHerring(temp, Kill.culvert);
+                            StatisticsData.culvertKills++;
+                            GameObject.Find("PieCanvas").GetComponent<StatisticsScript>().updateChart();
                         }
                         else
                         {
@@ -115,6 +117,8 @@ public class HerringGeneratorScript : MonoBehaviour {
                             {
                                 GameObject temp = herrings[i];
                                 killHerring(temp, Kill.tree);
+                                StatisticsData.treeKills++;
+                                GameObject.Find("PieCanvas").GetComponent<StatisticsScript>().updateChart();
                             }
                             else
                             {
@@ -143,6 +147,8 @@ public class HerringGeneratorScript : MonoBehaviour {
                             {
                                 GameObject temp = herrings[i];
                                 killHerring(temp, Kill.shrub);
+                                StatisticsData.shrubKills++;
+                                GameObject.Find("PieCanvas").GetComponent<StatisticsScript>().updateChart();
                             }
                             else
                             {
@@ -171,6 +177,8 @@ public class HerringGeneratorScript : MonoBehaviour {
                             {
                                 GameObject temp = herrings[i];
                                 killHerring(temp, Kill.river);
+                                StatisticsData.riverKills++;
+                                GameObject.Find("PieCanvas").GetComponent<StatisticsScript>().updateChart();
                             }
                             else
                             {
@@ -221,8 +229,18 @@ public class HerringGeneratorScript : MonoBehaviour {
         GameObject.Find("Sections").GetComponent<MainScript>().decreaseHerring(GameObject.Find("Sections").GetComponent<MainScript>().herringMultiplier);
     }
 
+    void resetStats()
+    {
+        StatisticsData.culvertKills = 0;
+        StatisticsData.riverKills = 0;
+        StatisticsData.treeKills = 0;
+        StatisticsData.shrubKills = 0;
+    }
+
     public void spawnHerring(int num)
     {
+
+        resetStats();
 
         m.SetFloat("_UnderwaterMode", 1f);
         m.SetFloat("_DepthTransparency", 200f);

@@ -9,7 +9,7 @@ public class CulvertRemovalScript : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        GameObject.Find("Canvas").transform.Find("CulvertInfo").gameObject.SetActive(false);
+        GameObject.Find("GameUI").transform.Find("CulvertInfo").gameObject.SetActive(false);
     }
 	
 	// Update is called once per frame

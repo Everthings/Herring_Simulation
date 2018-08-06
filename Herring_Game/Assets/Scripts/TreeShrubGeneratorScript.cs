@@ -66,9 +66,9 @@ public class TreeShrubGeneratorScript : MonoBehaviour
         float rate;
 
         if (areTrees())
-            rate = DataClass.RestoredSurvivalTrees[treePrefabs[0].getAge()];
+            rate = SurvivalData.RestoredSurvivalTrees[treePrefabs[0].getAge()];
         else
-            rate = DataClass.UnrestoredSurvivalTrees;
+            rate = SurvivalData.UnrestoredSurvivalTrees;
 
         return rate;
     }
@@ -78,9 +78,9 @@ public class TreeShrubGeneratorScript : MonoBehaviour
         float rate;
 
         if (areShrubs())
-            rate = DataClass.RestoredSurvivalShrubs;
+            rate = SurvivalData.RestoredSurvivalShrubs;
         else
-            rate = DataClass.UnrestoredSurvivalShrubs;
+            rate = SurvivalData.UnrestoredSurvivalShrubs;
 
         return rate;
     }
@@ -90,9 +90,9 @@ public class TreeShrubGeneratorScript : MonoBehaviour
         float rate;
 
         if (river_winding)
-            rate = DataClass.RestoredSurvivalRiver;
+            rate = SurvivalData.RestoredSurvivalRiver;
         else
-            rate = DataClass.UnrestoredSurvivalRiver;
+            rate = SurvivalData.UnrestoredSurvivalRiver;
 
         return rate;
     }

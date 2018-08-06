@@ -174,7 +174,7 @@ public class GraphScript : MonoBehaviour {
     Vector2[] getData()
     {
         Vector2[] test = new Vector2[10];
-        float[] rates = DataClass.RestoredSurvivalTrees;
+        float[] rates = SurvivalData.RestoredSurvivalTrees;
 
         test[0] = new Vector2(1f, rates[0]);
         test[1] = new Vector2(2f, rates[1]);
@@ -199,7 +199,7 @@ public class GraphScript : MonoBehaviour {
             rates[i] = pixelsToDataPoint(data[i].getButton().GetComponent<RectTransform>().position).y;
         }
 
-        DataClass.RestoredSurvivalTrees = rates;
+        SurvivalData.RestoredSurvivalTrees = rates;
     }
 
     // Update is called once per frame

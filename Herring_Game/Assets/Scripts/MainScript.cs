@@ -24,13 +24,13 @@ public class MainScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-        GameObject.Find("Canvas").transform.Find("New_Herring").GetComponent<Text>().enabled = false;
+        GameObject.Find("New_Herring").GetComponent<Text>().enabled = false;
 
         NewHerring = 0;
 
         herringAlive = 30000;
-        //disableRestorationOptions();
-        //disableNextYear();
+        disableRestorationOptions();
+        disableNextYear();
 
         GameObject.Find("Time_Text").GetComponent<Text>().text = "Years Elapsed: " + years;
         GameObject.Find("Changes_Text").GetComponent<Text>().text = "Changes Remaining: " + numChanges;
@@ -46,7 +46,7 @@ public class MainScript : MonoBehaviour {
         {
             SceneManager.LoadScene("End_ScreenL");
         }
-	}
+    }
 
     IEnumerator displayNH(float t)
     {
@@ -69,12 +69,12 @@ public class MainScript : MonoBehaviour {
        // yield return new WaitForSecondsRealtime(3);
 
         herringAlive += NewHerring;
-        GameObject.Find("Herring_Text").GetComponent<Text>().text = "Herring Alive: " + herringAlive;
+        GameObject.Find("GameUI").transform.Find("Herring_Text").GetComponent<Text>().text = "Herring Alive: " + herringAlive;
     }
 
     public void decreaseHerring(int sub){
         herringAlive -= (int)Curved_Random(sub, 16f);
-        GameObject.Find("Herring_Text").GetComponent<Text>().text = "Herring Alive: " + herringAlive;
+        GameObject.Find("GameUI").transform.Find("Herring_Text").GetComponent<Text>().text = "Herring Alive: " + herringAlive;
     }
 
     public int Curved_Random(int mean, int scale){ //integer
@@ -165,7 +165,7 @@ public class MainScript : MonoBehaviour {
         }
 
         enableSpawn();
-        //disableNextYear();
+        disableNextYear();
         enableRestorationOptions();
 
         GameObject.Find("Fade").GetComponent<FadeScript>().fadeIn();
