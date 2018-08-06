@@ -61,18 +61,14 @@ public class TreeShrubGeneratorScript : MonoBehaviour
       
     }
 
-    public float getSurvivalRate()
+    public float getTreeSurvivalRate()
     {
-        float rate = GetComponent<KillScript>().getSurvivalRate();
+        float rate;
 
         if (areTrees())
-            rate += treeSurvivalBenefitByAge(treePrefabs[0].getAge());
-
-        if (areShrubs())
-            rate += 1.0f;
-
-        if (river_winding)
-            rate += 1.5f;
+            rate = DataClass.RestoredSurvivalTrees[treePrefabs[0].getAge()];
+        else
+            rate = DataClass.UnrestoredSurvivalTrees;
 
         return rate;
     }
