@@ -46,9 +46,12 @@ public class RiverBendGeneratorScript : MonoBehaviour
 
     public void NextTerrain()
     {
-        terrains[current].gameObject.SetActive(false);
-        current = (current + 1) % terrains.Length;
-        terrains[current].gameObject.SetActive(true);
+        if (current + 1 < terrains.Length)
+        {
+            terrains[current].gameObject.SetActive(false);
+            current = (current + 1);
+            terrains[current].gameObject.SetActive(true);
+        }
 
         if (current > 0)
             sections[current - 1].GetComponent<TreeShrubGeneratorScript>().river_winding = true;
