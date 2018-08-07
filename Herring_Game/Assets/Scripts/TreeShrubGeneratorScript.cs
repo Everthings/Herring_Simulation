@@ -301,7 +301,10 @@ public class TreeShrubGeneratorScript : MonoBehaviour
         // creates trees in game world and sets them to the prefab array
 
         for (int i = 0; i < treePositions.Count; i++)
+        {
             treePrefabs[i].setTreePrefab(Instantiate(agesInOrder[treePrefabs[i].getAge()], treePositions[i], Quaternion.identity));
+            treePrefabs[i].getPrefab().gameObject.isStatic = true;
+        }
     }
 
     void drawShrubs()
@@ -309,7 +312,10 @@ public class TreeShrubGeneratorScript : MonoBehaviour
         // creates trees in game world and sets them to the prefab array
 
         for (int i = 0; i < shrubPositions.Count; i++)
+        {
             shrubPrefabs.Add(Instantiate(shrub, shrubPositions[i], Quaternion.identity));
+            shrubPrefabs[i].gameObject.isStatic = true;
+        }
     }
 
     void destroyTree(int index)
