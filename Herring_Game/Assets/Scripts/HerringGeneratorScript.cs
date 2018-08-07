@@ -92,8 +92,7 @@ public class HerringGeneratorScript : MonoBehaviour {
                             || (culverts[j].transform.Find("Button").GetComponent<CulvertRemovalScript>().isRemoved() && Random.value > SurvivalData.RestoredSurvivalCulverts))
                         {
                             GameObject temp = herrings[i];
-                            killHerring(temp, Kill.culvert);
-                            StatisticsData.culvertKills++;
+                            StatisticsData.culvertKills += killHerring(temp, Kill.culvert);
                             GameObject.Find("Canvas").GetComponent<StatisticsScript>().updatePieChart();
                         }
                         else
@@ -128,22 +127,19 @@ public class HerringGeneratorScript : MonoBehaviour {
                                 if (Random.value > generator.getTreeSurvivalRate())
                                 {
                                     GameObject temp = herrings[i];
-                                    killHerring(temp, Kill.tree);
-                                    StatisticsData.treeKills++;
+                                    StatisticsData.treeKills += killHerring(temp, Kill.tree);
                                     pieChart.updatePieChart();
                                 }
                                 else if (Random.value > generator.getShrubSurvivalRate())
                                 {
                                     GameObject temp = herrings[i];
-                                    killHerring(temp, Kill.shrub);
-                                    StatisticsData.shrubKills++;
+                                    StatisticsData.shrubKills += killHerring(temp, Kill.shrub);
                                     pieChart.updatePieChart();
                                 }
                                 else if (Random.value > generator.getRiverSurvivalRate())
                                 {
                                     GameObject temp = herrings[i];
-                                    killHerring(temp, Kill.river);
-                                    StatisticsData.riverKills++;
+                                    StatisticsData.riverKills += killHerring(temp, Kill.river);
                                     pieChart.updatePieChart();
                                 }
                                 else
@@ -168,7 +164,7 @@ public class HerringGeneratorScript : MonoBehaviour {
         }
     }
 
-    void killHerring(GameObject obj, Kill type)
+    int killHerring(GameObject obj, Kill type)
     {
 
         GameObject marker = null;
@@ -193,21 +189,13 @@ public class HerringGeneratorScript : MonoBehaviour {
         herrings.Remove(obj);
         Destroy(obj);
         numHerring--;
-        GameObject.Find("Sections").GetComponent<MainScript>().decreaseHerring(GameObject.Find("Sections").GetComponent<MainScript>().herringMultiplier);
-    }
-
-    void resetStats()
-    {
-        StatisticsData.culvertKills = 0;
-        StatisticsData.riverKills = 0;
-        StatisticsData.treeKills = 0;
-        StatisticsData.shrubKills = 0;
+        return GameObject.Find("Sections").GetComponent<MainScript>().decreaseHerring(GameObject.Find("Sections").GetComponent<MainScript>().herringMultiplier);
     }
 
     public void spawnHerring(int num)
     {
 
-        resetStats();
+        StatisticsData.resetKilled();
 
         m.SetFloat("_UnderwaterMode", 1f);
         m.SetFloat("_DepthTransparency", 200f);

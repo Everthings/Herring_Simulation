@@ -48,7 +48,7 @@ public class MainScript : MonoBehaviour {
         if (herringAlive >= 300000){
             SceneManager.LoadScene("End_ScreenW");
         }
-        if (herringAlive <= 0)
+        if (herringAlive <= 1000)
         {
             SceneManager.LoadScene("End_ScreenL");
         }
@@ -108,11 +108,14 @@ public class MainScript : MonoBehaviour {
         StartCoroutine(displayInfo(8));
     }
 
-    public void decreaseHerring(int sub)
+    public int decreaseHerring(int sub)
     {
-        herringAlive -= (int)Curved_Random(sub, 16f);
+        int remove = (int)Curved_Random(sub, 16f);
+        herringAlive -= remove;
         GameObject.Find("GameUI").transform.Find("Total").GetComponent<Text>().text = "Adult Herring: " + herringAlive;
         //GameObject.Find("GameUI").transform.Find("Total").GetComponent<Text>().text = "Total herring: " + herringAlive;
+
+        return remove;
     }
 
     public int Curved_Random(int mean, int scale){ //integer
@@ -189,6 +192,8 @@ public class MainScript : MonoBehaviour {
     public IEnumerator incrementYear(bool calculateHerringPopulation)
     {
 
+        StopAllCoroutines();
+
         GameObject.Find("Fade").GetComponent<FadeScript>().fadeOut();
         yield return new WaitForSeconds(0.25f);
 
@@ -199,27 +204,70 @@ public class MainScript : MonoBehaviour {
         {
             List<GameObject> s = GameObject.Find("Sections").GetComponent<SectionCollectionScript>().getSections();
             List<GameObject> c = GameObject.Find("Culverts").GetComponent<CulvertCollectionScript>().getCulverts();
-            double percentage = 1;
+            //double percentage = 1;
 
-            foreach(GameObject obj in s){
-                percentage *= obj.GetComponent<TreeShrubGeneratorScript>().getTreeSurvivalRate();
-                percentage *= obj.GetComponent<TreeShrubGeneratorScript>().getShrubSurvivalRate();
-                percentage *= obj.GetComponent<TreeShrubGeneratorScript>().getRiverSurvivalRate();
-            }
+            int survived = herringAlive;
+            StatisticsData.resetKilled();
 
-            foreach(GameObject obj in c)
+            for(int i = 0; i < herringAlive / herringMultiplier; i++)
             {
-                if (obj.transform.Find("Button").GetComponent<CulvertRemovalScript>().isRemoved())
+
+                for(int j = 0; j < 10; j++)
                 {
-                    percentage *= SurvivalData.RestoredSurvivalCulverts;
-                }
-                else
-                {
-                    percentage *= SurvivalData.UnrestoredSurvivalCulverts;
-                }
+                    if (j < c.Count)
+                    {
+                        if (c[j].transform.Find("Button").GetComponent<CulvertRemovalScript>().isRemoved())
+                        {
+                            if (Random.value > SurvivalData.RestoredSurvivalCulverts)
+                            {
+                                int killed = Curved_Random(herringMultiplier, 16);
+                                StatisticsData.culvertKills += killed;
+                                survived -= killed;
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            if (Random.value > SurvivalData.UnrestoredSurvivalCulverts)
+                            {
+                                int killed = Curved_Random(herringMultiplier, 16);
+                                StatisticsData.culvertKills += killed;
+                                survived -= killed;
+                                break;
+                            }
+                        }
+                    }
+
+                    if (Random.value > s[j].GetComponent<TreeShrubGeneratorScript>().getTreeSurvivalRate())
+                    {
+                        int killed = Curved_Random(herringMultiplier, 16);
+                        StatisticsData.treeKills += killed;
+                        survived -= killed;
+                        break;
+                    }
+
+                    if (Random.value > s[j].GetComponent<TreeShrubGeneratorScript>().getShrubSurvivalRate())
+                    {
+                        int killed = Curved_Random(herringMultiplier, 16);
+                        StatisticsData.shrubKills += killed;
+                        survived -= killed;
+                        break;
+                    }
+
+                    if (Random.value > s[j].GetComponent<TreeShrubGeneratorScript>().getRiverSurvivalRate())
+                    {
+                        int killed = Curved_Random(herringMultiplier, 16);
+                        StatisticsData.riverKills += killed;
+                        survived -= killed;
+                        break;
+                    }
+                }    
             }
 
-            herringAlive = (int)(herringAlive * percentage);
+
+            //herringAlive = Curved_Random((int)(herringAlive * percentage), 30);
+            GameObject.Find("Canvas").GetComponent<StatisticsScript>().updatePieChart();
+            herringAlive = survived;
             updateHerringCount();
         }
 
@@ -228,7 +276,7 @@ public class MainScript : MonoBehaviour {
         StatisticsData.herringPopulation = herringPopulation.ToArray();
         GameObject.Find("Canvas").GetComponent<StatisticsScript>().updateLineChart();
 
-        GameObject.Find("Herring_Text").GetComponent<Text>().text = "Herring Alive: " + herringAlive;
+        GameObject.Find("Total").GetComponent<Text>().text = "Herring Alive: " + herringAlive;
 
         List<GameObject> sections = GameObject.Find("Sections").GetComponent<SectionCollectionScript>().getSections();
 

@@ -44,19 +44,22 @@ public class RiverBendGeneratorScript : MonoBehaviour
 
     }
 
-    public void NextTerrain()
+    public bool NextTerrain()
     {
         if (current + 1 < terrains.Length)
         {
             terrains[current].gameObject.SetActive(false);
             current = (current + 1);
             terrains[current].gameObject.SetActive(true);
+
+            if (current > 0)
+                sections[current - 1].GetComponent<TreeShrubGeneratorScript>().river_winding = true;
+
+
+            sections[current - 1].GetComponent<TreeShrubGeneratorScript>().regenerateAll(terrains[current]);
+            return true;
         }
-
-        if (current > 0)
-            sections[current - 1].GetComponent<TreeShrubGeneratorScript>().river_winding = true;
-
-
-        sections[current - 1].GetComponent<TreeShrubGeneratorScript>().regenerateAll(terrains[current]);
+        
+        return false;
     }
 }

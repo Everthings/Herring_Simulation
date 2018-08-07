@@ -7,6 +7,8 @@ public class StatisticsScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+        StatisticsData.resetAll();
         updatePieChart();
         updateLineChart();
     }
@@ -18,10 +20,12 @@ public class StatisticsScript : MonoBehaviour {
     public void updatePieChart()
     {
         GameObject canvas = GameObject.Find("PieCanvas");
+        canvas.GetComponent<PieChart>().DataSource.StartBatch();
         canvas.GetComponent<PieChart>().DataSource.SetValue("Trees", StatisticsData.treeKills);
         canvas.GetComponent<PieChart>().DataSource.SetValue("Shrubs", StatisticsData.shrubKills);
         canvas.GetComponent<PieChart>().DataSource.SetValue("Culverts", StatisticsData.culvertKills);
         canvas.GetComponent<PieChart>().DataSource.SetValue("River", StatisticsData.riverKills);
+        canvas.GetComponent<PieChart>().DataSource.EndBatch();
     }
 
     public void updateLineChart()

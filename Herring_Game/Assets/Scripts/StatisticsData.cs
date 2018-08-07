@@ -11,6 +11,22 @@ public static class StatisticsData{
 
     private static int[] herringByYear = new int[] { 30000};
 
+    public static void resetKilled()
+    {
+        shrubKilled = 0;
+        treeKilled = 0;
+        culvertKilled = 0;
+        riverKilled = 0;
+    }
+
+    public static void resetAll()
+    {
+        shrubKilled = 0;
+        treeKilled = 0;
+        culvertKilled = 0;
+        riverKilled = 0;
+    }
+
     public static int treeKills
     {
         get

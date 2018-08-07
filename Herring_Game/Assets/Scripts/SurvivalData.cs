@@ -12,9 +12,9 @@ public static class SurvivalData {
 
     //restored
     private static float[] treeAddedSurvivalRate = new float[] {0.7f, 0.75f, 0.8f, 0.85f, 0.9f, 0.95f, 0.97f, 0.975f, 0.99f, 0.995f};
-    private static float shrubAddedSurvivalRate = 0.99f;
-    private static float culvertRemovedSurvivalRate = 0.99f;
-    private static float riverWindingSurvivalRate = 0.99f;
+    private static float shrubAddedSurvivalRate = 0.995f;
+    private static float culvertRemovedSurvivalRate = 0.995f;
+    private static float riverWindingSurvivalRate = 0.995f;
 
     public static float UnrestoredSurvivalTrees
     {

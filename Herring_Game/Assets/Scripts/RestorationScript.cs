@@ -72,8 +72,8 @@ public class RestorationScript : MonoBehaviour
                     }
                 case 2: //River
                     {
-                        GameObject.Find("Coonamessett").GetComponent<RiverBendGeneratorScript>().NextTerrain();
-                        updateChanges();
+                        if(GameObject.Find("Coonamessett").GetComponent<RiverBendGeneratorScript>().NextTerrain())
+                            updateChanges();
                         //StartCoroutine(GameObject.Find("Click_Plane").GetComponent<SectionShade>().Clicked(0.2f, sections[i]));
                         if (ShownBendsInfo == false)
                         {
