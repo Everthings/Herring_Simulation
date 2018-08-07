@@ -30,7 +30,7 @@ public class MainScript : MonoBehaviour {
 
         herringAlive = 30000;
         //disableRestorationOptions();
-        disableNextYear();
+        //disableSkipYear();
 
         GameObject.Find("Time_Text").GetComponent<Text>().text = "Years Elapsed: " + years;
         GameObject.Find("Changes_Text").GetComponent<Text>().text = "Changes Remaining: " + numChanges;
@@ -50,10 +50,10 @@ public class MainScript : MonoBehaviour {
 
     IEnumerator displayNH(float t)
     {
-        GameObject.Find("Canvas").transform.Find("New_Herring").GetComponent<Text>().enabled = true;
-        GameObject.Find("Canvas").transform.Find("New_Herring").GetComponent<Text>().text = NewHerring + " herring were added to the population through spawning.";
+        GameObject.Find("GameUI").transform.Find("New_Herring").GetComponent<Text>().enabled = true;
+        GameObject.Find("GameUI").transform.Find("New_Herring").GetComponent<Text>().text = NewHerring + " herring were added to the population through spawning.";
         yield return new WaitForSeconds(t);
-        GameObject.Find("Canvas").transform.Find("New_Herring").GetComponent<Text>().enabled = false;
+        GameObject.Find("GameUI").transform.Find("New_Herring").GetComponent<Text>().enabled = false;
     }
 
     public void setHerringCount(int num)
@@ -148,14 +148,49 @@ public class MainScript : MonoBehaviour {
     }
 
 
-    public IEnumerator incrementYear()
+    public IEnumerator incrementYear(bool calculateHerringPopulation)
     {
-        GameObject.Find("Fade").GetComponent<FadeScript>().fadeOut();
 
+        GameObject.Find("Fade").GetComponent<FadeScript>().fadeOut();
         yield return new WaitForSeconds(0.25f);
 
         years++;
         GameObject.Find("Time_Text").GetComponent<Text>().text = "Years Elapsed: " + years;
+
+        if (calculateHerringPopulation)
+        {
+            List<GameObject> s = GameObject.Find("Sections").GetComponent<SectionCollectionScript>().getSections();
+            List<GameObject> c = GameObject.Find("Culverts").GetComponent<CulvertCollectionScript>().getCulverts();
+            double percentage = 1;
+
+            foreach(GameObject obj in s){
+                percentage *= obj.GetComponent<TreeShrubGeneratorScript>().getTreeSurvivalRate();
+                percentage *= obj.GetComponent<TreeShrubGeneratorScript>().getShrubSurvivalRate();
+                percentage *= obj.GetComponent<TreeShrubGeneratorScript>().getRiverSurvivalRate();
+            }
+
+            foreach(GameObject obj in c)
+            {
+                if (obj.transform.Find("Button").GetComponent<CulvertRemovalScript>().isRemoved())
+                {
+                    percentage *= SurvivalData.RestoredSurvivalCulverts;
+                }
+                else
+                {
+                    percentage *= SurvivalData.UnrestoredSurvivalCulverts;
+                }
+            }
+
+            herringAlive = (int)(herringAlive * percentage);
+            updateHerringCount();
+        }
+
+        List<int> herringPopulation = new List<int>(StatisticsData.herringPopulation);
+        herringPopulation.Add(GameObject.Find("Sections").GetComponent<MainScript>().herringAlive);
+        StatisticsData.herringPopulation = herringPopulation.ToArray();
+        GameObject.Find("Canvas").GetComponent<StatisticsScript>().updateLineChart();
+
+        GameObject.Find("Herring_Text").GetComponent<Text>().text = "Herring Alive: " + herringAlive;
 
         List<GameObject> sections = GameObject.Find("Sections").GetComponent<SectionCollectionScript>().getSections();
 
@@ -165,7 +200,8 @@ public class MainScript : MonoBehaviour {
         }
 
         enableSpawn();
-        disableNextYear();
+        enableSkipYear();
+        //disableSkipYear();
         enableRestorationOptions();
 
         GameObject.Find("Fade").GetComponent<FadeScript>().fadeIn();
@@ -197,11 +233,11 @@ public class MainScript : MonoBehaviour {
         GameObject.Find("Spawn_Text").GetComponent<Text>().enabled = false;
     }
 
-    public void disableNextYear()
+    public void disableSkipYear()
     {
-        GameObject.Find("Next_Year").GetComponent<Button>().enabled = false;
-        GameObject.Find("Next_Year").GetComponent<Image>().enabled = false;
-        GameObject.Find("Next_Text").GetComponent<Text>().enabled = false;
+        GameObject.Find("Skip_Year").GetComponent<Button>().enabled = false;
+        GameObject.Find("Skip_Year").GetComponent<Image>().enabled = false;
+        GameObject.Find("Skip_Year").GetComponent<Text>().enabled = false;
     }
 
     public void enableRestorationOptions()
@@ -218,10 +254,10 @@ public class MainScript : MonoBehaviour {
         GameObject.Find("Spawn_Text").GetComponent<Text>().enabled = true;
     }
 
-    public void enableNextYear()
+    public void enableSkipYear()
     {
-        GameObject.Find("Next_Year").GetComponent<Button>().enabled = true;
-        GameObject.Find("Next_Year").GetComponent<Image>().enabled = true;
-        GameObject.Find("Next_Text").GetComponent<Text>().enabled = true;
+        GameObject.Find("Skip_Year").GetComponent<Button>().enabled = true;
+        GameObject.Find("Skip_Year").GetComponent<Image>().enabled = true;
+        GameObject.Find("Skip_Year").transform.GetChild(0).GetComponent<Text>().enabled = true;
     }
 }
