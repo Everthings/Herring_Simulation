@@ -21,5 +21,6 @@ public class SpawnButtonScript : MonoBehaviour {
         GameObject.Find("Coonamessett").GetComponent<HerringGeneratorScript>().spawnHerring(GameObject.Find("Sections").GetComponent<MainScript>().herringAlive / GameObject.Find("Sections").GetComponent<MainScript>().herringMultiplier);
         GameObject.Find("Sections").GetComponent<MainScript>().disableRestorationOptions();
         GameObject.Find("Sections").GetComponent<MainScript>().disableSpawn();
+        GameObject.Find("Sections").GetComponent<MainScript>().disableSkipYear();
     }
 }

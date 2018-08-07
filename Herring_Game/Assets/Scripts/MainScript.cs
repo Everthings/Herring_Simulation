@@ -9,7 +9,8 @@ public class MainScript : MonoBehaviour {
     int years = 0;
     public int numChanges;
     public int herringAlive;
-    int NewHerring;
+    int herringAdults;
+    int herringChildren;
 
     public int herringMultiplier;
 
@@ -26,7 +27,7 @@ public class MainScript : MonoBehaviour {
 
         GameObject.Find("New_Herring").GetComponent<Text>().enabled = false;
 
-        NewHerring = 0;
+        herringChildren = 0;
 
         herringAlive = 30000;
         //disableRestorationOptions();
@@ -34,7 +35,7 @@ public class MainScript : MonoBehaviour {
 
         GameObject.Find("Time_Text").GetComponent<Text>().text = "Years Elapsed: " + years;
         GameObject.Find("Changes_Text").GetComponent<Text>().text = "Changes Remaining: " + numChanges;
-        GameObject.Find("Herring_Text").GetComponent<Text>().text = "Herring Alive: " + herringAlive;
+        GameObject.Find("Total").GetComponent<Text>().text = "Total Herring: " + herringAlive;
     }
 
 	// Update is called once per frame
@@ -50,31 +51,38 @@ public class MainScript : MonoBehaviour {
 
     IEnumerator displayNH(float t)
     {
-        GameObject.Find("GameUI").transform.Find("New_Herring").GetComponent<Text>().enabled = true;
-        GameObject.Find("GameUI").transform.Find("New_Herring").GetComponent<Text>().text = NewHerring + " herring were added to the population through spawning.";
-        yield return new WaitForSeconds(t);
-        GameObject.Find("GameUI").transform.Find("New_Herring").GetComponent<Text>().enabled = false;
-    }
+        GameObject UI = GameObject.Find("GameUI");
 
-    public void setHerringCount(int num)
-    {
-        herringAlive = num;
+        UI.transform.Find("New_Herring").GetComponent<Text>().enabled = true;
+        UI.transform.Find("Herring_Text").GetComponent<Text>().enabled = true;
+        UI.transform.Find("NH_Text").GetComponent<Text>().enabled = true;
+        UI.transform.Find("New_Herring").GetComponent<Text>().text = herringChildren + " herring were added to the population through spawning.";
+        UI.transform.Find("Herring_Text").GetComponent<Text>().text = "Adult Herring: " + herringAlive;
+        UI.transform.Find("NH_Text").GetComponent<Text>().text = "Offspring Herring: " + herringChildren;
+        yield return new WaitForSeconds(t);
+        UI.transform.Find("New_Herring").GetComponent<Text>().enabled = false;
+        UI.transform.Find("Herring_Text").GetComponent<Text>().enabled = false;
+        UI.transform.Find("NH_Text").GetComponent<Text>().enabled = false;
     }
 
     public void updateHerringCount()
     {
-        NewHerring = Curved_Random((int)(herringAlive * 0.3), 45);
+        GameObject UI = GameObject.Find("GameUI");
+
+        herringChildren = Curved_Random((int)(herringAlive * 0.5), 45);
+        herringAdults = herringAlive;
+
+        herringAlive += herringChildren;
+        UI.transform.Find("Total").GetComponent<Text>().text = "Total Herring: " + herringAlive;
 
         StartCoroutine(displayNH(8));
-       // yield return new WaitForSecondsRealtime(3);
-
-        herringAlive += NewHerring;
-        GameObject.Find("GameUI").transform.Find("Herring_Text").GetComponent<Text>().text = "Herring Alive: " + herringAlive;
     }
 
-    public void decreaseHerring(int sub){
+    public void decreaseHerring(int sub)
+    {
         herringAlive -= (int)Curved_Random(sub, 16f);
-        GameObject.Find("GameUI").transform.Find("Herring_Text").GetComponent<Text>().text = "Herring Alive: " + herringAlive;
+        GameObject.Find("GameUI").transform.Find("Total").GetComponent<Text>().text = "Adult Herring: " + herringAlive;
+        //GameObject.Find("GameUI").transform.Find("Total").GetComponent<Text>().text = "Total herring: " + herringAlive;
     }
 
     public int Curved_Random(int mean, int scale){ //integer
@@ -237,7 +245,7 @@ public class MainScript : MonoBehaviour {
     {
         GameObject.Find("Skip_Year").GetComponent<Button>().enabled = false;
         GameObject.Find("Skip_Year").GetComponent<Image>().enabled = false;
-        GameObject.Find("Skip_Year").GetComponent<Text>().enabled = false;
+        GameObject.Find("Skip_Year").transform.GetChild(0).GetComponent<Text>().enabled = false;
     }
 
     public void enableRestorationOptions()

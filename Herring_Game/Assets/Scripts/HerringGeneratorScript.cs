@@ -72,7 +72,7 @@ public class HerringGeneratorScript : MonoBehaviour {
                 m.SetFloat("_DepthTransparency", 10f);
                 GameObject.Find("WaterPlane").GetComponent<MeshRenderer>().sharedMaterial = m;
 
-                GameObject.Find("Sections").GetComponent<MainScript>().setHerringCount(GameObject.Find("Sections").GetComponent<MainScript>().herringMultiplier * numHerring);
+                //GameObject.Find("Sections").GetComponent<MainScript>().setHerringCount(GameObject.Find("Sections").GetComponent<MainScript>().herringMultiplier * numHerring);
                 GameObject.Find("Sections").GetComponent<MainScript>().updateHerringCount();
             }
 
