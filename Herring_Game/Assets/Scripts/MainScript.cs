@@ -11,8 +11,13 @@ public class MainScript : MonoBehaviour {
     public int herringAlive;
     int herringAdults;
     int herringChildren;
+    int herringImpactedByDifficulty;
 
-    public int herringMultiplier;
+    public int herringMultiplier = 0;
+
+    public float climateMultiplier = 0.1f;
+    public float fishingMultiplier = 0.2f;
+
 
     // GAME DESIGN
     /*
@@ -49,21 +54,35 @@ public class MainScript : MonoBehaviour {
         }
     }
 
-    IEnumerator displayNH(float t)
+    IEnumerator displayInfo(float t)
     {
         GameObject UI = GameObject.Find("GameUI");
 
+        // Herring info
         UI.transform.Find("New_Herring").GetComponent<Text>().enabled = true;
         UI.transform.Find("Herring_Text").GetComponent<Text>().enabled = true;
-        UI.transform.Find("NH_Text").GetComponent<Text>().enabled = true;
         UI.transform.Find("New_Herring").GetComponent<Text>().text = herringChildren + " herring were added to the population through spawning.";
         UI.transform.Find("Herring_Text").GetComponent<Text>().text = "Adult Herring: " + herringAlive;
-        UI.transform.Find("NH_Text").GetComponent<Text>().text = "Offspring Herring: " + herringChildren;
         yield return new WaitForSeconds(t);
         UI.transform.Find("New_Herring").GetComponent<Text>().enabled = false;
         UI.transform.Find("Herring_Text").GetComponent<Text>().enabled = false;
-        UI.transform.Find("NH_Text").GetComponent<Text>().enabled = false;
+
+        // Difficulty (Climate &| Fishing) info
+        if(DifficultyData.difficulty == 1)
+        {
+            UI.transform.Find("Difficulty_Text").GetComponent<Text>().enabled = true;
+            UI.transform.Find("Difficulty_Text").GetComponent<Text>().text = herringImpactedByDifficulty + " herring died from climate change.";
+            yield return new WaitForSeconds(t);
+            UI.transform.Find("Difficulty_Text").GetComponent<Text>().enabled = false;
+        }else if (DifficultyData.difficulty == 2)
+        {
+            UI.transform.Find("Difficulty_Text").GetComponent<Text>().enabled = true;
+            UI.transform.Find("Difficulty_Text").GetComponent<Text>().text = herringImpactedByDifficulty + " herring died from climate change and fishing.";
+            yield return new WaitForSeconds(t);
+            UI.transform.Find("Difficulty_Text").GetComponent<Text>().enabled = false;
+        }
     }
+
 
     public void updateHerringCount()
     {
@@ -73,9 +92,20 @@ public class MainScript : MonoBehaviour {
         herringAdults = herringAlive;
 
         herringAlive += herringChildren;
-        UI.transform.Find("Total").GetComponent<Text>().text = "Total Herring: " + herringAlive;
 
-        StartCoroutine(displayNH(8));
+        if(DifficultyData.difficulty == 1)
+        {
+            herringImpactedByDifficulty = (int)(herringAlive * climateMultiplier);
+        }
+        else if(DifficultyData.difficulty == 2)
+        {
+            herringImpactedByDifficulty = (int)(herringAlive * fishingMultiplier);
+        }
+
+        herringAlive -= herringImpactedByDifficulty;
+
+        UI.transform.Find("Total").GetComponent<Text>().text = "Total Herring: " + herringAlive;
+        StartCoroutine(displayInfo(8));
     }
 
     public void decreaseHerring(int sub)
