@@ -30,6 +30,9 @@ public class HerringGeneratorScript : MonoBehaviour {
 
     List<GameObject> deathMarkers = new List<GameObject>();
 
+    int updateEvery = 5;
+    int counter = 0;
+
     // Use this for initialization
     void Start () {
         m.SetFloat("_UnderwaterMode", 0f);
@@ -39,7 +42,10 @@ public class HerringGeneratorScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (running)
+
+        counter++;
+
+        if (running && counter % updateEvery == 0)
         {
             for (int i = herrings.Count - 1; i >= 0; i--)
             {
@@ -50,8 +56,6 @@ public class HerringGeneratorScript : MonoBehaviour {
                     Destroy(temp);
                 }
             }
-
-            //Debug.Log(herrings.Count + " vs " + numHerring);
 
             if (herrings.Count <= (float)numHerring * 1f / 10f)
             {
@@ -101,6 +105,8 @@ public class HerringGeneratorScript : MonoBehaviour {
                 }
             }
 
+            var pieChart = GameObject.Find("PieCanvas").GetComponent<StatisticsScript>();
+
             //check for herring tree/shrub/river death in river proper
             for (int i = 0; i < herrings.Count; i++)
             {
@@ -111,47 +117,41 @@ public class HerringGeneratorScript : MonoBehaviour {
                 { 
                     for (int j = 0; j < 10; j++)
                     {
-                        if (Mathf.Abs(herrings[i].transform.position.z - Zs[j]) < 3 && !hasPassed[j])
+
+                        if (!hasPassed[j])
                         {
-                            if (Random.value > sections[j].GetComponent<TreeShrubGeneratorScript>().getTreeSurvivalRate())
+                            var generator = sections[j].GetComponent<TreeShrubGeneratorScript>();
+
+                            if (Mathf.Abs(herrings[i].transform.position.z - Zs[j]) < 3)
                             {
-                                GameObject temp = herrings[i];
-                                killHerring(temp, Kill.tree);
-                                StatisticsData.treeKills++;
-                                GameObject.Find("PieCanvas").GetComponent<StatisticsScript>().updateChart();
+                                if (Random.value > generator.getTreeSurvivalRate())
+                                {
+                                    GameObject temp = herrings[i];
+                                    killHerring(temp, Kill.tree);
+                                    StatisticsData.treeKills++;
+                                    pieChart.updateChart();
+                                }
+                                else if (Random.value > generator.getShrubSurvivalRate())
+                                {
+                                    GameObject temp = herrings[i];
+                                    killHerring(temp, Kill.shrub);
+                                    StatisticsData.shrubKills++;
+                                    pieChart.updateChart();
+                                }
+                                else if (Random.value > generator.getRiverSurvivalRate())
+                                {
+                                    GameObject temp = herrings[i];
+                                    killHerring(temp, Kill.river);
+                                    StatisticsData.riverKills++;
+                                    pieChart.updateChart();
+                                }
+                                else
+                                {
+                                    hasPassed[j] = true;
+                                }
+
+                                break;
                             }
-                            else
-                            {
-                                hasPassed[j] = true;
-                            }
-
-                            break;
-                        }
-
-                        if (Mathf.Abs(herrings[i].transform.position.z - Zs[j]) < 3 && !hasPassed[j])
-                        {
-                            if (Random.value > sections[j].GetComponent<TreeShrubGeneratorScript>().getShrubSurvivalRate())
-                            {
-                                GameObject temp = herrings[i];
-                                killHerring(temp, Kill.shrub);
-                                StatisticsData.shrubKills++;
-                                GameObject.Find("PieCanvas").GetComponent<StatisticsScript>().updateChart();
-                            }
-
-                            break;
-                        }
-
-                        if (Mathf.Abs(herrings[i].transform.position.z - Zs[j]) < 3 && !hasPassed[j])
-                        {
-                            if (Random.value > sections[j].GetComponent<TreeShrubGeneratorScript>().getRiverSurvivalRate())
-                            {
-                                GameObject temp = herrings[i];
-                                killHerring(temp, Kill.river);
-                                StatisticsData.riverKills++;
-                                GameObject.Find("PieCanvas").GetComponent<StatisticsScript>().updateChart();
-                            }
-
-                            break;
                         }
                     }
                 }
