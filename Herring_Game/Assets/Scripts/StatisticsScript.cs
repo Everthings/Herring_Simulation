@@ -7,19 +7,38 @@ public class StatisticsScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        updateChart();
+        updatePieChart();
+        updateLineChart();
     }
 	
 	// Update is called once per frame
 	void Update () {
-        
-	}
+    }
 
-    public void updateChart()
+    public void updatePieChart()
     {
-        GetComponent<PieChart>().DataSource.SetValue("Trees", StatisticsData.treeKills);
-        GetComponent<PieChart>().DataSource.SetValue("Shrubs", StatisticsData.shrubKills);
-        GetComponent<PieChart>().DataSource.SetValue("Culverts", StatisticsData.culvertKills);
-        GetComponent<PieChart>().DataSource.SetValue("River", StatisticsData.riverKills);
+        GameObject canvas = GameObject.Find("PieCanvas");
+        canvas.GetComponent<PieChart>().DataSource.SetValue("Trees", StatisticsData.treeKills);
+        canvas.GetComponent<PieChart>().DataSource.SetValue("Shrubs", StatisticsData.shrubKills);
+        canvas.GetComponent<PieChart>().DataSource.SetValue("Culverts", StatisticsData.culvertKills);
+        canvas.GetComponent<PieChart>().DataSource.SetValue("River", StatisticsData.riverKills);
+    }
+
+    public void updateLineChart()
+    {
+        GraphChart graph = GameObject.Find("GraphChart").GetComponent<GraphChart>();
+        int[] herringPopulation = StatisticsData.herringPopulation;
+
+        graph.DataSource.StartBatch();
+        graph.DataSource.ClearAndMakeBezierCurve("Line");
+        graph.DataSource.SetCurveInitialPoint("Line", 0, herringPopulation[0]);
+
+        for (int i = 1; i < herringPopulation.Length; i++)
+        {
+            graph.DataSource.AddLinearCurveToCategory("Line", new DoubleVector2(i, herringPopulation[i]));
+        }
+
+        graph.DataSource.MakeCurveCategorySmooth("Line");
+        graph.DataSource.EndBatch();
     }
 }

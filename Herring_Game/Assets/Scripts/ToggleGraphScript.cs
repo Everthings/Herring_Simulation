@@ -19,11 +19,13 @@ public class ToggleGraphScript : MonoBehaviour {
         if(b == true)
         {
             transform.Find("PieUI").transform.position = new Vector3(Screen.width/2, Screen.height/2, 0);
+            transform.Find("LineUI").transform.position = new Vector3(Screen.width / 2, Screen.height / 2, 0);
             transform.Find("GameUI").transform.position = new Vector3(0, -10000, 0);
         }
         else
         {
             transform.Find("PieUI").transform.position = new Vector3(0, -10000, 0);
+            transform.Find("LineUI").transform.position = new Vector3(0, -10000, 0);
             transform.Find("GameUI").transform.position = new Vector3(Screen.width / 2, Screen.height / 2, 0);
         }
     }

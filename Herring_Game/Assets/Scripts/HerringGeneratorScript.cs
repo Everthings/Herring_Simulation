@@ -74,6 +74,11 @@ public class HerringGeneratorScript : MonoBehaviour {
 
                 GameObject.Find("Sections").GetComponent<MainScript>().setHerringCount(GameObject.Find("Sections").GetComponent<MainScript>().herringMultiplier * numHerring);
                 GameObject.Find("Sections").GetComponent<MainScript>().updateHerringCount();
+
+                List<int> herringPopulation = new List<int>(StatisticsData.herringPopulation);
+                herringPopulation.Add(GameObject.Find("Sections").GetComponent<MainScript>().herringAlive);
+                StatisticsData.herringPopulation = herringPopulation.ToArray();
+                GameObject.Find("Canvas").GetComponent<StatisticsScript>().updateLineChart();
             }
 
 
@@ -93,7 +98,7 @@ public class HerringGeneratorScript : MonoBehaviour {
                             GameObject temp = herrings[i];
                             killHerring(temp, Kill.culvert);
                             StatisticsData.culvertKills++;
-                            GameObject.Find("PieCanvas").GetComponent<StatisticsScript>().updateChart();
+                            GameObject.Find("Canvas").GetComponent<StatisticsScript>().updatePieChart();
                         }
                         else
                         {
@@ -105,7 +110,7 @@ public class HerringGeneratorScript : MonoBehaviour {
                 }
             }
 
-            var pieChart = GameObject.Find("PieCanvas").GetComponent<StatisticsScript>();
+            var pieChart = GameObject.Find("Canvas").GetComponent<StatisticsScript>();
 
             //check for herring tree/shrub/river death in river proper
             for (int i = 0; i < herrings.Count; i++)
@@ -129,21 +134,21 @@ public class HerringGeneratorScript : MonoBehaviour {
                                     GameObject temp = herrings[i];
                                     killHerring(temp, Kill.tree);
                                     StatisticsData.treeKills++;
-                                    pieChart.updateChart();
+                                    pieChart.updatePieChart();
                                 }
                                 else if (Random.value > generator.getShrubSurvivalRate())
                                 {
                                     GameObject temp = herrings[i];
                                     killHerring(temp, Kill.shrub);
                                     StatisticsData.shrubKills++;
-                                    pieChart.updateChart();
+                                    pieChart.updatePieChart();
                                 }
                                 else if (Random.value > generator.getRiverSurvivalRate())
                                 {
                                     GameObject temp = herrings[i];
                                     killHerring(temp, Kill.river);
                                     StatisticsData.riverKills++;
-                                    pieChart.updateChart();
+                                    pieChart.updatePieChart();
                                 }
                                 else
                                 {

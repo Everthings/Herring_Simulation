@@ -70,7 +70,7 @@ Material:
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _Density: 0.6
-    - _DepthTransparency: 200
+    - _DepthTransparency: 10
     - _DetailNormalMapScale: 1
     - _Distortion: 0.34
     - _DstBlend: 0
@@ -103,7 +103,7 @@ Material:
     - _Specular: 1
     - _SrcBlend: 1
     - _UVSec: 0
-    - _UnderwaterMode: 1
+    - _UnderwaterMode: 0
     - _UnderwaterTranspDist: 13.56
     - _UnderwaterTranspFalloff: 0.78
     - _WaveSpeed: -100

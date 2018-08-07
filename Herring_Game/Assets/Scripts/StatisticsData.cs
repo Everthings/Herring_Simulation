@@ -4,11 +4,12 @@ using UnityEngine;
 
 public static class StatisticsData{
 
-    //not restored
     private static int shrubKilled = 0;
     private static int treeKilled = 0;
     private static int culvertKilled = 0;
     private static int riverKilled = 0;
+
+    private static int[] herringByYear = new int[] { 30000};
 
     public static int treeKills
     {
@@ -55,6 +56,18 @@ public static class StatisticsData{
         set
         {
             riverKilled = value;
+        }
+    }
+
+    public static int[] herringPopulation
+    {
+        get
+        {
+            return herringByYear;
+        }
+        set
+        {
+            herringByYear = value;
         }
     }
 
