@@ -70,7 +70,7 @@ public class MainScript : MonoBehaviour {
         UI.transform.Find("New_Herring").GetComponent<Text>().enabled = true;
         UI.transform.Find("Herring_Text").GetComponent<Text>().enabled = true;
         UI.transform.Find("New_Herring").GetComponent<Text>().text = herringChildren + " herring were added to the population through spawning.";
-        UI.transform.Find("Herring_Text").GetComponent<Text>().text = "Adult Herring: " + herringAlive;
+        UI.transform.Find("Herring_Text").GetComponent<Text>().text = "Adult Herring: " + herringAdults;
         yield return new WaitForSeconds(t);
         UI.transform.Find("New_Herring").GetComponent<Text>().enabled = false;
         UI.transform.Find("Herring_Text").GetComponent<Text>().enabled = false;
@@ -137,7 +137,7 @@ public class MainScript : MonoBehaviour {
     {
         int remove = (int)Curved_Random(sub, 16f);
         herringAlive -= remove;
-        GameObject.Find("GameUI").transform.Find("Total").GetComponent<Text>().text = "Adult Herring: " + herringAlive;
+        GameObject.Find("GameUI").transform.Find("Total").GetComponent<Text>().text = "Total Herring: " + herringAlive;
         //GameObject.Find("GameUI").transform.Find("Total").GetComponent<Text>().text = "Total herring: " + herringAlive;
 
         return remove;
@@ -235,7 +235,7 @@ public class MainScript : MonoBehaviour {
 
         updateYearStatistics();
 
-        GameObject.Find("Total").GetComponent<Text>().text = "Herring Alive: " + herringAlive;
+        GameObject.Find("Total").GetComponent<Text>().text = "Total Herring: " + herringAlive;
 
         List<GameObject> sections = GameObject.Find("Sections").GetComponent<SectionCollectionScript>().getSections();
 
