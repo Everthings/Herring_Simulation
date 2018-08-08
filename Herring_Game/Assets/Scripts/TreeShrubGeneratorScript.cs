@@ -75,7 +75,8 @@ public class TreeShrubGeneratorScript : MonoBehaviour
             amount -= treePrefabs[0].getAge() + 2;
         }
 
-        transform.Find("Vulture Flock").GetComponent<FlockController>()._childAmount = amount;
+        if(transform.Find("Vulture Flock") != null)
+            transform.Find("Vulture Flock").GetComponent<FlockController>()._childAmount = amount;
     }
 
     public float getTreeSurvivalRate()

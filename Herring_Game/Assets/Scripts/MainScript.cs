@@ -18,7 +18,6 @@ public class MainScript : MonoBehaviour {
     public float climateMultiplier = 0.1f;
     public float fishingMultiplier = 0.2f;
 
-
     // GAME DESIGN
     /*
      * Year 0: Herring spawn and run down river
@@ -45,13 +44,22 @@ public class MainScript : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        if (herringAlive >= 300000){
+        
+    }
+
+    public bool checkForFinish()
+    {
+        if (herringAlive >= 300000)
+        {
             SceneManager.LoadScene("End_ScreenW");
-        }
-        if (herringAlive <= 1000)
+            return true;
+        }else if (herringAlive <= 1000)
         {
             SceneManager.LoadScene("End_ScreenL");
+            return true;
         }
+
+        return false;
     }
 
     IEnumerator displayInfo(float t)
@@ -83,6 +91,23 @@ public class MainScript : MonoBehaviour {
         }
     }
 
+    public void callSkipAllYears()
+    {
+        StartCoroutine(skipAllYears());
+       
+    }
+
+    IEnumerator skipAllYears()
+    {
+        GameObject.Find("Fade").GetComponent<FadeScript>().fadeOut();
+        yield return new WaitForSeconds(0.25f);
+
+        while (!checkForFinish())
+        {
+            herringAlive = simulateInternally();
+            updateYearStatistics();
+        }
+    }
 
     public void updateHerringCount()
     {
@@ -202,79 +227,13 @@ public class MainScript : MonoBehaviour {
 
         if (calculateHerringPopulation)
         {
-            List<GameObject> s = GameObject.Find("Sections").GetComponent<SectionCollectionScript>().getSections();
-            List<GameObject> c = GameObject.Find("Culverts").GetComponent<CulvertCollectionScript>().getCulverts();
-            //double percentage = 1;
-
-            int survived = herringAlive;
-            StatisticsData.resetKilled();
-
-            for(int i = 0; i < herringAlive / herringMultiplier; i++)
-            {
-
-                for(int j = 0; j < 10; j++)
-                {
-                    if (j < c.Count)
-                    {
-                        if (c[j].transform.Find("Button").GetComponent<CulvertRemovalScript>().isRemoved())
-                        {
-                            if (Random.value > SurvivalData.RestoredSurvivalCulverts)
-                            {
-                                int killed = Curved_Random(herringMultiplier, 16);
-                                StatisticsData.culvertKills += killed;
-                                survived -= killed;
-                                break;
-                            }
-                        }
-                        else
-                        {
-                            if (Random.value > SurvivalData.UnrestoredSurvivalCulverts)
-                            {
-                                int killed = Curved_Random(herringMultiplier, 16);
-                                StatisticsData.culvertKills += killed;
-                                survived -= killed;
-                                break;
-                            }
-                        }
-                    }
-
-                    if (Random.value > s[j].GetComponent<TreeShrubGeneratorScript>().getTreeSurvivalRate())
-                    {
-                        int killed = Curved_Random(herringMultiplier, 16);
-                        StatisticsData.treeKills += killed;
-                        survived -= killed;
-                        break;
-                    }
-
-                    if (Random.value > s[j].GetComponent<TreeShrubGeneratorScript>().getShrubSurvivalRate())
-                    {
-                        int killed = Curved_Random(herringMultiplier, 16);
-                        StatisticsData.shrubKills += killed;
-                        survived -= killed;
-                        break;
-                    }
-
-                    if (Random.value > s[j].GetComponent<TreeShrubGeneratorScript>().getRiverSurvivalRate())
-                    {
-                        int killed = Curved_Random(herringMultiplier, 16);
-                        StatisticsData.riverKills += killed;
-                        survived -= killed;
-                        break;
-                    }
-                }    
-            }
-
-
-            //herringAlive = Curved_Random((int)(herringAlive * percentage), 30);
+            int survived = simulateInternally();
             GameObject.Find("Canvas").GetComponent<StatisticsScript>().updatePieChart();
             herringAlive = survived;
             updateHerringCount();
         }
 
-        List<int> herringPopulation = new List<int>(StatisticsData.herringPopulation);
-        herringPopulation.Add(GameObject.Find("Sections").GetComponent<MainScript>().herringAlive);
-        StatisticsData.herringPopulation = herringPopulation.ToArray();
-        GameObject.Find("Canvas").GetComponent<StatisticsScript>().updateLineChart();
+        updateYearStatistics();
 
         GameObject.Find("Total").GetComponent<Text>().text = "Herring Alive: " + herringAlive;
 
@@ -290,8 +249,86 @@ public class MainScript : MonoBehaviour {
         //disableSkipYear();
         enableRestorationOptions();
 
+        checkForFinish();
+
         GameObject.Find("Fade").GetComponent<FadeScript>().fadeIn();
 
+    }
+
+    void updateYearStatistics()
+    {
+        List<int> herringPopulation = new List<int>(StatisticsData.herringPopulation);
+        herringPopulation.Add(GameObject.Find("Sections").GetComponent<MainScript>().herringAlive);
+        StatisticsData.herringPopulation = herringPopulation.ToArray();
+        GameObject.Find("Canvas").GetComponent<StatisticsScript>().updateLineChart();
+    }
+
+    public int simulateInternally()
+    {
+        //returns survived herring
+
+        List<GameObject> s = GameObject.Find("Sections").GetComponent<SectionCollectionScript>().getSections();
+        List<GameObject> c = GameObject.Find("Culverts").GetComponent<CulvertCollectionScript>().getCulverts();
+
+        int survived = herringAlive;
+        StatisticsData.resetKilled();
+
+        for (int i = 0; i < herringAlive / herringMultiplier; i++)
+        {
+
+            for (int j = 0; j < 10; j++)
+            {
+                if (j < c.Count)
+                {
+                    if (c[j].transform.Find("Button").GetComponent<CulvertRemovalScript>().isRemoved())
+                    {
+                        if (Random.value > SurvivalData.RestoredSurvivalCulverts)
+                        {
+                            int killed = Curved_Random(herringMultiplier, 16);
+                            StatisticsData.culvertKills += killed;
+                            survived -= killed;
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        if (Random.value > SurvivalData.UnrestoredSurvivalCulverts)
+                        {
+                            int killed = Curved_Random(herringMultiplier, 16);
+                            StatisticsData.culvertKills += killed;
+                            survived -= killed;
+                            break;
+                        }
+                    }
+                }
+
+                if (Random.value > s[j].GetComponent<TreeShrubGeneratorScript>().getTreeSurvivalRate())
+                {
+                    int killed = Curved_Random(herringMultiplier, 16);
+                    StatisticsData.treeKills += killed;
+                    survived -= killed;
+                    break;
+                }
+
+                if (Random.value > s[j].GetComponent<TreeShrubGeneratorScript>().getShrubSurvivalRate())
+                {
+                    int killed = Curved_Random(herringMultiplier, 16);
+                    StatisticsData.shrubKills += killed;
+                    survived -= killed;
+                    break;
+                }
+
+                if (Random.value > s[j].GetComponent<TreeShrubGeneratorScript>().getRiverSurvivalRate())
+                {
+                    int killed = Curved_Random(herringMultiplier, 16);
+                    StatisticsData.riverKills += killed;
+                    survived -= killed;
+                    break;
+                }
+            }
+        }
+
+        return survived;
     }
 
     public void decrementNumChanges()
