@@ -18,6 +18,8 @@ public class MainScript : MonoBehaviour {
     public float climateMultiplier = 0.1f;
     public float fishingMultiplier = 0.2f;
 
+    int lol;
+
     // GAME DESIGN
     /*
      * Year 0: Herring spawn and run down river
