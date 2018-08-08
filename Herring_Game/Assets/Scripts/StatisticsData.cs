@@ -25,6 +25,8 @@ public static class StatisticsData{
         treeKilled = 0;
         culvertKilled = 0;
         riverKilled = 0;
+
+        herringByYear = new int[] { 30000 };
     }
 
     public static int treeKills
