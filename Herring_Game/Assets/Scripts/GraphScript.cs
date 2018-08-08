@@ -10,7 +10,7 @@ public class GraphScript : MonoBehaviour {
 
     public int minX;
     public int maxX;
-    public int minY;
+    public float minY;
     public int maxY;
 
     public int numIncrementsX;
@@ -119,10 +119,12 @@ public class GraphScript : MonoBehaviour {
     {
         // returns the value of a graph point base on it's position
         pos.y = Screen.height - pos.y;
-        float newX = (pos.x - graphStartX) / graphWidth * (float)(maxX - minX);
-        float newY = (pos.y - graphStartY) / graphHeight * (float)(maxY - minY);
+        float newX = (pos.x - graphStartX) / graphWidth * (float)(maxX - minX) + minX;
+        float newY = (graphStartY - pos.y) / graphHeight * (float)(maxY - minY) + minY;
 
-        return new Vector2(cutDecimals(newX, 2), -cutDecimals(newY, 2));
+        Debug.Log(newY);
+
+        return new Vector2(cutDecimals(newX, 3), cutDecimals(newY, 3));
     }
 
     public float cutDecimals(float value, int numDecimals)
@@ -164,8 +166,8 @@ public class GraphScript : MonoBehaviour {
 
         for(int i = 0; i < fixedData.Length; i++)
         {
-            fixedData[i].x = graphStartX + graphWidth * (fixedData[i].x / (float)(maxX - minX));
-            fixedData[i].y = graphStartY - graphHeight * (fixedData[i].y / (float)(maxY - minY));
+            fixedData[i].x = graphStartX + graphWidth * ((fixedData[i].x - minX) / (float)(maxX - minX));
+            fixedData[i].y = graphStartY - graphHeight * ((fixedData[i].y - minY) / (float)(maxY - minY));
         }
 
         return fixedData;

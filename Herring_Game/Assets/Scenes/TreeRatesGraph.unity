@@ -793,6 +793,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114054596424041694, guid: aa4939bd8deb9184bbc9c1ab4e990ebe,
+        type: 2}
+      propertyPath: minY
+      value: 0.97
+      objectReference: {fileID: 0}
+    - target: {fileID: 114054596424041694, guid: aa4939bd8deb9184bbc9c1ab4e990ebe,
+        type: 2}
+      propertyPath: maxY
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa4939bd8deb9184bbc9c1ab4e990ebe, type: 2}
   m_IsPrefabAsset: 0

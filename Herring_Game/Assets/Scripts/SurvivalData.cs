@@ -11,7 +11,7 @@ public static class SurvivalData {
     private static float riverSurvivalRate = 0.97f;
 
     //restored
-    private static float[] treeAddedSurvivalRate = new float[] {0.7f, 0.75f, 0.8f, 0.85f, 0.9f, 0.95f, 0.97f, 0.975f, 0.99f, 0.995f};
+    private static float[] treeAddedSurvivalRate = new float[] {0.98f, 0.982f, 0.985f, 0.987f, 0.989f, 0.991f, 0.992f, 0.994f, 0.995f, 0.999f};
     private static float shrubAddedSurvivalRate = 0.995f;
     private static float culvertRemovedSurvivalRate = 0.995f;
     private static float riverWindingSurvivalRate = 0.995f;
