@@ -53,12 +53,29 @@ public class TreeShrubGeneratorScript : MonoBehaviour
         agesInOrder.Add(age10);
 
         populatePossibleLocations();
+
+        updateOspreyCount();
     }
 
     // Update is called once per frame
     void Update()
     {
-      
+       
+    }
+
+    void updateOspreyCount()
+    {
+        int amount = 15; // start with 15
+
+        if (areShrubs())
+            amount -= 3;
+
+        if (areTrees())
+        {
+            amount -= treePrefabs[0].getAge() + 2;
+        }
+
+        transform.Find("Vulture Flock").GetComponent<FlockController>()._childAmount = amount;
     }
 
     public float getTreeSurvivalRate()
@@ -289,12 +306,14 @@ public class TreeShrubGeneratorScript : MonoBehaviour
     void swapTreeType(int index)
     {
         // swaps old tree with new tree when changing ages
+        if(treePrefabs[index].getAge() < 9)
+        {
+            addTree(new Vector2(treePositions[index].x, treePositions[index].z), (treePrefabs[index].getAge() + 1));
+            destroyTree(index);
 
-        addTree(new Vector2(treePositions[index].x, treePositions[index].z), (treePrefabs[index].getAge()+1)%10);
-        destroyTree(index);
-
-        treePositions.Remove(treePositions[index]);
-        treePrefabs.Remove(treePrefabs[index]);
+            treePositions.Remove(treePositions[index]);
+            treePrefabs.Remove(treePrefabs[index]);
+        }
     }
 
     void drawTrees(){
@@ -305,6 +324,8 @@ public class TreeShrubGeneratorScript : MonoBehaviour
             treePrefabs[i].setTreePrefab(Instantiate(agesInOrder[treePrefabs[i].getAge()], treePositions[i], Quaternion.identity));
             treePrefabs[i].getPrefab().gameObject.isStatic = true;
         }
+
+        updateOspreyCount();
     }
 
     void drawShrubs()
@@ -316,6 +337,8 @@ public class TreeShrubGeneratorScript : MonoBehaviour
             shrubPrefabs.Add(Instantiate(shrub, shrubPositions[i], Quaternion.identity));
             shrubPrefabs[i].gameObject.isStatic = true;
         }
+
+        updateOspreyCount();
     }
 
     void destroyTree(int index)
