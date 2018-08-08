@@ -21,6 +21,7 @@ public class RestorationScript : MonoBehaviour
     void updateChanges()
     {
         GameObject.Find("Sections").GetComponent<MainScript>().decrementNumChanges();
+        GameObject.Find("Sections").GetComponent<MainScript>().decrementChangesThisYear();
     }
 
     // Update is called once per frame
@@ -31,7 +32,7 @@ public class RestorationScript : MonoBehaviour
 
     public void handleClick()
     {
-        if (GameObject.Find("GameUI") != null && GameObject.Find("Restoration_Options").GetComponent<Dropdown>().enabled && GameObject.Find("Sections").GetComponent<MainScript>().getChangesLeft() > 0)
+        if (GameObject.Find("GameUI") != null && GameObject.Find("Restoration_Options").GetComponent<Dropdown>().enabled && GameObject.Find("Sections").GetComponent<MainScript>().getChangesLeft() > 0 && GameObject.Find("Sections").GetComponent<MainScript>().getChangesThisYear() > 0)
         {
             int value = GameObject.Find("Restoration_Options").GetComponent<Dropdown>().value;
 

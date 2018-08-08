@@ -40,15 +40,15 @@ public class CameraScript : MonoBehaviour
         {
             transform.Translate(new Vector3(-ScrollSpeed * Time.deltaTime,  0, 0));
 
-            if (transform.position.x < -300)
-                transform.position = new Vector3(-300, transform.position.y, transform.position.z);
+            if (transform.position.x < -170)
+                transform.position = new Vector3(-170, transform.position.y, transform.position.z);
         }
         else if (Input.GetKey("right") || Input.GetKey("d"))
         {
             transform.Translate(new Vector3(ScrollSpeed * Time.deltaTime, 0, 0));
 
-            if (transform.position.x > 600)
-                transform.position = new Vector3(600, transform.position.y, transform.position.z);
+            if (transform.position.x > 470)
+                transform.position = new Vector3(470, transform.position.y, transform.position.z);
         }
 
         if (Input.GetAxis("Mouse ScrollWheel") > 0f)

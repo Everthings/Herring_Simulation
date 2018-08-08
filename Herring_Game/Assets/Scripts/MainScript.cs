@@ -18,6 +18,9 @@ public class MainScript : MonoBehaviour {
     public float climateMultiplier = 0.1f;
     public float fishingMultiplier = 0.2f;
 
+    public int changesPerYear;
+    int changesThisYear;
+
     // GAME DESIGN
     /*
      * Year 0: Herring spawn and run down river
@@ -34,18 +37,26 @@ public class MainScript : MonoBehaviour {
         herringChildren = 0;
 
         herringAlive = 30000;
-        disableRestorationOptions();
+        //disableRestorationOptions();
         disableSkipYear();
         disableSkipAll();
 
         GameObject.Find("Time_Text").GetComponent<Text>().text = "Years Elapsed: " + years;
         GameObject.Find("Changes_Text").GetComponent<Text>().text = "Changes Remaining: " + numChanges;
         GameObject.Find("Total").GetComponent<Text>().text = "Total Herring: " + herringAlive;
+
+        changesThisYear = changesPerYear;
+        GameObject.Find("Changes_This_Year").GetComponent<Text>().text = "Changes Remaining This Year: " + changesThisYear;
     }
 
 	// Update is called once per frame
 	void Update () {
         
+    }
+
+    public int getChangesThisYear()
+    {
+        return changesThisYear;
     }
 
     public bool checkForFinish()
@@ -221,7 +232,6 @@ public class MainScript : MonoBehaviour {
 
     }
 
-
     public IEnumerator incrementYear(bool calculateHerringPopulation)
     {
 
@@ -258,6 +268,9 @@ public class MainScript : MonoBehaviour {
         enableRestorationOptions();
 
         checkForFinish();
+
+        changesThisYear = changesPerYear;
+        GameObject.Find("Changes_This_Year").GetComponent<Text>().text = "Changes Remaining This Year: " + changesThisYear;
 
         GameObject.Find("Fade").GetComponent<FadeScript>().fadeIn();
 
@@ -343,6 +356,12 @@ public class MainScript : MonoBehaviour {
     {
         numChanges--;
         GameObject.Find("Changes_Text").GetComponent<Text>().text = "Changes Remaining: " + numChanges;
+    }
+
+    public void decrementChangesThisYear()
+    {
+        changesThisYear--;
+        GameObject.Find("Changes_This_Year").GetComponent<Text>().text = "Changes Remaining This Year: " + changesThisYear;
     }
 
     public int getChangesLeft()

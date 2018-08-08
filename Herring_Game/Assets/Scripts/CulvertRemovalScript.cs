@@ -20,6 +20,7 @@ public class CulvertRemovalScript : MonoBehaviour {
     void updateChanges()
     {
         GameObject.Find("Sections").GetComponent<MainScript>().decrementNumChanges();
+        GameObject.Find("Sections").GetComponent<MainScript>().decrementChangesThisYear();
     }
 
     public void removeCulvert()
@@ -27,7 +28,7 @@ public class CulvertRemovalScript : MonoBehaviour {
         //StartCoroutine(GameObject.Find("Click_Plane").GetComponent<SectionShade>().Clicked(0.2f, transform.parent.gameObject));
         //Debug.Log("briv");
         int value = GameObject.Find("Restoration_Options").GetComponent<Dropdown>().value;
-        if (value == 3 && GameObject.Find("Sections").GetComponent<MainScript>().getChangesLeft() > 0)
+        if (value == 3 && GameObject.Find("Sections").GetComponent<MainScript>().getChangesLeft() > 0 && GameObject.Find("Sections").GetComponent<MainScript>().getChangesThisYear() > 0)
         {
             transform.parent.transform.position = new Vector3(10, -100, 10);
             updateChanges();
