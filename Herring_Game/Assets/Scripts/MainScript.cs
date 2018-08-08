@@ -246,7 +246,7 @@ public class MainScript : MonoBehaviour {
 
         enableSpawn();
         enableSkipYear();
-        //disableSkipYear();
+        enableSkipAll();
         enableRestorationOptions();
 
         checkForFinish();
@@ -363,6 +363,13 @@ public class MainScript : MonoBehaviour {
         GameObject.Find("Skip_Year").transform.GetChild(0).GetComponent<Text>().enabled = false;
     }
 
+    public void disableSkipAll()
+    {
+        GameObject.Find("SkipAll_Button").GetComponent<Button>().enabled = false;
+        GameObject.Find("SkipAll_Button").GetComponent<Image>().enabled = false;
+        GameObject.Find("SkipAll_Button").transform.GetChild(0).GetComponent<Text>().enabled = false;
+    }
+
     public void enableRestorationOptions()
     {
         GameObject.Find("Restoration_Options").GetComponent<Dropdown>().enabled = true;
@@ -382,5 +389,12 @@ public class MainScript : MonoBehaviour {
         GameObject.Find("Skip_Year").GetComponent<Button>().enabled = true;
         GameObject.Find("Skip_Year").GetComponent<Image>().enabled = true;
         GameObject.Find("Skip_Year").transform.GetChild(0).GetComponent<Text>().enabled = true;
+    }
+
+    public void enableSkipAll()
+    {
+        GameObject.Find("SkipAll_Button").GetComponent<Button>().enabled = true;
+        GameObject.Find("SkipAll_Button").GetComponent<Image>().enabled = true;
+        GameObject.Find("SkipAll_Button").transform.GetChild(0).GetComponent<Text>().enabled = true;
     }
 }

@@ -22,5 +22,6 @@ public class SpawnButtonScript : MonoBehaviour {
         GameObject.Find("Sections").GetComponent<MainScript>().disableRestorationOptions();
         GameObject.Find("Sections").GetComponent<MainScript>().disableSpawn();
         GameObject.Find("Sections").GetComponent<MainScript>().disableSkipYear();
+        GameObject.Find("Sections").GetComponent<MainScript>().disableSkipAll();
     }
 }
