@@ -322,7 +322,7 @@ public class TreeShrubGeneratorScript : MonoBehaviour
 
         for (int i = 0; i < treePositions.Count; i++)
         {
-            treePrefabs[i].setTreePrefab(Instantiate(agesInOrder[treePrefabs[i].getAge()], treePositions[i], Quaternion.identity));
+            treePrefabs[i].setTreePrefab(Instantiate(agesInOrder[treePrefabs[i].getAge()], treePositions[i], new Quaternion(0, Random.Range(0, 2 * Mathf.PI), 0, 1)));
             treePrefabs[i].getPrefab().gameObject.isStatic = true;
         }
 
@@ -335,7 +335,7 @@ public class TreeShrubGeneratorScript : MonoBehaviour
 
         for (int i = 0; i < shrubPositions.Count; i++)
         {
-            shrubPrefabs.Add(Instantiate(shrub, shrubPositions[i], Quaternion.identity));
+            shrubPrefabs.Add(Instantiate(shrub, shrubPositions[i], new Quaternion(0, Random.Range(0, 2 * Mathf.PI), 0, 0)));
             shrubPrefabs[i].gameObject.isStatic = true;
         }
 

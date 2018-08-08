@@ -55,6 +55,7 @@ public class HerringMovementScript : MonoBehaviour {
     
     public void generatePath()
     {
+        dest.x += Random.Range(-20, 20);
         agent.SetDestination(dest);
     }
 

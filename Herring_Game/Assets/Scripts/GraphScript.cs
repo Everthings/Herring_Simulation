@@ -124,7 +124,7 @@ public class GraphScript : MonoBehaviour {
 
         Debug.Log(newY);
 
-        return new Vector2(cutDecimals(newX, 3), cutDecimals(newY, 3));
+        return new Vector2(cutDecimals(newX, 5), cutDecimals(newY, 5));
     }
 
     public float cutDecimals(float value, int numDecimals)

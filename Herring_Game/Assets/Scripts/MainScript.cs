@@ -34,8 +34,9 @@ public class MainScript : MonoBehaviour {
         herringChildren = 0;
 
         herringAlive = 30000;
-        //disableRestorationOptions();
-        //disableSkipYear();
+        disableRestorationOptions();
+        disableSkipYear();
+        disableSkipAll();
 
         GameObject.Find("Time_Text").GetComponent<Text>().text = "Years Elapsed: " + years;
         GameObject.Find("Changes_Text").GetComponent<Text>().text = "Changes Remaining: " + numChanges;
@@ -105,6 +106,13 @@ public class MainScript : MonoBehaviour {
         while (!checkForFinish())
         {
             herringAlive = simulateInternally();
+            updateHerringCount();
+            List<GameObject> sections = GameObject.Find("Sections").GetComponent<SectionCollectionScript>().getSections();
+
+            for (int i = 0; i < sections.Count; i++)
+            {
+                sections[i].GetComponent<TreeShrubGeneratorScript>().incrementTreeAges();
+            }
             updateYearStatistics();
         }
     }

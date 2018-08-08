@@ -28,7 +28,7 @@ public class GraphPointMoveScript : MonoBehaviour, IPointerDownHandler, IPointer
 
             Vector2 pixels = GameObject.Find("Window").GetComponent<GraphScript>().pixelsToDataPoint(pos);
 
-            transform.GetChild(0).GetComponent<Text>().text = "( " + pixels.x + " , " + pixels.y + " )";
+            transform.GetChild(0).GetComponent<Text>().text = pixels.y + "";
         }
 	}
 
