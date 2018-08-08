@@ -12,9 +12,9 @@ public class RiverBendGeneratorScript : MonoBehaviour
     public Terrain River_bends_4;
     public Terrain River_bends_5;
     public Terrain River_bends_6;
-     //public Terrain River_bends_7;
-     //public Terrain River_bends_8;
-     //public Terrain River_bends_9;
+     public Terrain River_bends_7;
+     public Terrain River_bends_8;
+     public Terrain River_bends_9;
      //public Terrain River_bends_10;*/ //not added yet
 
     Terrain[] terrains;
@@ -36,8 +36,12 @@ public class RiverBendGeneratorScript : MonoBehaviour
         River_bends_4.gameObject.SetActive(false);
         River_bends_5.gameObject.SetActive(false);
         River_bends_6.gameObject.SetActive(false);
+        River_bends_7.gameObject.SetActive(false);
+        River_bends_8.gameObject.SetActive(false);
+        River_bends_9.gameObject.SetActive(false);
+
         //feel free to recode this with an arrayList, I'm too lazy to do that
-        terrains = new Terrain[] { River, River_bends_1, River_bends_2, River_bends_3, River_bends_4, River_bends_5, River_bends_6 };
+        terrains = new Terrain[] { River, River_bends_1, River_bends_2, River_bends_3, River_bends_4, River_bends_5, River_bends_6, River_bends_7, River_bends_8, River_bends_9 };
     }
 
     // Update is called once per frame
