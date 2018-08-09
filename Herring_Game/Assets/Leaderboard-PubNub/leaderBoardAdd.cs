@@ -35,8 +35,26 @@ public class leaderBoardAdd : MonoBehaviour
         btn.onClick.AddListener(TaskOnClick);
         // Use this for initialization
         PNConfiguration pnConfiguration = new PNConfiguration();
-        pnConfiguration.PublishKey = "pub-c-3f4c82b1-e976-4c64-8d17-6561a89a738b";
-        pnConfiguration.SubscribeKey = "sub-c-b8190a96-9b85-11e8-979a-3665db0876c0";
+
+        if (DifficultyData.difficulty == 0)
+        {
+            //easy
+            pnConfiguration.PublishKey = "pub-c-3f4c82b1-e976-4c64-8d17-6561a89a738b";
+            pnConfiguration.SubscribeKey = "sub-c-b8190a96-9b85-11e8-979a-3665db0876c0";
+        }
+        else if (DifficultyData.difficulty == 1)
+        {
+            //medium
+            pnConfiguration.PublishKey = "pub-c-569d862a-e815-4fd8-a8d9-b82b198a0636";
+            pnConfiguration.SubscribeKey = "sub-c-81de4cf8-9c15-11e8-944c-22e677923cb5";
+        }
+        else if (DifficultyData.difficulty == 2)
+        {
+            //hard
+            pnConfiguration.PublishKey = "pub-c-4ba8063a-d8a2-45e1-b86c-2fd85bb87e0c";
+            pnConfiguration.SubscribeKey = "sub-c-dcdc159a-9c15-11e8-9a7c-62794ce13da1";
+        }
+
         pnConfiguration.LogVerbosity = PNLogVerbosity.BODY;
         pnConfiguration.UUID = Random.Range(0f, 999999f).ToString();
         pubnub = new PubNub(pnConfiguration);

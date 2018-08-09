@@ -236,6 +236,7 @@ public class MainScript : MonoBehaviour {
     {
 
         StopAllCoroutines();
+        GameObject.Find("GameUI").transform.Find("Difficulty_Text").GetComponent<Text>().enabled = false;
 
         GameObject.Find("Fade").GetComponent<FadeScript>().fadeOut();
         yield return new WaitForSeconds(0.25f);
@@ -383,6 +384,7 @@ public class MainScript : MonoBehaviour {
         GameObject.Find("Restoration_Options").GetComponent<Dropdown>().enabled = false;
         GameObject.Find("Restoration_Options").GetComponent<Image>().enabled = false;
         GameObject.Find("Restoration_Label").GetComponent<Text>().enabled = false;
+        GameObject.Find("Arrow").GetComponent<Image>().enabled = false;
     }
 
     public void disableSpawn()
@@ -411,6 +413,7 @@ public class MainScript : MonoBehaviour {
         GameObject.Find("Restoration_Options").GetComponent<Dropdown>().enabled = true;
         GameObject.Find("Restoration_Options").GetComponent<Image>().enabled = true;
         GameObject.Find("Restoration_Label").GetComponent<Text>().enabled = true;
+        GameObject.Find("Arrow").GetComponent<Image>().enabled = true;
     }
 
     public void enableSpawn()
