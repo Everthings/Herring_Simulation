@@ -65,14 +65,19 @@ public class TreeShrubGeneratorScript : MonoBehaviour
 
     void updateOspreyCount()
     {
-        int amount = 15; // start with 15
+        int amount = 18; // start with 15
 
         if (areShrubs())
             amount -= 3;
 
         if (areTrees())
         {
-            amount -= treePrefabs[0].getAge() + 2;
+            amount -= treePrefabs[0].getAge() + 1;
+        }
+
+        if (river_winding)
+        {
+            amount -= 3;
         }
 
         if(transform.Find("Vulture Flock") != null)

@@ -62,14 +62,12 @@ public class CameraScript : MonoBehaviour
 
         if (transform.position.z + transform.position.y * Mathf.Tan(Mathf.PI / 12) > 1900)
             transform.position = new Vector3(transform.position.x, transform.position.y, 1900 - transform.position.y * Mathf.Tan(Mathf.PI / 12));
-
-        if (transform.position.z - transform.position.y * Mathf.Tan(Mathf.PI / 12) < 0)
+        else if (transform.position.z - transform.position.y * Mathf.Tan(Mathf.PI / 12) < 0)
             transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.y * Mathf.Tan(Mathf.PI / 12));
 
-        if (transform.position.x < -170)
-            transform.position = new Vector3(-170, transform.position.y, transform.position.z);
-
-        if (transform.position.x > 470)
-            transform.position = new Vector3(470, transform.position.y, transform.position.z);
+        if (transform.position.x < -160)
+            transform.position = new Vector3(-160, transform.position.y, transform.position.z);
+        else if (transform.position.x > 460)
+            transform.position = new Vector3(460, transform.position.y, transform.position.z);
     }
 }

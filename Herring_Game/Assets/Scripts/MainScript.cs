@@ -38,7 +38,7 @@ public class MainScript : MonoBehaviour {
 
         herringAlive = 30000;
         //disableRestorationOptions();
-        disableSkipYear();
+        //disableSkipYear();
         //disableSkipAll();
 
         GameObject.Find("Time_Text").GetComponent<Text>().text = "Years Elapsed: " + years;
@@ -265,11 +265,20 @@ public class MainScript : MonoBehaviour {
         enableSpawn();
         enableSkipYear();
         enableSkipAll();
-        enableRestorationOptions();
+
+        if (numChanges > 0)
+            enableRestorationOptions();
+        else
+            disableRestorationOptions();
 
         checkForFinish();
 
-        changesThisYear = changesPerYear;
+        if (numChanges < changesPerYear)
+            changesThisYear = numChanges;
+        else
+            changesThisYear = changesPerYear;
+
+
         GameObject.Find("Changes_This_Year").GetComponent<Text>().text = "Changes Remaining This Year: " + changesThisYear;
 
         GameObject.Find("Fade").GetComponent<FadeScript>().fadeIn();
