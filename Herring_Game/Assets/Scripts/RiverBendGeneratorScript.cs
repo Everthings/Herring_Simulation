@@ -60,9 +60,14 @@ public class RiverBendGeneratorScript : MonoBehaviour
 
             if (current > 0)
                 sections[current - 1].GetComponent<TreeShrubGeneratorScript>().river_winding = true;
+ 
+            if(current >= 5)
+                sections[current].GetComponent<TreeShrubGeneratorScript>().regenerateAll(terrains[current]);
+            else
+                sections[current - 1].GetComponent<TreeShrubGeneratorScript>().regenerateAll(terrains[current]);
 
+            sections[9].GetComponent<TreeShrubGeneratorScript>().regenerateAll(terrains[current]);
 
-            sections[current - 1].GetComponent<TreeShrubGeneratorScript>().regenerateAll(terrains[current]);
             return true;
         }
         
