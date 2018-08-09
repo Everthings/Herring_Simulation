@@ -21,21 +21,21 @@ public class CameraScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey("up") || Input.GetKey("w"))
+        if (Input.GetAxis("Vertical") > 0)
         {
             transform.Translate(new Vector3(0, ScrollSpeed * Input.GetAxis("Vertical") * Time.deltaTime, 0));
         }
-        else if (Input.GetKey("down") || Input.GetKey("s"))
+        else if (Input.GetAxis("Vertical") < 0)
         {
             transform.Translate(new Vector3(0, ScrollSpeed * Input.GetAxis("Vertical") * Time.deltaTime, 0));
 
         }
 
-        if (Input.GetKey("left") || Input.GetKey("a"))
+        if (Input.GetAxis("Horizontal") < 0)
         {
             transform.Translate(new Vector3(ScrollSpeed * Input.GetAxis("Horizontal") * Time.deltaTime, 0, 0));
         }
-        else if (Input.GetKey("right") || Input.GetKey("d"))
+        else if (Input.GetAxis("Horizontal") > 0)
         {
             transform.Translate(new Vector3(ScrollSpeed * Input.GetAxis("Horizontal") * Time.deltaTime, 0, 0));
         }
