@@ -23,21 +23,21 @@ public class CameraScript : MonoBehaviour
     {
         if (Input.GetKey("up") || Input.GetKey("w"))
         {
-            transform.Translate(new Vector3(0, ScrollSpeed * Time.deltaTime, 0));
+            transform.Translate(new Vector3(0, ScrollSpeed * Input.GetAxis("Vertical") * Time.deltaTime, 0));
         }
         else if (Input.GetKey("down") || Input.GetKey("s"))
         {
-            transform.Translate(new Vector3(0, -ScrollSpeed * Time.deltaTime, 0));
+            transform.Translate(new Vector3(0, ScrollSpeed * Input.GetAxis("Vertical") * Time.deltaTime, 0));
 
         }
 
         if (Input.GetKey("left") || Input.GetKey("a"))
         {
-            transform.Translate(new Vector3(-ScrollSpeed * Time.deltaTime, 0, 0));
+            transform.Translate(new Vector3(ScrollSpeed * Input.GetAxis("Horizontal") * Time.deltaTime, 0, 0));
         }
         else if (Input.GetKey("right") || Input.GetKey("d"))
         {
-            transform.Translate(new Vector3(ScrollSpeed * Time.deltaTime, 0, 0));
+            transform.Translate(new Vector3(ScrollSpeed * Input.GetAxis("Horizontal") * Time.deltaTime, 0, 0));
         }
 
         if (Input.GetAxis("Mouse ScrollWheel") > 0f)
@@ -48,7 +48,7 @@ public class CameraScript : MonoBehaviour
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
                 Vector3 dir = ray.direction.normalized;
-                transform.Translate(new Vector3(-dir.x, -dir.z, dir.y) * -ZoomSpeed);
+                transform.Translate(new Vector3(-dir.x, -dir.z, dir.y) * -ZoomSpeed * Input.GetAxis("Mouse ScrollWheel") * Time.deltaTime);
 
             }
         }
@@ -56,7 +56,7 @@ public class CameraScript : MonoBehaviour
         {
             if (transform.position.y < maxZoom)
             {
-                transform.Translate(new Vector3(0, 0, -1) * ZoomSpeed);
+                transform.Translate(new Vector3(0, 0, -1) * -ZoomSpeed * Input.GetAxis("Mouse ScrollWheel") * Time.deltaTime);
             }
         }
 
