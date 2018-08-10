@@ -11,7 +11,7 @@ public class GraphScript : MonoBehaviour {
     public int minX;
     public int maxX;
     public float minY;
-    public int maxY;
+    public float maxY;
 
     public int numIncrementsX;
     public int numIncrementsY;
