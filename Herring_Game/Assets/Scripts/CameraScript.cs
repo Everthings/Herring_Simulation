@@ -12,14 +12,10 @@ public class CameraScript : MonoBehaviour
 
     public int maxZoom;
 
-    public Texture2D cursorImage;
-
     void Start()
     {
         startPos = new Vector3(130, 230, 142);
         transform.position = startPos;
-
-        Cursor.SetCursor(cursorImage, Vector2.zero, CursorMode.Auto);
     }
 
     // Update is called once per frame
