@@ -5,38 +5,25 @@ using UnityEngine;
 public static class SurvivalData {
 
     //not restored
-    private static float treeSurvivalRate = 0.984f;
-    private static float shrubSurvivalRate = 0.983f;
-    private static float culvertSurvivalRate = 0.982f;
-    private static float riverSurvivalRate = 0.984f;
+    private static float treeShrubSurvivalRate = 0.97f;
+    private static float culvertSurvivalRate = 0.97f;
+    private static float riverSurvivalRate = 0.97f;
 
     //restored
-    private static float[] treeAddedSurvivalRate = new float[] {0.983f, 0.984f, 0.988f, 0.992f, 0.994f, 0.995f, 0.996f, 0.997f, 0.998f, 0.999f};
-    private static float shrubAddedSurvivalRate = 0.997f;
-    private static float culvertRemovedSurvivalRate = 0.9989f;
-    private static float riverWindingSurvivalRate = 0.9975f;
+    private static float[] treeAddedSurvivalRateIncrease = new float[] {0.015f, 0.016f, 0.017f, 0.018f, 0.019f, 0.02f, 0.022f, 0.024f, 0.026f, 0.029f};
+    private static float shrubAddedSurvivalRateIncrease = 0.025f;
+    private static float culvertRemovedSurvivalRate = 0.995f;
+    private static float riverWindingSurvivalRate = 0.99f;
 
-    public static float UnrestoredSurvivalTrees
+    public static float UnrestoredSurvivalTreesShrubs
     {
         get
         {
-            return treeSurvivalRate;
+            return treeShrubSurvivalRate;
         }
         set
         {
-            treeSurvivalRate = value;
-        }
-    }
-
-    public static float UnrestoredSurvivalShrubs
-    {
-        get
-        {
-            return shrubSurvivalRate;
-        }
-        set
-        {
-            shrubSurvivalRate = value;
+            treeShrubSurvivalRate = value;
         }
     }
 
@@ -68,11 +55,11 @@ public static class SurvivalData {
     {
         get
         {
-            return treeAddedSurvivalRate;
+            return treeAddedSurvivalRateIncrease;
         }
         set
         {
-            treeAddedSurvivalRate = value;
+            treeAddedSurvivalRateIncrease = value;
         }
     }
 
@@ -80,11 +67,11 @@ public static class SurvivalData {
     {
         get
         {
-            return shrubAddedSurvivalRate;
+            return shrubAddedSurvivalRateIncrease;
         }
         set
         {
-            shrubAddedSurvivalRate = value;
+            shrubAddedSurvivalRateIncrease = value;
         }
     }
 

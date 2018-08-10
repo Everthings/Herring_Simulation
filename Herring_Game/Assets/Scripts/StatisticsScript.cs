@@ -21,8 +21,7 @@ public class StatisticsScript : MonoBehaviour {
     {
         GameObject canvas = GameObject.Find("PieCanvas");
         canvas.GetComponent<PieChart>().DataSource.StartBatch();
-        canvas.GetComponent<PieChart>().DataSource.SetValue("Trees", StatisticsData.treeKills);
-        canvas.GetComponent<PieChart>().DataSource.SetValue("Shrubs", StatisticsData.shrubKills);
+        canvas.GetComponent<PieChart>().DataSource.SetValue("Trees and Shrubs", StatisticsData.treeShrubKills);
         canvas.GetComponent<PieChart>().DataSource.SetValue("Culverts", StatisticsData.culvertKills);
         canvas.GetComponent<PieChart>().DataSource.SetValue("River", StatisticsData.riverKills);
         canvas.GetComponent<PieChart>().DataSource.EndBatch();

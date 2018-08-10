@@ -7,8 +7,7 @@ using UnityEngine.UI;
 public class HerringGeneratorScript : MonoBehaviour {
 
     public GameObject herring;
-    public GameObject deathMarkerTree;
-    public GameObject deathMarkerShrub;
+    public GameObject deathMarkerTreeShrub;
     public GameObject deathMarkerCulvert;
     public GameObject deathMarkerRiver;
     public NavMeshSurface surface;
@@ -124,16 +123,10 @@ public class HerringGeneratorScript : MonoBehaviour {
 
                             if (Mathf.Abs(herrings[i].transform.position.z - Zs[j]) < 3)
                             {
-                                if (Random.value > generator.getTreeSurvivalRate())
+                                if (Random.value > generator.getTreeShrubSurvivalRate())
                                 {
                                     GameObject temp = herrings[i];
-                                    StatisticsData.treeKills += killHerring(temp, Kill.tree);
-                                    pieChart.updatePieChart();
-                                }
-                                else if (Random.value > generator.getShrubSurvivalRate())
-                                {
-                                    GameObject temp = herrings[i];
-                                    StatisticsData.shrubKills += killHerring(temp, Kill.shrub);
+                                    StatisticsData.treeShrubKills += killHerring(temp, Kill.treeShrub);
                                     pieChart.updatePieChart();
                                 }
                                 else if (Random.value > generator.getRiverSurvivalRate())
@@ -170,11 +163,8 @@ public class HerringGeneratorScript : MonoBehaviour {
         GameObject marker = null;
         switch (type)
         {
-            case Kill.tree:
-                marker = deathMarkerTree;
-                break;
-            case Kill.shrub:
-                marker = deathMarkerShrub;
+            case Kill.treeShrub:
+                marker = deathMarkerTreeShrub;
                 break;
             case Kill.culvert:
                 marker = deathMarkerCulvert;
@@ -228,5 +218,5 @@ public class HerringGeneratorScript : MonoBehaviour {
 
 enum Kill
 {
-    tree, shrub, river, culvert
+    treeShrub, river, culvert
 }

@@ -84,26 +84,15 @@ public class TreeShrubGeneratorScript : MonoBehaviour
             transform.Find("Vulture Flock").GetComponent<FlockController>()._childAmount = amount;
     }
 
-    public float getTreeSurvivalRate()
+    public float getTreeShrubSurvivalRate()
     {
-        float rate;
+        float rate = SurvivalData.UnrestoredSurvivalTreesShrubs;
 
         if (areTrees())
-            rate = SurvivalData.RestoredSurvivalTrees[treePrefabs[0].getAge()];
-        else
-            rate = SurvivalData.UnrestoredSurvivalTrees;
-
-        return rate;
-    }
-
-    public float getShrubSurvivalRate()
-    {
-        float rate;
+            rate += SurvivalData.RestoredSurvivalTrees[treePrefabs[0].getAge()];
 
         if (areShrubs())
-            rate = SurvivalData.RestoredSurvivalShrubs;
-        else
-            rate = SurvivalData.UnrestoredSurvivalShrubs;
+            rate += SurvivalData.RestoredSurvivalShrubs;
 
         return rate;
     }

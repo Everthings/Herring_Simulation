@@ -4,8 +4,7 @@ using UnityEngine;
 
 public static class StatisticsData{
 
-    private static int shrubKilled = 0;
-    private static int treeKilled = 0;
+    private static int treeShrubKilled = 0;
     private static int culvertKilled = 0;
     private static int riverKilled = 0;
 
@@ -13,43 +12,29 @@ public static class StatisticsData{
 
     public static void resetKilled()
     {
-        shrubKilled = 0;
-        treeKilled = 0;
+        treeShrubKilled = 0;
         culvertKilled = 0;
         riverKilled = 0;
     }
 
     public static void resetAll()
     {
-        shrubKilled = 0;
-        treeKilled = 0;
+        treeShrubKilled = 0;
         culvertKilled = 0;
         riverKilled = 0;
 
         herringByYear = new int[] { 30000 };
     }
 
-    public static int treeKills
+    public static int treeShrubKills
     {
         get
         {
-            return treeKilled;
+            return treeShrubKilled;
         }
         set
         {
-            treeKilled = value;
-        }
-    }
-
-    public static int shrubKills
-    {
-        get
-        {
-            return shrubKilled;
-        }
-        set
-        {
-            shrubKilled = value;
+            treeShrubKilled = value;
         }
     }
 

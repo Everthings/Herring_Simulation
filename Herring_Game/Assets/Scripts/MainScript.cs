@@ -333,18 +333,10 @@ public class MainScript : MonoBehaviour {
                     }
                 }
 
-                if (Random.value > s[j].GetComponent<TreeShrubGeneratorScript>().getTreeSurvivalRate())
+                if (Random.value > s[j].GetComponent<TreeShrubGeneratorScript>().getTreeShrubSurvivalRate())
                 {
                     int killed = Curved_Random(herringMultiplier, 16);
-                    StatisticsData.treeKills += killed;
-                    survived -= killed;
-                    break;
-                }
-
-                if (Random.value > s[j].GetComponent<TreeShrubGeneratorScript>().getShrubSurvivalRate())
-                {
-                    int killed = Curved_Random(herringMultiplier, 16);
-                    StatisticsData.shrubKills += killed;
+                    StatisticsData.treeShrubKills += killed;
                     survived -= killed;
                     break;
                 }
