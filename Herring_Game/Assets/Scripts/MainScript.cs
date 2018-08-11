@@ -37,9 +37,9 @@ public class MainScript : MonoBehaviour {
         herringChildren = 0;
 
         herringAlive = 30000;
-        //disableRestorationOptions();
-        //disableSkipYear();
-        //disableSkipAll();
+        disableRestorationOptions();
+        disableSkipYear();
+        disableSkipAll();
 
         GameObject.Find("Time_Text").GetComponent<Text>().text = "Years Elapsed: " + years;
         GameObject.Find("Changes_Text").GetComponent<Text>().text = "Changes Remaining: " + numChanges;

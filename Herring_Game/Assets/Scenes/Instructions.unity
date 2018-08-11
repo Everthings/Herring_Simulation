@@ -317,9 +317,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'However, your resources are limited, so you cannot restore it all!
-
-    Choose Wisely, and good Luck'
+  m_Text: "However, your resources are limited, so you cannot restore it all!\r\nChoose
+    wisely, and good luck\r!"
 --- !u!222 &399403862
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -564,8 +563,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 13, y: 64}
-  m_SizeDelta: {x: 764.4, y: 127.6}
+  m_AnchoredPosition: {x: 6.7125, y: 78.7}
+  m_SizeDelta: {x: 766.63, y: 123.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &938552456
 MonoBehaviour:
@@ -599,12 +598,13 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Help the herring swim from the Ocean to their spawning ground in Coonamessett
-    pond! \nOver the years, the number of herring in Coonamessett River has decreased
-    due to [reason], and needs to be restored to mainatin a healthy river ecosystem.
-    Restore each section of the river to ensure the survival of the herring as they
-    attempt the spawning journey every 3 years, until their overall population grows
-    back to a healthy 300,000 fish. \nHere is what you can do to help more fish survive:"
+  m_Text: "Help the herring swim from the ocean to their spawning ground in Coonamessett
+    Pond! \r\nOver the five decades, the number of herring in Coonamessett River has
+    decreased. Degraded habitat in the Coonamessett River is one important reason
+    for their decline. Restoration of the Coonamessett River will help to restore
+    the herring population. Restore each section of the river to ensure the survival
+    of the herring as they attempt their spawning migration until their overall population
+    grows back to a healthy 300,000 fish. \r\n"
 --- !u!222 &938552457
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1024,8 +1024,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 17, y: -51}
-  m_SizeDelta: {x: 780.3, y: 63.5}
+  m_AnchoredPosition: {x: 0.37502, y: -35.675}
+  m_SizeDelta: {x: 799.25, y: 104.05}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1755929759
 MonoBehaviour:
@@ -1053,16 +1053,17 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\t\t\t\t\u2022 Remove the culverts that block the fish from moving down
-    the river\n\t\t\t\t\u2022 Add bends to the river that provide deep spots for the
-    herring to hide and avoid predators\n\t\t\t\t\u2022 Plant bushes and trees to
-    provide overhead cover from Osprey that eat the herring"
+  m_Text: "Here is what you can do to help more fish survive:\r\n\n\r\u2022 Remove
+    the culverts that block the fish from moving up the river\r\n\u2022 Add bends
+    to the river that provide deep pools and better habitat for the herring to hide
+    and avoid predators\r\n\u2022 Plant shrubs and trees to provide overhead cover
+    to protect them from hungry gulls and Ospreys along their journey\r"
 --- !u!222 &1755929760
 CanvasRenderer:
   m_ObjectHideFlags: 0
