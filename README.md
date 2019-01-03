@@ -14,7 +14,7 @@ Play Here: https://everthings.itch.io/herring-game
 ## Plant Shrubs for Cover
 ![alt text](https://user-images.githubusercontent.com/16503485/50665808-1b507900-0f80-11e9-82a3-eca76c696ab9.png)
 
-## Plant Trees for Long-Term Cover
+## Plant Trees for Long-Term Cover...
 ![alt text](https://user-images.githubusercontent.com/16503485/50665810-1b507900-0f80-11e9-90f5-86f7b06f4b6e.png)
 
 ## And Watch Them Grow
