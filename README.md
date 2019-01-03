@@ -20,7 +20,7 @@ Play Here: https://everthings.itch.io/herring-game
 ## And Watch Them Grow
 ![alt text](https://user-images.githubusercontent.com/16503485/50665809-1b507900-0f80-11e9-8998-d6dc408e6607.png)
 
-## Add River Bends For Safety
+## Add River Bends for Safety
 ![alt text](https://user-images.githubusercontent.com/16503485/50665811-1b507900-0f80-11e9-93bd-2665ceea661b.png)
 
 ## Kill Predatory Osprey
