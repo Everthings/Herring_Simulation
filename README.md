@@ -16,8 +16,7 @@ Play Here: https://everthings.itch.io/herring-game
 
 ## Plant Trees for Long-Term Cover
 ![alt text](https://user-images.githubusercontent.com/16503485/50665810-1b507900-0f80-11e9-90f5-86f7b06f4b6e.png)
-
-## And Watch Them Grow
+### And Watch Them Grow
 ![alt text](https://user-images.githubusercontent.com/16503485/50665809-1b507900-0f80-11e9-8998-d6dc408e6607.png)
 
 ## Add River Bends For Safety
