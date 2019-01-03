@@ -1,2 +1,2 @@
 # Herring_Simulation
-Game Link: https://everthings.itch.io/herring-game
+Play Here: https://everthings.itch.io/herring-game
